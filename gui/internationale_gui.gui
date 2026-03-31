@@ -46,11 +46,18 @@ window = {
 				parentanchor = vcenter
 			}
 
-			button_icon_close = {
-				size = { 30 30 }
+			# Fixed-width slot keeps title/icon layout identical to the old wide Close button;
+			# classic X centered inside.
+			widget = {
+				size = { 96 54 }
 				parentanchor = vcenter
-				onclick = "[GetVariableSystem.Clear('internationale_open')]"
-				shortcut = "close_window"
+
+				button_icon_close = {
+					size = { 30 30 }
+					parentanchor = center
+					onclick = "[GetVariableSystem.Clear('internationale_open')]"
+					shortcut = "close_window"
+				}
 			}
 		}
 
