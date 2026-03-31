@@ -1,0 +1,3 @@
+intl_number_of_seats = {
+	value = 300
+}

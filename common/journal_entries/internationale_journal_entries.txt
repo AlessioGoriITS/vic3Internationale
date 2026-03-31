@@ -1,0 +1,36 @@
+je_internationale = {
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	group = je_group_global_international_situations
+
+	should_be_pinned_by_default = yes
+
+	is_shown_when_inactive = {
+		is_player = yes
+	}
+
+	possible = {
+		is_player = yes
+	}
+
+	immediate = {
+		set_variable = { name = intl_strength_anarchist value = 20 }
+		set_variable = { name = intl_strength_mutualist value = 20 }
+		set_variable = { name = intl_strength_syndicalist value = 20 }
+		set_variable = { name = intl_strength_blanquist value = 20 }
+		set_variable = { name = intl_strength_marxist value = 20 }
+		intl_update_parliament = yes
+	}
+
+	complete = {
+		custom_tooltip = {
+			text = je_internationale_complete_tt
+			always = no
+		}
+	}
+
+	on_complete = {
+	}
+
+	weight = 1000
+}

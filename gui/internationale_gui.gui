@@ -1,0 +1,131 @@
+window = {
+	name = "internationale_gui_trigger"
+	parentanchor = hcenter|vcenter
+	size = { 660 450 }
+	layer = windows_layer
+	filter_mouse = all
+	allow_outside = yes
+	alwaystransparent = no
+
+	visible = "[GetVariableSystem.Exists('internationale_open')]"
+	datacontext = "[GetPlayer]"
+
+	background = {
+		using = paper_bg_dark
+	}
+
+	close_button = {
+		parentanchor = top|right
+		position = { -10 10 }
+		onclick = "[GetVariableSystem.Clear('internationale_open')]"
+		shortcut = "close_window"
+	}
+
+	vbox = {
+		layoutpolicy_horizontal = expanding
+		layoutpolicy_vertical = expanding
+		margin = { 20 50 }
+		spacing = 10
+
+		textbox = {
+			autoresize = yes
+			text = "intl_parliament_title"
+			using = fontsize_xxl
+			align = hcenter|nobaseline
+			parentanchor = hcenter
+		}
+
+		textbox = {
+			autoresize = yes
+			text = "intl_parliament_desc"
+			using = fontsize_small
+			align = hcenter|nobaseline
+			parentanchor = hcenter
+			alpha = 0.8
+		}
+
+		widget = {
+			size = { 600 280 }
+			parentanchor = hcenter
+			tooltip = "intl_parliament_tooltip"
+
+			intl_parliament_visual_anarchist = {}
+			intl_parliament_visual_mutualist = {}
+			intl_parliament_visual_syndicalist = {}
+			intl_parliament_visual_blanquist = {}
+			intl_parliament_visual_marxist = {}
+		}
+
+		hbox = {
+			parentanchor = hcenter
+			spacing = 15
+			margin_top = 5
+
+			intl_faction_legend = {
+				blockoverride "legend_color" {
+					color = { 0.15 0.15 0.15 1 }
+				}
+				blockoverride "legend_text" {
+					text = "intl_faction_anarchist"
+				}
+			}
+			intl_faction_legend = {
+				blockoverride "legend_color" {
+					color = { 0.9 0.6 0.1 1 }
+				}
+				blockoverride "legend_text" {
+					text = "intl_faction_mutualist"
+				}
+			}
+			intl_faction_legend = {
+				blockoverride "legend_color" {
+					color = { 0.8 0.15 0.15 1 }
+				}
+				blockoverride "legend_text" {
+					text = "intl_faction_syndicalist"
+				}
+			}
+			intl_faction_legend = {
+				blockoverride "legend_color" {
+					color = { 0.2 0.3 0.7 1 }
+				}
+				blockoverride "legend_text" {
+					text = "intl_faction_blanquist"
+				}
+			}
+			intl_faction_legend = {
+				blockoverride "legend_color" {
+					color = { 0.55 0.2 0.6 1 }
+				}
+				blockoverride "legend_text" {
+					text = "intl_faction_marxist"
+				}
+			}
+		}
+	}
+}
+
+types internationale_gui_types {
+	type intl_faction_legend = hbox {
+		spacing = 4
+
+		icon = {
+			size = { 12 12 }
+			parentanchor = vcenter
+			texture = "gfx/interface/icons/generic_icons/identity_overlay.dds"
+			block "legend_color" {
+				color = { 1 1 1 1 }
+			}
+		}
+
+		textbox = {
+			autoresize = yes
+			parentanchor = vcenter
+			align = nobaseline
+			using = fontsize_small
+			block "legend_text" {
+				text = ""
+			}
+		}
+	}
+}

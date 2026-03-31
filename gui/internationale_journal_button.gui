@@ -1,0 +1,31 @@
+@panel_width_minus_30 = 510
+
+types internationale_journal_types {
+	type internationale_journal_button = container {
+		parentanchor = hcenter
+		visible = "[EqualTo_string(JournalEntry.GetName, Localize('je_internationale'))]"
+		minimumsize = { @panel_width_minus_30 -1 }
+
+		background = {
+			alpha = 0.4
+			using = entry_bg_fancy_dark
+		}
+
+		flowcontainer = {
+			parentanchor = hcenter
+			direction = vertical
+			spacing = 10
+			margin = { 10 10 }
+
+			button = {
+				using = default_button
+				parentanchor = hcenter
+				size = { @panel_width_minus_30 50 }
+				using = fontsize_large
+				text = "internationale_open_button"
+				tooltip = "internationale_open_button_tt"
+				onclick = "[GetVariableSystem.Set('internationale_open', 'true')]"
+			}
+		}
+	}
+}

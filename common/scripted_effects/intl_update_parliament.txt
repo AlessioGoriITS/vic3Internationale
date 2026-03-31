@@ -1,0 +1,133 @@
+intl_update_parliament = {
+
+	set_variable = { name = intl_allocated_seats value = 0 }
+	set_variable = { name = intl_total_counted_seats value = 0 }
+	set_variable = { name = intl_winning_faction_seats value = 0 }
+	if = {
+		limit = { has_variable = intl_winning_faction }
+		remove_variable = intl_winning_faction
+	}
+	if = {
+		limit = { has_variable = intl_leftover_seats }
+		remove_variable = intl_leftover_seats
+	}
+
+	intl_clear_faction_cache = { FACTION = anarchist }
+	intl_clear_faction_cache = { FACTION = mutualist }
+	intl_clear_faction_cache = { FACTION = syndicalist }
+	intl_clear_faction_cache = { FACTION = blanquist }
+	intl_clear_faction_cache = { FACTION = marxist }
+
+	set_variable = {
+		name = intl_total_strength
+		value = {
+			value = var:intl_strength_anarchist
+			add = var:intl_strength_mutualist
+			add = var:intl_strength_syndicalist
+			add = var:intl_strength_blanquist
+			add = var:intl_strength_marxist
+		}
+	}
+
+	if = {
+		limit = {
+			var:intl_total_strength > 0
+		}
+
+		intl_cache_faction_seats = { FACTION = anarchist }
+		intl_cache_faction_seats = { FACTION = mutualist }
+		intl_cache_faction_seats = { FACTION = syndicalist }
+		intl_cache_faction_seats = { FACTION = blanquist }
+		intl_cache_faction_seats = { FACTION = marxist }
+
+		set_variable = {
+			name = intl_leftover_seats
+			value = {
+				value = intl_number_of_seats
+				subtract = var:intl_total_counted_seats
+				min = 0
+			}
+		}
+
+		intl_allocate_remaining = { FACTION = anarchist }
+		intl_allocate_remaining = { FACTION = mutualist }
+		intl_allocate_remaining = { FACTION = syndicalist }
+		intl_allocate_remaining = { FACTION = blanquist }
+		intl_allocate_remaining = { FACTION = marxist }
+
+		set_variable = { name = intl_allocated_seats value = 0 }
+
+		intl_apply_faction_range = { FACTION = anarchist }
+		intl_apply_faction_range = { FACTION = mutualist }
+		intl_apply_faction_range = { FACTION = syndicalist }
+		intl_apply_faction_range = { FACTION = blanquist }
+		intl_apply_faction_range = { FACTION = marxist }
+	}
+}
+
+intl_clear_faction_cache = {
+	set_variable = { name = intl_seat_count_$FACTION$ value = 0 }
+	set_variable = { name = intl_$FACTION$_parl_min value = 0 }
+	set_variable = { name = intl_$FACTION$_parl_max value = -1 }
+}
+
+intl_cache_faction_seats = {
+	set_variable = {
+		name = intl_seat_count_$FACTION$
+		value = {
+			value = var:intl_strength_$FACTION$
+			divide = var:intl_total_strength
+			multiply = intl_number_of_seats
+			floor = yes
+		}
+	}
+	change_variable = {
+		name = intl_total_counted_seats
+		add = var:intl_seat_count_$FACTION$
+	}
+	if = {
+		limit = {
+			var:intl_seat_count_$FACTION$ > var:intl_winning_faction_seats
+		}
+		set_variable = { name = intl_winning_faction_seats value = var:intl_seat_count_$FACTION$ }
+		set_variable = { name = intl_winning_faction value = flag:$FACTION$ }
+	}
+}
+
+intl_allocate_remaining = {
+	if = {
+		limit = {
+			has_variable = intl_winning_faction
+			var:intl_leftover_seats > 0
+			var:intl_winning_faction = flag:$FACTION$
+		}
+		change_variable = {
+			name = intl_seat_count_$FACTION$
+			add = var:intl_leftover_seats
+		}
+	}
+}
+
+intl_apply_faction_range = {
+	if = {
+		limit = {
+			var:intl_seat_count_$FACTION$ > 0
+		}
+		set_variable = {
+			name = intl_$FACTION$_parl_min
+			value = var:intl_allocated_seats
+		}
+		set_variable = {
+			name = intl_$FACTION$_parl_max
+			value = {
+				value = var:intl_allocated_seats
+				add = var:intl_seat_count_$FACTION$
+				subtract = 1
+			}
+		}
+		change_variable = {
+			name = intl_allocated_seats
+			add = var:intl_seat_count_$FACTION$
+		}
+	}
+}
