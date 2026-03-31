@@ -1,0 +1,62 @@
+namespace = intl_debug
+
+intl_debug.1 = {
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		set_variable = { name = intl_strength_anarchist value = 20 }
+		set_variable = { name = intl_strength_mutualist value = 20 }
+		set_variable = { name = intl_strength_syndicalist value = 20 }
+		set_variable = { name = intl_strength_blanquist value = 20 }
+		set_variable = { name = intl_strength_marxist value = 20 }
+	}
+
+	option = {
+		name = ok
+	}
+}
+
+intl_debug.2 = {
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		intl_update_parliament = yes
+	}
+
+	option = {
+		name = ok
+	}
+}
+
+intl_debug.2 = {
+	type = country_event
+
+	title = intl_debug.2.t
+	desc = intl_debug.2.t
+	flavor = intl_debug.2.t
+
+	event_image = {
+		video = "middleeast_courtroom_upheaval"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	duration = 3
+
+	cooldown = { days = never_fire_again_modifier_time }
+
+	option = {
+		name = intl_debug.2.t
+        default_option = yes
+
+        set_variable = { name = intl_strength_anarchist value = 20 }
+		set_variable = { name = intl_strength_mutualist value = 20 }
+		set_variable = { name = intl_strength_syndicalist value = 20 }
+		set_variable = { name = intl_strength_blanquist value = 20 }
+		set_variable = { name = intl_strength_marxist value = 20 }
+	}
+}
