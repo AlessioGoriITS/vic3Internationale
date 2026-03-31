@@ -18,6 +18,12 @@ intl_update_parliament = {
 	intl_clear_faction_cache = { FACTION = blanquist }
 	intl_clear_faction_cache = { FACTION = marxist }
 
+	if = { limit = { NOT = { has_variable = intl_strength_anarchist } } set_variable = { name = intl_strength_anarchist value = 0 } }
+	if = { limit = { NOT = { has_variable = intl_strength_mutualist } } set_variable = { name = intl_strength_mutualist value = 0 } }
+	if = { limit = { NOT = { has_variable = intl_strength_syndicalist } } set_variable = { name = intl_strength_syndicalist value = 0 } }
+	if = { limit = { NOT = { has_variable = intl_strength_blanquist } } set_variable = { name = intl_strength_blanquist value = 0 } }
+	if = { limit = { NOT = { has_variable = intl_strength_marxist } } set_variable = { name = intl_strength_marxist value = 0 } }
+
 	set_variable = {
 		name = intl_total_strength
 		value = {

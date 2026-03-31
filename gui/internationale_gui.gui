@@ -1,7 +1,7 @@
 window = {
 	name = "internationale_gui_trigger"
 	parentanchor = hcenter|vcenter
-	size = { 660 450 }
+	size = { 1000 850 }
 	layer = windows_layer
 	filter_mouse = all
 	allow_outside = yes
@@ -20,6 +20,18 @@ window = {
 		onclick = "[GetVariableSystem.Clear('internationale_open')]"
 		shortcut = "close_window"
 	}
+
+	widget = {
+			size = { 600 280 }
+			parentanchor = hcenter|center
+			tooltip = "intl_parliament_tooltip"
+
+			intl_parliament_visual_anarchist = {}
+			intl_parliament_visual_mutualist = {}
+			intl_parliament_visual_syndicalist = {}
+			intl_parliament_visual_blanquist = {}
+			intl_parliament_visual_marxist = {}
+		}
 
 	vbox = {
 		layoutpolicy_horizontal = expanding
@@ -42,18 +54,6 @@ window = {
 			align = hcenter|nobaseline
 			parentanchor = hcenter
 			alpha = 0.8
-		}
-
-		widget = {
-			size = { 600 280 }
-			parentanchor = hcenter
-			tooltip = "intl_parliament_tooltip"
-
-			intl_parliament_visual_anarchist = {}
-			intl_parliament_visual_mutualist = {}
-			intl_parliament_visual_syndicalist = {}
-			intl_parliament_visual_blanquist = {}
-			intl_parliament_visual_marxist = {}
 		}
 
 		hbox = {

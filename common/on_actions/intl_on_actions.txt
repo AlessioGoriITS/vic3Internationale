@@ -1,0 +1,17 @@
+on_monthly_pulse_country = {
+	on_actions = {
+		intl_parliament_update_on_action
+	}
+}
+
+intl_parliament_update_on_action = {
+	effect = {
+		if = {
+			limit = {
+				is_player = yes
+				has_journal_entry = je_internationale
+			}
+			intl_update_parliament = yes
+		}
+	}
+}
