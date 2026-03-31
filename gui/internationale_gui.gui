@@ -1,7 +1,7 @@
 window = {
 	name = "internationale_gui_trigger"
 	parentanchor = hcenter|vcenter
-	size = { 1000 850 }
+	size = { 760 760 }
 	layer = windows_layer
 	filter_mouse = all
 	allow_outside = yes
@@ -11,106 +11,696 @@ window = {
 	datacontext = "[GetPlayer]"
 
 	background = {
-		using = paper_bg_dark
+		using = paper_bg
 	}
-
-	close_button = {
-		parentanchor = top|right
-		position = { -10 10 }
-		onclick = "[GetVariableSystem.Clear('internationale_open')]"
-		shortcut = "close_window"
-	}
-
-	widget = {
-			size = { 600 280 }
-			parentanchor = hcenter|center
-			tooltip = "intl_parliament_tooltip"
-
-			intl_parliament_visual_anarchist = {}
-			intl_parliament_visual_mutualist = {}
-			intl_parliament_visual_syndicalist = {}
-			intl_parliament_visual_blanquist = {}
-			intl_parliament_visual_marxist = {}
-		}
 
 	vbox = {
 		layoutpolicy_horizontal = expanding
 		layoutpolicy_vertical = expanding
-		margin = { 20 50 }
-		spacing = 10
 
-		textbox = {
-			autoresize = yes
-			text = "intl_parliament_title"
-			using = fontsize_xxl
-			align = hcenter|nobaseline
-			parentanchor = hcenter
-		}
-
-		textbox = {
-			autoresize = yes
-			text = "intl_parliament_desc"
-			using = fontsize_small
-			align = hcenter|nobaseline
-			parentanchor = hcenter
-			alpha = 0.8
-		}
-
+		### HEADER
 		hbox = {
-			parentanchor = hcenter
-			spacing = 15
-			margin_top = 5
+			layoutpolicy_horizontal = expanding
+			minimumsize = { 0 54 }
 
-			intl_faction_legend = {
-				blockoverride "legend_color" {
+			background = {
+				using = default_header_bg
+			}
+
+			margin = { 14 0 }
+			spacing = 10
+
+			icon = {
+				size = { 28 28 }
+				parentanchor = vcenter
+				texture = "gfx/interface/icons/generic_icons/identity_overlay.dds"
+				color = { 0.88 0.78 0.32 1 }
+			}
+
+			textbox = {
+				layoutpolicy_horizontal = expanding
+				size = { 0 54 }
+				text = "intl_parliament_title"
+				using = fontsize_xxl
+				align = left|nobaseline
+				parentanchor = vcenter
+			}
+
+			button_icon_close = {
+				size = { 30 30 }
+				parentanchor = vcenter
+				onclick = "[GetVariableSystem.Clear('internationale_open')]"
+				shortcut = "close_window"
+			}
+		}
+
+		### SUBTITLE
+		widget = {
+			layoutpolicy_horizontal = expanding
+			size = { 0 36 }
+
+			background = {
+				using = dark_area
+				alpha = 0.4
+			}
+
+			textbox = {
+				size = { 100% 100% }
+				text = "intl_parliament_desc"
+				using = fontsize_medium
+				align = hcenter|nobaseline
+				parentanchor = center
+				alpha = 0.8
+			}
+		}
+
+		divider_clean = {
+			layoutpolicy_horizontal = expanding
+		}
+
+		### SPACER
+		widget = { size = { 0 8 } }
+
+		### PARLIAMENT GRAPH
+		widget = {
+			layoutpolicy_horizontal = expanding
+			size = { 0 290 }
+
+			using = entry_bg_fancy
+			using = tooltip_below
+			tooltip = "intl_parliament_tooltip"
+
+			margin = { 10 5 }
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				size = { 100% 280 }
+
+				widget = {
+					size = { 0 1 }
+					layoutpolicy_horizontal = expanding
+				}
+
+				widget = {
+					size = { 600 280 }
+
+					intl_parliament_visual_anarchist = {}
+					intl_parliament_visual_mutualist = {}
+					intl_parliament_visual_syndicalist = {}
+					intl_parliament_visual_blanquist = {}
+					intl_parliament_visual_marxist = {}
+				}
+
+				widget = {
+					size = { 0 1 }
+					layoutpolicy_horizontal = expanding
+				}
+			}
+		}
+
+		### SPACER
+		widget = { size = { 0 6 } }
+
+		### FACTION TAB BUTTONS
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			size = { 0 40 }
+			spacing = 2
+			margin = { 8 0 }
+
+			intl_tab_button = {
+				blockoverride "tab_color" {
 					color = { 0.15 0.15 0.15 1 }
 				}
-				blockoverride "legend_text" {
+				blockoverride "tab_text" {
 					text = "intl_faction_anarchist"
 				}
+				blockoverride "tab_active_visible" {
+					visible = "[GetVariableSystem.Exists('intl_tab_anarchist')]"
+				}
+				blockoverride "tab_inactive_visible" {
+					visible = "[Not(GetVariableSystem.Exists('intl_tab_anarchist'))]"
+				}
+				blockoverride "tab_onclick_set" {
+					onclick = "[GetVariableSystem.Set('intl_tab_anarchist', 'true')]"
+				}
+				blockoverride "tab_onclick_clear" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_anarchist')]"
+				}
 			}
-			intl_faction_legend = {
-				blockoverride "legend_color" {
+
+			intl_tab_button = {
+				blockoverride "tab_color" {
 					color = { 0.9 0.6 0.1 1 }
 				}
-				blockoverride "legend_text" {
+				blockoverride "tab_text" {
 					text = "intl_faction_mutualist"
 				}
+				blockoverride "tab_active_visible" {
+					visible = "[GetVariableSystem.Exists('intl_tab_mutualist')]"
+				}
+				blockoverride "tab_inactive_visible" {
+					visible = "[Not(GetVariableSystem.Exists('intl_tab_mutualist'))]"
+				}
+				blockoverride "tab_onclick_set" {
+					onclick = "[GetVariableSystem.Set('intl_tab_mutualist', 'true')]"
+				}
+				blockoverride "tab_onclick_clear" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_mutualist')]"
+				}
 			}
-			intl_faction_legend = {
-				blockoverride "legend_color" {
+
+			intl_tab_button = {
+				blockoverride "tab_color" {
 					color = { 0.8 0.15 0.15 1 }
 				}
-				blockoverride "legend_text" {
+				blockoverride "tab_text" {
 					text = "intl_faction_syndicalist"
 				}
+				blockoverride "tab_active_visible" {
+					visible = "[GetVariableSystem.Exists('intl_tab_syndicalist')]"
+				}
+				blockoverride "tab_inactive_visible" {
+					visible = "[Not(GetVariableSystem.Exists('intl_tab_syndicalist'))]"
+				}
+				blockoverride "tab_onclick_set" {
+					onclick = "[GetVariableSystem.Set('intl_tab_syndicalist', 'true')]"
+				}
+				blockoverride "tab_onclick_clear" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_syndicalist')]"
+				}
 			}
-			intl_faction_legend = {
-				blockoverride "legend_color" {
+
+			intl_tab_button = {
+				blockoverride "tab_color" {
 					color = { 0.2 0.3 0.7 1 }
 				}
-				blockoverride "legend_text" {
+				blockoverride "tab_text" {
 					text = "intl_faction_blanquist"
 				}
+				blockoverride "tab_active_visible" {
+					visible = "[GetVariableSystem.Exists('intl_tab_blanquist')]"
+				}
+				blockoverride "tab_inactive_visible" {
+					visible = "[Not(GetVariableSystem.Exists('intl_tab_blanquist'))]"
+				}
+				blockoverride "tab_onclick_set" {
+					onclick = "[GetVariableSystem.Set('intl_tab_blanquist', 'true')]"
+				}
+				blockoverride "tab_onclick_clear" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_blanquist')]"
+				}
 			}
-			intl_faction_legend = {
-				blockoverride "legend_color" {
+
+			intl_tab_button = {
+				blockoverride "tab_color" {
 					color = { 0.55 0.2 0.6 1 }
 				}
-				blockoverride "legend_text" {
+				blockoverride "tab_text" {
 					text = "intl_faction_marxist"
 				}
+				blockoverride "tab_active_visible" {
+					visible = "[GetVariableSystem.Exists('intl_tab_marxist')]"
+				}
+				blockoverride "tab_inactive_visible" {
+					visible = "[Not(GetVariableSystem.Exists('intl_tab_marxist'))]"
+				}
+				blockoverride "tab_onclick_set" {
+					onclick = "[GetVariableSystem.Set('intl_tab_marxist', 'true')]"
+				}
+				blockoverride "tab_onclick_clear" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_marxist')]"
+				}
+			}
+		}
+
+		### DELEGATES LABEL
+		widget = {
+			layoutpolicy_horizontal = expanding
+			size = { 0 26 }
+
+			background = {
+				using = dark_area
+				alpha = 0.1
+			}
+
+			textbox = {
+				size = { 100% 100% }
+				text = "intl_delegates_label"
+				using = fontsize_small
+				align = hcenter|nobaseline
+				parentanchor = center
+				alpha = 0.45
+			}
+		}
+
+		### CHARACTER CARDS ROW
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			size = { 0 118 }
+			spacing = 4
+			margin = { 8 0 }
+
+			intl_faction_card = {
+				blockoverride "card_color" {
+					color = { 0.15 0.15 0.15 1 }
+				}
+				blockoverride "card_portrait" {
+					widget = {
+						datacontext = "[Country.GetInterestGroup('ig_industrialists').GetLeader]"
+						portrait = {
+							size = { 52 64 }
+							parentanchor = center
+						}
+					}
+				}
+				blockoverride "card_name" { text = "intl_faction_anarchist" }
+				blockoverride "card_delegate" { text = "intl_delegate_anarchist_name" }
+				blockoverride "card_role" { text = "intl_delegate_anarchist_role" }
+				blockoverride "card_active_visible" {
+					visible = "[GetVariableSystem.Exists('intl_tab_anarchist')]"
+				}
+				blockoverride "card_inactive_visible" {
+					visible = "[Not(GetVariableSystem.Exists('intl_tab_anarchist'))]"
+				}
+				blockoverride "card_onclick_set" {
+					onclick = "[GetVariableSystem.Set('intl_tab_anarchist', 'true')]"
+				}
+				blockoverride "card_onclick_clear" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_anarchist')]"
+				}
+			}
+
+			intl_faction_card = {
+				blockoverride "card_color" {
+					color = { 0.9 0.6 0.1 1 }
+				}
+				blockoverride "card_portrait" {
+					widget = {
+						datacontext = "[Country.GetInterestGroup('ig_landowners').GetLeader]"
+						portrait = {
+							size = { 52 64 }
+							parentanchor = center
+						}
+					}
+				}
+				blockoverride "card_name" { text = "intl_faction_mutualist" }
+				blockoverride "card_delegate" { text = "intl_delegate_mutualist_name" }
+				blockoverride "card_role" { text = "intl_delegate_mutualist_role" }
+				blockoverride "card_active_visible" {
+					visible = "[GetVariableSystem.Exists('intl_tab_mutualist')]"
+				}
+				blockoverride "card_inactive_visible" {
+					visible = "[Not(GetVariableSystem.Exists('intl_tab_mutualist'))]"
+				}
+				blockoverride "card_onclick_set" {
+					onclick = "[GetVariableSystem.Set('intl_tab_mutualist', 'true')]"
+				}
+				blockoverride "card_onclick_clear" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_mutualist')]"
+				}
+			}
+
+			intl_faction_card = {
+				blockoverride "card_color" {
+					color = { 0.8 0.15 0.15 1 }
+				}
+				blockoverride "card_portrait" {
+					widget = {
+						datacontext = "[Country.GetInterestGroup('ig_intelligentsia').GetLeader]"
+						portrait = {
+							size = { 52 64 }
+							parentanchor = center
+						}
+					}
+				}
+				blockoverride "card_name" { text = "intl_faction_syndicalist" }
+				blockoverride "card_delegate" { text = "intl_delegate_syndicalist_name" }
+				blockoverride "card_role" { text = "intl_delegate_syndicalist_role" }
+				blockoverride "card_active_visible" {
+					visible = "[GetVariableSystem.Exists('intl_tab_syndicalist')]"
+				}
+				blockoverride "card_inactive_visible" {
+					visible = "[Not(GetVariableSystem.Exists('intl_tab_syndicalist'))]"
+				}
+				blockoverride "card_onclick_set" {
+					onclick = "[GetVariableSystem.Set('intl_tab_syndicalist', 'true')]"
+				}
+				blockoverride "card_onclick_clear" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_syndicalist')]"
+				}
+			}
+
+			intl_faction_card = {
+				blockoverride "card_color" {
+					color = { 0.2 0.3 0.7 1 }
+				}
+				blockoverride "card_portrait" {
+					widget = {
+						datacontext = "[Country.GetInterestGroup('ig_trade_unions').GetLeader]"
+						portrait = {
+							size = { 52 64 }
+							parentanchor = center
+						}
+					}
+				}
+				blockoverride "card_name" { text = "intl_faction_blanquist" }
+				blockoverride "card_delegate" { text = "intl_delegate_blanquist_name" }
+				blockoverride "card_role" { text = "intl_delegate_blanquist_role" }
+				blockoverride "card_active_visible" {
+					visible = "[GetVariableSystem.Exists('intl_tab_blanquist')]"
+				}
+				blockoverride "card_inactive_visible" {
+					visible = "[Not(GetVariableSystem.Exists('intl_tab_blanquist'))]"
+				}
+				blockoverride "card_onclick_set" {
+					onclick = "[GetVariableSystem.Set('intl_tab_blanquist', 'true')]"
+				}
+				blockoverride "card_onclick_clear" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_blanquist')]"
+				}
+			}
+
+			intl_faction_card = {
+				blockoverride "card_color" {
+					color = { 0.55 0.2 0.6 1 }
+				}
+				blockoverride "card_portrait" {
+					widget = {
+						datacontext = "[Country.GetInterestGroup('ig_rural_folk').GetLeader]"
+						portrait = {
+							size = { 52 64 }
+							parentanchor = center
+						}
+					}
+				}
+				blockoverride "card_name" { text = "intl_faction_marxist" }
+				blockoverride "card_delegate" { text = "intl_delegate_marxist_name" }
+				blockoverride "card_role" { text = "intl_delegate_marxist_role" }
+				blockoverride "card_active_visible" {
+					visible = "[GetVariableSystem.Exists('intl_tab_marxist')]"
+				}
+				blockoverride "card_inactive_visible" {
+					visible = "[Not(GetVariableSystem.Exists('intl_tab_marxist'))]"
+				}
+				blockoverride "card_onclick_set" {
+					onclick = "[GetVariableSystem.Set('intl_tab_marxist', 'true')]"
+				}
+				blockoverride "card_onclick_clear" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_marxist')]"
+				}
+			}
+		}
+
+		### DETAIL SECTION (scrollable, expands to fill remaining space)
+		scrollarea = {
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+			minimumsize = { 0 90 }
+			scrollbarpolicy_horizontal = always_off
+
+			scrollwidget = {
+				flowcontainer = {
+					direction = vertical
+					layoutpolicy_horizontal = expanding
+					spacing = 4
+					margin = { 8 6 }
+
+					### Placeholder when nothing selected
+					widget = {
+						layoutpolicy_horizontal = expanding
+						size = { 0 72 }
+						visible = "[Not(Or(Or(Or(Or(GetVariableSystem.Exists('intl_tab_anarchist'), GetVariableSystem.Exists('intl_tab_mutualist')), GetVariableSystem.Exists('intl_tab_syndicalist')), GetVariableSystem.Exists('intl_tab_blanquist')), GetVariableSystem.Exists('intl_tab_marxist')))]"
+
+						background = {
+							using = entry_bg_fancy
+							alpha = 0.5
+						}
+
+						textbox = {
+							size = { 100% 100% }
+							text = "intl_detail_placeholder"
+							using = fontsize_medium
+							align = hcenter|nobaseline
+							parentanchor = center
+							alpha = 0.38
+						}
+					}
+
+					### Anarchist doctrine
+					intl_faction_detail_panel = {
+						visible = "[GetVariableSystem.Exists('intl_tab_anarchist')]"
+						blockoverride "detail_color" { color = { 0.15 0.15 0.15 1 } }
+						blockoverride "detail_faction_name" { text = "intl_faction_anarchist" }
+						blockoverride "detail_title" { text = "intl_delegate_anarchist_title" }
+						blockoverride "detail_desc" { text = "intl_doctrine_anarchist" }
+					}
+
+					### Mutualist doctrine
+					intl_faction_detail_panel = {
+						visible = "[GetVariableSystem.Exists('intl_tab_mutualist')]"
+						blockoverride "detail_color" { color = { 0.9 0.6 0.1 1 } }
+						blockoverride "detail_faction_name" { text = "intl_faction_mutualist" }
+						blockoverride "detail_title" { text = "intl_delegate_mutualist_title" }
+						blockoverride "detail_desc" { text = "intl_doctrine_mutualist" }
+					}
+
+					### Syndicalist doctrine
+					intl_faction_detail_panel = {
+						visible = "[GetVariableSystem.Exists('intl_tab_syndicalist')]"
+						blockoverride "detail_color" { color = { 0.8 0.15 0.15 1 } }
+						blockoverride "detail_faction_name" { text = "intl_faction_syndicalist" }
+						blockoverride "detail_title" { text = "intl_delegate_syndicalist_title" }
+						blockoverride "detail_desc" { text = "intl_doctrine_syndicalist" }
+					}
+
+					### Blanquist doctrine
+					intl_faction_detail_panel = {
+						visible = "[GetVariableSystem.Exists('intl_tab_blanquist')]"
+						blockoverride "detail_color" { color = { 0.2 0.3 0.7 1 } }
+						blockoverride "detail_faction_name" { text = "intl_faction_blanquist" }
+						blockoverride "detail_title" { text = "intl_delegate_blanquist_title" }
+						blockoverride "detail_desc" { text = "intl_doctrine_blanquist" }
+					}
+
+					### Marxist doctrine
+					intl_faction_detail_panel = {
+						visible = "[GetVariableSystem.Exists('intl_tab_marxist')]"
+						blockoverride "detail_color" { color = { 0.55 0.2 0.6 1 } }
+						blockoverride "detail_faction_name" { text = "intl_faction_marxist" }
+						blockoverride "detail_title" { text = "intl_delegate_marxist_title" }
+						blockoverride "detail_desc" { text = "intl_doctrine_marxist" }
+					}
+				}
+			}
+		}
+
+		divider_clean = {
+			layoutpolicy_horizontal = expanding
+		}
+
+		### FOOTER QUOTE
+		widget = {
+			layoutpolicy_horizontal = expanding
+			size = { 0 34 }
+
+			background = {
+				using = dark_area
+				alpha = 0.15
+			}
+
+			textbox = {
+				size = { 100% 100% }
+				text = "intl_footer_text"
+				using = fontsize_small
+				align = hcenter|nobaseline
+				parentanchor = center
+				alpha = 0.6
 			}
 		}
 	}
 }
 
 types internationale_gui_types {
+
+	### FACTION TAB BUTTON
+	### Two overlapping buttons handle the toggle: one for active state, one for inactive.
+	type intl_tab_button = widget {
+		layoutpolicy_horizontal = expanding
+		size = { 0 40 }
+
+		# Active state: shown when selected, click to deselect
+		button = {
+			size = { 100% 100% }
+			using = default_button_primary
+			enabled = no
+			block "tab_text" { text = "" }
+			using = fontsize_medium
+			block "tab_active_visible" { visible = no }
+			block "tab_onclick_clear" { onclick = "" }
+		}
+
+		# Inactive state: shown when not selected, click to select
+		button = {
+			size = { 100% 100% }
+			using = default_button
+			block "tab_text" { text = "" }
+			using = fontsize_medium
+			block "tab_inactive_visible" { visible = yes }
+			block "tab_onclick_set" { onclick = "" }
+		}
+	}
+
+	### FACTION DELEGATE CARD
+	type intl_faction_card = widget {
+		layoutpolicy_horizontal = expanding
+		size = { 0 118 }
+
+		# Active state button (shown when selected, click to deselect)
+		button = {
+			size = { 100% 100% }
+			using = default_button
+			enabled = no
+			block "card_active_visible" { visible = no }
+			block "card_onclick_clear" { onclick = "" }
+		}
+
+		# Inactive state button (shown when not selected, click to select)
+		button = {
+			size = { 100% 100% }
+			using = default_button
+			block "card_inactive_visible" { visible = yes }
+			block "card_onclick_set" { onclick = "" }
+		}
+
+		vbox = {
+			size = { 100% 100% }
+			parentanchor = center
+			spacing = 3
+			margin = { 4 6 }
+
+			# Portrait slot — 52x64 framed area, filled via blockoverride per card instance
+			widget = {
+				size = { 60 68 }
+				parentanchor = hcenter
+
+				# Circular frame behind portrait
+				icon = {
+					size = { 60 60 }
+					parentanchor = center
+					texture = "gfx/interface/backgrounds/round_frame_dec.dds"
+				}
+
+				# Portrait (real character via IG leader datacontext, set per instance)
+				widget = {
+					size = { 52 64 }
+					parentanchor = center
+					block "card_portrait" {
+						# Default fallback: faction-colored identity icon
+						icon = {
+							size = { 28 28 }
+							parentanchor = center
+							texture = "gfx/interface/icons/generic_icons/identity_overlay.dds"
+							block "card_color" { color = { 1 1 1 1 } }
+						}
+					}
+				}
+			}
+
+			textbox = {
+				layoutpolicy_horizontal = expanding
+				autoresize = yes
+				align = hcenter|nobaseline
+				using = fontsize_medium
+				block "card_name" { text = "" }
+			}
+
+			textbox = {
+				layoutpolicy_horizontal = expanding
+				autoresize = yes
+				align = hcenter|nobaseline
+				using = fontsize_small
+				alpha = 0.75
+				block "card_delegate" { text = "" }
+			}
+
+			textbox = {
+				layoutpolicy_horizontal = expanding
+				autoresize = yes
+				align = hcenter|nobaseline
+				using = fontsize_small
+				alpha = 0.5
+				block "card_role" { text = "" }
+			}
+		}
+	}
+
+	### FACTION DETAIL PANEL
+	type intl_faction_detail_panel = widget {
+		layoutpolicy_horizontal = expanding
+		minimumsize = { 0 80 }
+
+		background = {
+			using = entry_bg_fancy
+		}
+
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			spacing = 12
+			margin = { 14 10 }
+
+			icon = {
+				size = { 32 32 }
+				parentanchor = vcenter
+				texture = "gfx/interface/icons/generic_icons/identity_overlay.dds"
+				block "detail_color" { color = { 1 1 1 1 } }
+			}
+
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				spacing = 5
+				parentanchor = vcenter
+
+				hbox = {
+					layoutpolicy_horizontal = expanding
+					spacing = 8
+
+					textbox = {
+						autoresize = yes
+						using = fontsize_large
+						align = left|nobaseline
+						block "detail_faction_name" { text = "" }
+					}
+
+					textbox = {
+						layoutpolicy_horizontal = expanding
+						autoresize = yes
+						using = fontsize_small
+						align = left|nobaseline
+						alpha = 0.6
+						block "detail_title" { text = "" }
+					}
+				}
+
+				textbox = {
+					layoutpolicy_horizontal = expanding
+					autoresize = yes
+					max_width = 680
+					using = fontsize_medium
+					align = left|nobaseline
+					alpha = 0.78
+					block "detail_desc" { text = "" }
+				}
+			}
+		}
+	}
+
+	### FACTION LEGEND (kept for reference/backwards compatibility)
 	type intl_faction_legend = hbox {
-		spacing = 4
+		spacing = 5
 
 		icon = {
-			size = { 12 12 }
+			size = { 14 14 }
 			parentanchor = vcenter
 			texture = "gfx/interface/icons/generic_icons/identity_overlay.dds"
 			block "legend_color" {
@@ -122,7 +712,7 @@ types internationale_gui_types {
 			autoresize = yes
 			parentanchor = vcenter
 			align = nobaseline
-			using = fontsize_small
+			using = fontsize_medium
 			block "legend_text" {
 				text = ""
 			}

@@ -19,23 +19,97 @@ intl_debug.1 = {
 
 intl_debug.2 = {
 	type = country_event
-	hidden = yes
+
+	title = intl_debug.2.t
+	desc = intl_debug.2.desc
+	flavor = intl_debug.2.t
+
+	event_image = {
+		video = "middleeast_courtroom_upheaval"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	duration = 3
 
 	immediate = {
-		intl_update_parliament = yes
+		if = { limit = { NOT = { has_variable = intl_strength_anarchist } } set_variable = { name = intl_strength_anarchist value = 0 } }
+		if = { limit = { NOT = { has_variable = intl_strength_mutualist } } set_variable = { name = intl_strength_mutualist value = 0 } }
+		if = { limit = { NOT = { has_variable = intl_strength_syndicalist } } set_variable = { name = intl_strength_syndicalist value = 0 } }
+		if = { limit = { NOT = { has_variable = intl_strength_blanquist } } set_variable = { name = intl_strength_blanquist value = 0 } }
+		if = { limit = { NOT = { has_variable = intl_strength_marxist } } set_variable = { name = intl_strength_marxist value = 0 } }
 	}
 
 	option = {
-		name = ok
+		name = intl_debug.2.add_anarchist
+		change_variable = { name = intl_strength_anarchist add = 10 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.rem_anarchist
+		change_variable = { name = intl_strength_anarchist add = -10 }
+		clamp_variable = { name = intl_strength_anarchist min = 0 max = 1000 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.add_mutualist
+		change_variable = { name = intl_strength_mutualist add = 10 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.rem_mutualist
+		change_variable = { name = intl_strength_mutualist add = -10 }
+		clamp_variable = { name = intl_strength_mutualist min = 0 max = 1000 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.add_syndicalist
+		change_variable = { name = intl_strength_syndicalist add = 10 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.rem_syndicalist
+		change_variable = { name = intl_strength_syndicalist add = -10 }
+		clamp_variable = { name = intl_strength_syndicalist min = 0 max = 1000 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.add_blanquist
+		change_variable = { name = intl_strength_blanquist add = 10 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.rem_blanquist
+		change_variable = { name = intl_strength_blanquist add = -10 }
+		clamp_variable = { name = intl_strength_blanquist min = 0 max = 1000 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.add_marxist
+		change_variable = { name = intl_strength_marxist add = 10 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.rem_marxist
+		change_variable = { name = intl_strength_marxist add = -10 }
+		clamp_variable = { name = intl_strength_marxist min = 0 max = 1000 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.close
+		default_option = yes
+		intl_update_parliament = yes
 	}
 }
 
-intl_debug.2 = {
+intl_debug.3 = {
 	type = country_event
 
-	title = intl_debug.2.t
-	desc = intl_debug.2.t
-	flavor = intl_debug.2.t
+	title = intl_debug.3.t
+	desc = intl_debug.3.t
+	flavor = intl_debug.3.t
 
 	event_image = {
 		video = "middleeast_courtroom_upheaval"
@@ -50,7 +124,7 @@ intl_debug.2 = {
 	cooldown = { days = never_fire_again_modifier_time }
 
 	option = {
-		name = intl_debug.2.t
+		name = intl_debug.3.t
         default_option = yes
 
         set_variable = { name = intl_strength_anarchist value = 20 }
@@ -58,5 +132,6 @@ intl_debug.2 = {
 		set_variable = { name = intl_strength_syndicalist value = 20 }
 		set_variable = { name = intl_strength_blanquist value = 20 }
 		set_variable = { name = intl_strength_marxist value = 20 }
+		intl_update_parliament = yes
 	}
 }

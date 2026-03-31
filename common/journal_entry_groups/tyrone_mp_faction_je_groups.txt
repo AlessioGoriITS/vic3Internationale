@@ -1,0 +1,3 @@
+je_group_mp_faction = {
+	context = country
+}

@@ -1,0 +1,121 @@
+namespace = mp_faction_events
+
+# Fired only from je_mp_faction_leader (leader country). Other countries never receive this event.
+mp_faction_events.1 = {
+	type = country_event
+	placement = root
+
+	title = mp_faction_events.1.t
+	desc = mp_faction_events.1.d
+	flavor = mp_faction_events.1.f
+
+	duration = 3
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	trigger = {
+		# triggered by je_mp_faction_leader immediate only
+	}
+
+	immediate = {
+		# Five delegates, one per faction. Each is saved and flagged for GUI access.
+		create_character = {
+			culture = primary_culture
+			interest_group = ig:ig_industrialists
+			ideology = ideology_moderate
+			is_agitator = yes
+			save_scope_as = intl_char_anarchist
+		}
+		scope:intl_char_anarchist = {
+			add_character_flag = intl_delegate_anarchist
+		}
+		create_character = {
+			culture = primary_culture
+			interest_group = ig:ig_landowners
+			ideology = ideology_moderate
+			is_agitator = yes
+			save_scope_as = intl_char_mutualist
+		}
+		scope:intl_char_mutualist = {
+			add_character_flag = intl_delegate_mutualist
+		}
+		create_character = {
+			culture = primary_culture
+			interest_group = ig:ig_intelligentsia
+			ideology = ideology_moderate
+			is_agitator = yes
+			save_scope_as = intl_char_syndicalist
+		}
+		scope:intl_char_syndicalist = {
+			add_character_flag = intl_delegate_syndicalist
+		}
+		create_character = {
+			culture = primary_culture
+			interest_group = ig:ig_trade_unions
+			ideology = ideology_moderate
+			is_agitator = yes
+			save_scope_as = intl_char_blanquist
+		}
+		scope:intl_char_blanquist = {
+			add_character_flag = intl_delegate_blanquist
+		}
+		create_character = {
+			culture = primary_culture
+			interest_group = ig:ig_rural_folk
+			ideology = ideology_moderate
+			is_agitator = yes
+			save_scope_as = intl_char_marxist
+		}
+		scope:intl_char_marxist = {
+			add_character_flag = intl_delegate_marxist
+		}
+	}
+
+	option = {
+		name = mp_faction_events.1.a
+		default_option = yes
+		set_variable = {
+			name = mp_faction_supported_ig
+			value = 1
+		}
+		set_variable = mp_faction_leader_confirmed
+	}
+
+	option = {
+		name = mp_faction_events.1.b
+		set_variable = {
+			name = mp_faction_supported_ig
+			value = 2
+		}
+		set_variable = mp_faction_leader_confirmed
+	}
+
+	option = {
+		name = mp_faction_events.1.c
+		set_variable = {
+			name = mp_faction_supported_ig
+			value = 3
+		}
+		set_variable = mp_faction_leader_confirmed
+	}
+
+	option = {
+		name = mp_faction_events.1.d
+		set_variable = {
+			name = mp_faction_supported_ig
+			value = 4
+		}
+		set_variable = mp_faction_leader_confirmed
+	}
+
+	option = {
+		name = mp_faction_events.1.e
+		set_variable = {
+			name = mp_faction_supported_ig
+			value = 5
+		}
+		set_variable = mp_faction_leader_confirmed
+	}
+}

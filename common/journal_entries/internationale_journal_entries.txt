@@ -19,6 +19,7 @@ je_internationale = {
 		set_variable = { name = intl_strength_syndicalist value = 20 }
 		set_variable = { name = intl_strength_blanquist value = 20 }
 		set_variable = { name = intl_strength_marxist value = 20 }
+		intl_update_parliament = yes
 	}
 
 	on_monthly_pulse = {
