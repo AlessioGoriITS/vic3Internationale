@@ -1,0 +1,706 @@
+#Blanquist
+
+law_blanquist_presidential_republic = {
+	group = lawgroup_governance_principles
+	parent = law_presidential_republic
+
+	icon = "gfx/interface/icons/law_icons/blanquist/blanquist_presidential_republic.dds"
+
+	progressiveness = 100
+
+	unlocking_technologies = {
+		democracy
+	}
+
+	can_enact = {
+	}
+
+	unlocking_laws = {
+		law_technocracy
+		law_state_atheism
+	}
+
+	can_impose = {
+		always = no
+	}
+
+	modifier = {
+		country_legitimacy_headofstate_add = 40
+		country_legitimacy_govt_total_votes_add = 10
+		country_legitimacy_ideological_incoherence_mult = -0.15
+		country_authority_add = 300
+		interest_group_ig_intelligentsia_pol_str_mult = 0.5
+		country_officers_pol_str_mult = 0.25
+		political_movement_radicalism_add = -0.05
+	}
+
+	on_activate = {
+	}
+
+	ai_will_do = {
+	}
+
+	ai_enact_weight_modifier = {
+		value = 0
+	}
+
+	ai_impose_chance = {
+		value = 0
+	}
+}
+
+law_blanquist_technocracy = {
+	parent = law_technocracy
+	group = lawgroup_distribution_of_power
+
+	icon = "gfx/interface/icons/law_icons/blanquist/blanquist_technocracy.dds"
+
+	progressiveness = -50
+
+	on_activate = {
+		scripted_effect_parties_disappearence = yes
+		cleanup_voting_strength_modifiers = yes
+		add_journal_entry = { type = je_technocracy }
+	}
+
+	unlocking_laws = {
+		law_state_atheism
+	}
+
+	modifier = {
+		country_legitimacy_headofstate_add = 15
+		country_legitimacy_govt_total_clout_add = 150
+		country_legitimacy_govt_size_add = 3
+		country_legitimacy_ideological_incoherence_mult = -0.2
+		country_academics_pol_str_mult = 0.40
+		country_officers_pol_str_mult = 0.30
+		country_bureaucrats_pol_str_mult = 0.25
+		country_authority_add = 250
+		country_law_enactment_time_mult = -0.15
+		country_legitimacy_govt_total_votes_add = 50
+		country_officers_voting_power_add = 50
+		country_bureaucrats_voting_power_add = 120
+		country_academics_voting_power_add = 50
+		country_electoral_confidence_impact_mult = -0.4
+	}
+
+	unlocking_technologies = {
+		central_archives
+	}
+
+	can_enact = {
+	}
+
+	can_impose = {
+		always = no
+	}
+
+	ai_enact_weight_modifier = { #Petitions
+		value = 0
+	}
+
+	ai_impose_chance = {
+		value = 0
+	}
+}
+
+law_blanquist_state_atheism = {
+	parent = law_state_atheism
+	group = lawgroup_church_and_state
+
+	icon = "gfx/interface/icons/law_icons/blanquist/blanquist_atheism.dds"
+
+	progressiveness = 100
+
+	unlocking_technologies = {
+		empiricism
+	}
+
+	disallowing_laws = {
+		law_theocracy
+	}
+
+	can_enact = {
+		ig:ig_devout ?= {
+			is_in_government = no
+		}
+		OR = {
+			is_power_bloc_leader = no
+			power_bloc ?= {
+				NOT = { has_identity = identity:identity_religious }
+			}
+		}
+	}
+
+	modifier = {
+		interest_group_ig_devout_pol_str_mult = -0.65
+		interest_group_ig_intelligentsia_pol_str_mult = 0.65
+		state_conversion_mult = 1.5
+		country_authority_add = 200
+		country_authority_mult = 0.2
+
+		country_acceptance_state_religion_add = 15
+		country_acceptance_shared_religious_trait_add = 0
+		country_acceptance_shared_religious_trait_group_add = 0
+		country_acceptance_no_shared_religious_trait_add = 0
+
+		country_allow_conversion_violent_hostility_bool = yes
+		country_allow_conversion_cultural_erasure_bool = yes
+		country_allow_conversion_open_prejudice_bool = yes
+		country_allow_conversion_second_rate_citizen_bool = yes
+		country_allow_conversion_full_acceptance_bool = yes
+	}
+
+	on_enact = {
+
+	}
+
+	on_activate = {
+		set_state_religion = rel:atheist
+		add_modifier = {
+			name = antireligious_policies
+			days = long_modifier_time
+		}
+		custom_tooltip = {
+			text = state_atheism_conversion_tt
+			every_scope_state = {
+				limit = {
+					is_incorporated = yes
+				}
+				convert_population = {
+					target = rel:atheist
+					value = 0.5
+				}
+			}
+		}
+		recalculate_pop_ig_support = yes
+	}
+
+	can_impose = {
+		always = no
+	}
+
+	ai_enact_weight_modifier = {
+		value = 0
+	}
+
+	ai_impose_chance = {
+		value = 0
+	}
+}
+
+#Anarchist
+
+law_anarchist_council_republic = {
+	group = lawgroup_governance_principles
+	parent = law_council_republic
+	icon = "gfx/interface/icons/law_icons/anarchist/anarchist_council_republic.dds"
+	progressiveness = 200
+	unlocking_technologies = { socialism }
+	can_enact = { NOT = { has_government_type = gov_chartered_company } }
+	modifier = {
+		country_legitimacy_govt_total_votes_add = 20
+		country_legitimacy_govt_size_add = 4
+		country_legitimacy_ideological_incoherence_mult = -0.1
+		interest_group_ig_trade_unions_pol_str_mult = 0.75
+		state_pop_pol_str_add = 0.5
+		country_authority_add = 25
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_anarchist_anarchy = {
+	group = lawgroup_distribution_of_power
+	parent = law_anarchy
+	icon = "gfx/interface/icons/law_icons/anarchist/anarchist_anarchy.dds"
+	progressiveness = 200
+	unlocking_technologies = { anarchism }
+	unlocking_laws = { law_cooperative_ownership }
+	can_enact = { has_law_or_variant = law_type:law_council_republic }
+	modifier = {
+		state_pop_pol_str_add = 1.5
+		country_legitimacy_govt_total_clout_add = 250
+		state_political_strength_from_wealth_mult = -0.85
+		country_authority_mult = -0.5
+		country_legitimacy_govt_size_add = 3
+		state_decree_cost_mult = -0.5
+		country_consumption_tax_cost_mult = -0.35
+		political_movement_radicalism_add = -0.15
+		state_standard_of_living_add = 0.5
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_anarchist_bureaucracy = {
+	group = lawgroup_bureaucracy
+	parent = law_elected_bureaucrats
+	icon = "gfx/interface/icons/law_icons/anarchist/anarchist_bureocracy.dds"
+	progressiveness = 50
+	disallowing_laws = { law_technocracy law_elder_council }
+	modifier = {
+		country_bureaucracy_investment_cost_factor_mult = -0.20
+		state_decree_cost_mult = -0.15
+		country_bureaucrats_pol_str_mult = -0.20
+		state_pop_pol_str_add = 0.25
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_anarchist_economy = {
+	group = lawgroup_economic_system
+	parent = law_cooperative_ownership
+	icon = "gfx/interface/icons/law_icons/anarchist/anarchist_economy.dds"
+	progressiveness = 100
+	disallowing_laws = { law_serfdom law_women_in_the_fields }
+	unlocking_laws = { law_council_republic law_corporate_state }
+	modifier = {
+		state_shopkeepers_investment_pool_efficiency_mult = 0.35
+		state_farmers_investment_pool_efficiency_mult = 0.35
+		state_machinists_investment_pool_efficiency_mult = 0.60
+		state_engineers_investment_pool_efficiency_mult = 0.60
+		state_machinists_investment_pool_contribution_add = 0.15
+		state_engineers_investment_pool_contribution_add = 0.20
+		state_shopkeepers_investment_pool_contribution_add = 0.05
+		state_farmers_investment_pool_contribution_add = 0.10
+		state_clerks_investment_pool_contribution_add = 0.25
+		state_clerks_investment_pool_efficiency_mult = 0.5
+		country_private_construction_allocation_mult = 0.5
+		country_government_dividends_reinvestment_add = 1.0
+		building_company_worker_dividends_add = 1.0
+		country_free_charters_add = 2
+		country_max_companies_add = 1
+		building_group_bg_manufacturing_allowed_collectivization_add = 1.0
+		building_group_bg_mining_allowed_collectivization_add = 1.0
+		building_group_bg_extraction_allowed_collectivization_add = 1.0
+		building_group_bg_power_allowed_collectivization_add = 1.0
+		building_group_bg_private_infrastructure_allowed_collectivization_add = 1.0
+		building_group_bg_arts_allowed_collectivization_add = 1.0
+		building_economy_of_scale_level_cap_add = 10
+		building_group_bg_manufacturing_employee_mult = -0.10
+		building_group_bg_mining_employee_mult = -0.05
+		building_group_bg_service_employee_mult = -0.15
+		country_force_privatization_bool = yes
+		country_foreign_collectivization_bool = yes
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_anarchist_multiculturalism = {
+	group = lawgroup_citizenship
+	parent = law_multicultural
+	icon = "gfx/interface/icons/law_icons/anarchist/anarchism_multiculturalism.dds"
+	progressiveness = 100
+	unlocking_laws = {
+		law_state_atheism
+	}
+	modifier = {
+		state_birth_rate_mult = -0.02
+		country_acceptance_no_shared_religious_trait_add = 15
+		country_acceptance_primary_culture_add = 100
+		country_support_separatism_resistance_mult = 0.5
+		country_support_separatism_strength_mult = -0.5
+		country_acceptance_shared_heritage_trait_add = 60
+		country_acceptance_shared_heritage_trait_group_add = 50
+		country_acceptance_no_shared_heritage_trait_add = 20
+		country_acceptance_shared_language_trait_add = 50
+		country_acceptance_shared_language_trait_group_add = 30
+		country_acceptance_no_shared_language_trait_add = 20
+		country_acceptance_shared_tradition_trait_add = 10
+		country_acceptance_no_shared_tradition_trait_add = 0
+		country_primary_culture_fervor_from_laws_add = -10
+		political_movement_radicalism_add = -0.05
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+#Blanquist (additional)
+
+law_blanquist_bureaucracy = {
+	group = lawgroup_bureaucracy
+	parent = law_appointed_bureaucrats
+	icon = "gfx/interface/icons/law_icons/blanquist/blanquist_bureocracy.dds"
+	progressiveness = 0
+	modifier = {
+		country_bureaucrats_pol_str_mult = 0.35
+		state_tax_capacity_mult = 0.30
+		country_authority_add = 150
+		country_bureaucracy_investment_cost_factor_mult = -0.10
+		state_bureaucrats_investment_pool_efficiency_mult = 0.20
+		country_law_enactment_time_mult = -0.10
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_blanquist_economy = {
+	group = lawgroup_economic_system
+	parent = law_command_economy
+	icon = "gfx/interface/icons/law_icons/blanquist/blanquist_economy.dds"
+	progressiveness = 100
+	disallowing_laws = { law_serfdom law_anarchy law_women_in_the_fields }
+	unlocking_technologies = { central_planning }
+	unlocking_laws = { law_autocracy law_neo_absolutism law_oligarchy law_organic_regulation law_single_party_state law_technocracy }
+	modifier = {
+		country_disable_investment_pool_bool = yes
+		state_bureaucrats_investment_pool_efficiency_mult = 0.35
+		state_bureaucrats_investment_pool_contribution_add = 0.15
+		country_authority_mult = 0.30
+		country_bureaucrats_pol_str_mult = 0.30
+		building_nationalization_cost_mult = -0.65
+		building_nationalization_radicals_mult = -0.80
+		country_government_dividends_efficiency_add = 0.65
+		country_private_construction_allocation_mult = 0.05
+		building_company_government_dividends_add = 0.75
+		country_free_charters_add = 2
+		country_max_companies_add = 2
+		country_leverage_resistance_mult = 0.30
+		country_disable_non_company_privatization_bool = yes
+		building_group_bg_manufacturing_throughput_add = 0.05
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+#Marxist
+
+law_marxist_army = {
+	group = lawgroup_army_model
+	parent = law_mass_conscription
+	icon = "gfx/interface/icons/law_icons/marxist/marxist_army.dds"
+	progressiveness = 50
+	unlocking_technologies = { enlistment_offices }
+	modifier = {
+		unit_morale_loss_mult = -0.05
+		state_conscription_rate_add = 0.05
+		building_training_rate_mult = 0.5
+		country_officers_pol_str_mult = 1.0
+		country_soldiers_pol_str_mult = 1.5
+		state_building_barrack_max_level_add = 100
+		state_building_conscription_center_max_level_add = 100
+		interest_group_ig_trade_unions_pol_str_mult = 0.25
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_marxist_bureaucracy = {
+	group = lawgroup_bureaucracy
+	parent = law_appointed_bureaucrats
+	icon = "gfx/interface/icons/law_icons/marxist/marxist_bureocracy.dds"
+	progressiveness = 0
+	modifier = {
+		country_bureaucrats_pol_str_mult = 0.30
+		state_tax_capacity_mult = 0.25
+		country_authority_add = 125
+		interest_group_ig_trade_unions_pol_str_mult = 0.25
+		state_bureaucrats_investment_pool_efficiency_mult = 0.15
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_marxist_economy = {
+	group = lawgroup_economic_system
+	parent = law_command_economy
+	icon = "gfx/interface/icons/law_icons/marxist/marxist_economy.dds"
+	progressiveness = 100
+	disallowing_laws = { law_serfdom law_anarchy law_women_in_the_fields }
+	unlocking_technologies = { central_planning }
+	unlocking_laws = { law_autocracy law_neo_absolutism law_oligarchy law_organic_regulation law_single_party_state law_technocracy }
+	modifier = {
+		country_disable_investment_pool_bool = yes
+		state_bureaucrats_investment_pool_efficiency_mult = 0.25
+		state_bureaucrats_investment_pool_contribution_add = 0.1
+		state_machinists_investment_pool_efficiency_mult = 0.15
+		state_machinists_investment_pool_contribution_add = 0.05
+		country_authority_mult = 0.20
+		country_bureaucrats_pol_str_mult = 0.15
+		interest_group_ig_trade_unions_pol_str_mult = 0.25
+		building_nationalization_cost_mult = -0.55
+		building_nationalization_radicals_mult = -0.80
+		country_government_dividends_efficiency_add = 0.60
+		country_private_construction_allocation_mult = 0.1
+		building_company_government_dividends_add = 0.75
+		country_free_charters_add = 2
+		country_max_companies_add = 2
+		country_leverage_resistance_mult = 0.25
+		country_disable_non_company_privatization_bool = yes
+		building_group_bg_manufacturing_throughput_add = 0.05
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_marxist_one_party_state = {
+	group = lawgroup_distribution_of_power
+	parent = law_single_party_state
+	icon = "gfx/interface/icons/law_icons/marxist/marxist_one_party_state.dds"
+	progressiveness = 50
+	modifier = {
+		country_legitimacy_govt_total_clout_add = 100
+		country_legitimacy_ideological_incoherence_mult = -0.15
+		interest_group_ig_trade_unions_pol_str_mult = 0.50
+		country_authority_add = 100
+		political_movement_radicalism_add = -0.05
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+#Mutualist
+
+law_mutualist_council_republic = {
+	group = lawgroup_governance_principles
+	parent = law_council_republic
+	icon = "gfx/interface/icons/law_icons/mutualist/mutualist_council_republic.dds"
+	progressiveness = 200
+	unlocking_technologies = { socialism }
+	can_enact = { NOT = { has_government_type = gov_chartered_company } }
+	modifier = {
+		country_legitimacy_govt_total_votes_add = 15
+		country_legitimacy_govt_size_add = 3
+		country_legitimacy_ideological_incoherence_mult = -0.15
+		interest_group_ig_trade_unions_pol_str_mult = 0.75
+		interest_group_ig_petty_bourgeoisie_pol_str_mult = 0.25
+		country_authority_add = 75
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_mutualist_armed_neutrality = {
+	group = lawgroup_army_model
+	parent = law_national_militia
+	icon = "gfx/interface/icons/law_icons/mutualist/mutualist_armed_neutrality.dds"
+	progressiveness = 0
+	unlocking_technologies = { mandatory_service }
+	modifier = {
+		unit_morale_loss_mult = -0.10
+		state_conscription_rate_add = 0.05
+		country_leverage_resistance_mult = 0.75
+		country_officers_pol_str_mult = 0.75
+		country_soldiers_pol_str_mult = 1.25
+		state_building_barrack_max_level_add = 5
+		state_building_conscription_center_max_level_add = 100
+		unit_morale_recovery_mult = 0.10
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_mutualist_economy = {
+	group = lawgroup_economic_system
+	parent = law_cooperative_ownership
+	icon = "gfx/interface/icons/law_icons/mutualist/mutualist_economy.dds"
+	progressiveness = 100
+	disallowing_laws = { law_serfdom law_women_in_the_fields }
+	unlocking_laws = { law_council_republic law_corporate_state }
+	modifier = {
+		state_shopkeepers_investment_pool_efficiency_mult = 0.65
+		state_farmers_investment_pool_efficiency_mult = 0.35
+		state_machinists_investment_pool_efficiency_mult = 0.45
+		state_engineers_investment_pool_efficiency_mult = 0.45
+		state_machinists_investment_pool_contribution_add = 0.10
+		state_engineers_investment_pool_contribution_add = 0.15
+		state_shopkeepers_investment_pool_contribution_add = 0.15
+		state_clerks_investment_pool_contribution_add = 0.20
+		state_clerks_investment_pool_efficiency_mult = 0.5
+		country_private_construction_allocation_mult = 0.60
+		country_government_dividends_reinvestment_add = 0.75
+		building_company_worker_dividends_add = 0.75
+		country_free_charters_add = 3
+		country_max_companies_add = 1
+		country_loan_interest_rate_mult = -0.10
+		building_group_bg_manufacturing_allowed_collectivization_add = 1.0
+		building_group_bg_mining_allowed_collectivization_add = 1.0
+		building_group_bg_extraction_allowed_collectivization_add = 1.0
+		building_group_bg_power_allowed_collectivization_add = 1.0
+		building_group_bg_private_infrastructure_allowed_collectivization_add = 1.0
+		building_group_bg_arts_allowed_collectivization_add = 1.0
+		building_economy_of_scale_level_cap_add = 10
+		building_group_bg_manufacturing_employee_mult = -0.10
+		building_group_bg_mining_employee_mult = -0.05
+		building_group_bg_service_employee_mult = -0.15
+		country_force_privatization_bool = yes
+		country_foreign_collectivization_bool = yes
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_mutualist_healthcare = {
+	group = lawgroup_health_system
+	parent = law_public_health_insurance
+	icon = "gfx/interface/icons/law_icons/mutualist/mutualist_healthcare.dds"
+	progressiveness = 100
+	unlocking_technologies = { pharmaceuticals }
+	institution = institution_health_system
+	institution_modifier = {
+		state_mortality_mult = -0.08
+		state_pollution_reduction_health_mult = -0.20
+		state_standard_of_living_add = 0.75
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_mutualist_oligarchy = {
+	group = lawgroup_distribution_of_power
+	parent = law_oligarchy
+	icon = "gfx/interface/icons/law_icons/mutualist/mutualist_oligarchy.dds"
+	progressiveness = -50
+	modifier = {
+		country_legitimacy_headofstate_add = 10
+		country_legitimacy_govt_total_clout_add = 130
+		country_legitimacy_govt_size_add = 3
+		country_legitimacy_ideological_incoherence_mult = -0.15
+		country_officers_pol_str_mult = 0.25
+		country_aristocrats_pol_str_mult = -0.25
+		country_capitalists_pol_str_mult = 0.15
+		interest_group_ig_petty_bourgeoisie_pol_str_mult = 0.50
+		interest_group_ig_trade_unions_pol_str_mult = 0.25
+		country_authority_add = 120
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+#Syndicalist
+
+law_syndicalist_council_republic = {
+	group = lawgroup_governance_principles
+	parent = law_council_republic
+	icon = "gfx/interface/icons/law_icons/syndacalism/syndicalism_council_republic.dds"
+	progressiveness = 200
+	unlocking_technologies = { socialism }
+	can_enact = { NOT = { has_government_type = gov_chartered_company } }
+	modifier = {
+		country_legitimacy_govt_total_votes_add = 10
+		country_legitimacy_govt_size_add = 3
+		country_legitimacy_ideological_incoherence_mult = -0.15
+		interest_group_ig_trade_unions_pol_str_mult = 1.5
+		country_authority_add = 75
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_syndicalist_single_party = {
+	group = lawgroup_distribution_of_power
+	parent = law_single_party_state
+	icon = "gfx/interface/icons/law_icons/syndacalism/syndicalism_singleparty.dds"
+	progressiveness = 50
+	modifier = {
+		country_legitimacy_govt_total_clout_add = 80
+		country_legitimacy_ideological_incoherence_mult = -0.10
+		interest_group_ig_trade_unions_pol_str_mult = 0.75
+		country_authority_add = 75
+		political_movement_radicalism_add = -0.05
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_syndicalist_bureaucracy = {
+	group = lawgroup_bureaucracy
+	parent = law_elected_bureaucrats
+	icon = "gfx/interface/icons/law_icons/syndacalism/syndacalist_bureocract.dds"
+	progressiveness = 50
+	disallowing_laws = { law_technocracy law_elder_council }
+	modifier = {
+		country_bureaucracy_investment_cost_factor_mult = -0.15
+		state_decree_cost_mult = -0.10
+		interest_group_ig_trade_unions_pol_str_mult = 0.50
+		country_bureaucrats_pol_str_mult = -0.15
+		state_tax_capacity_mult = 0.10
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_syndicalist_economy = {
+	group = lawgroup_economic_system
+	parent = law_cooperative_ownership
+	icon = "gfx/interface/icons/law_icons/syndacalism/syndacalist_economy.dds"
+	progressiveness = 100
+	disallowing_laws = { law_serfdom law_women_in_the_fields }
+	unlocking_laws = { law_council_republic law_corporate_state }
+	modifier = {
+		state_shopkeepers_investment_pool_efficiency_mult = 0.30
+		state_farmers_investment_pool_efficiency_mult = 0.25
+		state_machinists_investment_pool_efficiency_mult = 0.65
+		state_engineers_investment_pool_efficiency_mult = 0.65
+		state_machinists_investment_pool_contribution_add = 0.20
+		state_engineers_investment_pool_contribution_add = 0.20
+		state_shopkeepers_investment_pool_contribution_add = 0.05
+		state_clerks_investment_pool_contribution_add = 0.20
+		state_clerks_investment_pool_efficiency_mult = 0.5
+		country_private_construction_allocation_mult = 0.45
+		country_government_dividends_reinvestment_add = 1.0
+		building_company_worker_dividends_add = 0.75
+		country_free_charters_add = 2
+		country_max_companies_add = 1
+		building_group_bg_manufacturing_allowed_collectivization_add = 1.0
+		building_group_bg_mining_allowed_collectivization_add = 1.0
+		building_group_bg_extraction_allowed_collectivization_add = 1.0
+		building_group_bg_power_allowed_collectivization_add = 1.0
+		building_group_bg_private_infrastructure_allowed_collectivization_add = 1.0
+		building_group_bg_arts_allowed_collectivization_add = 1.0
+		building_economy_of_scale_level_cap_add = 10
+		building_group_bg_manufacturing_employee_mult = -0.10
+		building_group_bg_mining_employee_mult = -0.05
+		building_group_bg_service_employee_mult = -0.15
+		country_force_privatization_bool = yes
+		country_foreign_collectivization_bool = yes
+		building_group_bg_manufacturing_throughput_add = 0.05
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}
+
+law_syndicalist_land_reform = {
+	group = lawgroup_land_reform
+	parent = law_collectivized_agriculture
+	icon = "gfx/interface/icons/law_icons/syndacalism/syndacalism_landreform.dds"
+	progressiveness = 100
+	unlocking_laws = { law_command_economy law_cooperative_ownership }
+	unlocking_technologies = { socialism }
+	modifier = {
+		building_group_bg_agriculture_allowed_collectivization_add = 1.0
+		building_group_bg_ranching_allowed_collectivization_add = 1.0
+		building_group_bg_plantations_allowed_collectivization_add = 1.0
+		state_farmers_investment_pool_contribution_add = 0.15
+		state_farmers_investment_pool_efficiency_mult = 0.35
+		building_group_bg_agriculture_throughput_add = 0.05
+		building_group_bg_ranching_throughput_add = 0.05
+		state_peasants_education_access_add = 0.10
+	}
+	can_impose = { always = no }
+	ai_enact_weight_modifier = { value = 0 }
+	ai_impose_chance = { value = 0 }
+}

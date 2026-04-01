@@ -478,6 +478,7 @@ window = {
 
 			scrollwidget = {
 				flowcontainer = {
+					parentanchor = left|top
 					direction = vertical
 					layoutpolicy_horizontal = expanding
 					spacing = 4
@@ -507,6 +508,9 @@ window = {
 
 					### Anarchist doctrine
 					intl_faction_detail_panel = {
+						blockoverride "parentanchor" {
+							parentanchor = right
+						}
 						visible = "[GetVariableSystem.Exists('intl_tab_anarchist')]"
 						blockoverride "detail_color" { color = { 0.15 0.15 0.15 1 } }
 						blockoverride "detail_faction_name" { text = "intl_faction_anarchist" }
@@ -1256,16 +1260,12 @@ types internationale_gui_types {
 			vbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 5
-				parentanchor = vcenter
-
-				hbox = {
-					layoutpolicy_horizontal = expanding
-					spacing = 8
-
-					textbox = {
+				parentanchor = top
+				margin_top = -100
+				textbox = {
 						autoresize = yes
 						using = fontsize_large
-						align = left|nobaseline
+						parentanchor = left
 						block "detail_faction_name" { text = "" }
 					}
 
@@ -1277,17 +1277,14 @@ types internationale_gui_types {
 						alpha = 0.6
 						block "detail_title" { text = "" }
 					}
-				}
-
-				textbox = {
-					layoutpolicy_horizontal = expanding
-					autoresize = yes
-					max_width = 460
-					using = fontsize_medium
-					align = left|nobaseline
-					alpha = 0.78
-					block "detail_desc" { text = "" }
-				}
+					textbox = {
+						layoutpolicy_horizontal = expanding
+						autoresize = yes
+						using = fontsize_small
+						align = left|nobaseline
+						alpha = 0.6
+						block "detail_desc" { text = "" }
+					}
 
 				# Law icons row
 				flowcontainer = {

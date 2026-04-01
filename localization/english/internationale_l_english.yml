@@ -48,3 +48,75 @@
  intl_debug.2.add_marxist: "#bold +10#! Marxist"
  intl_debug.2.rem_marxist: "#bold -10#! Marxist"
  intl_debug.2.close: "Done"
+
+ law_anarchist_council_republic:0 "Free Council Federation"
+law_anarchist_council_republic_desc:0 "Authority rests in freely associated local councils, bound together through voluntary cooperation rather than imposed hierarchy."
+
+law_anarchist_anarchy:0 "Stateless Order"
+law_anarchist_anarchy_desc:0 "All formal structures of state authority are dismantled, replaced by self-organization, mutual aid, and direct participation in all aspects of society."
+
+law_anarchist_bureaucracy:0 "Self-Managed Administration"
+law_anarchist_bureaucracy_desc:0 "Administrative duties are carried out by locally elected and recallable delegates, ensuring that governance remains accountable and decentralized."
+
+law_anarchist_economy:0 "Voluntary Cooperative Economy"
+law_anarchist_economy_desc:0 "Production and exchange are organized through networks of worker cooperatives and communal associations, free from centralized control or coercion."
+
+law_anarchist_multiculturalism:0 "Open Communal Society"
+law_anarchist_multiculturalism_desc:0 "All peoples and cultures coexist without imposed hierarchy or discrimination, united through shared principles of autonomy and mutual respect."
+
+law_marxist_army:0 "People's Mass Army"
+law_marxist_army_desc:0 "The defense of the revolution rests in the hands of the masses, with widespread conscription and political integration ensuring loyalty and strength."
+
+law_marxist_bureaucracy:0 "Proletarian State Administration"
+law_marxist_bureaucracy_desc:0 "A centralized administrative apparatus enforces the will of the working class, coordinating policy and maintaining order during the transition to socialism."
+
+law_marxist_economy:0 "Planned Socialist Economy"
+law_marxist_economy_desc:0 "The state directs all major economic activity, organizing production according to collective need rather than private profit."
+
+law_marxist_one_party_state:0 "Workers' Party State"
+law_marxist_one_party_state_desc:0 "Political power is unified under a single party representing the interests of the working class, ensuring ideological cohesion and revolutionary continuity."
+
+law_mutualist_council_republic:0 "Federal Council Republic"
+law_mutualist_council_republic_desc:0 "A decentralized republic where local councils retain significant autonomy, cooperating through federative structures rather than central authority."
+
+law_mutualist_armed_neutrality:0 "Armed Neutrality"
+law_mutualist_armed_neutrality_desc:0 "The nation maintains a defensive posture, relying on a broadly mobilized citizen militia to safeguard independence without pursuing militarism."
+
+law_mutualist_economy:0 "Mutual Exchange Economy"
+law_mutualist_economy_desc:0 "Economic life is structured around cooperatives, mutual credit, and voluntary exchange, balancing individual initiative with collective benefit."
+
+law_mutualist_healthcare:0 "Mutual Aid Health System"
+law_mutualist_healthcare_desc:0 "Healthcare is provided through cooperative institutions and mutual associations, ensuring broad access while maintaining local control."
+
+law_mutualist_oligarchy:0 "Associative Oligarchy"
+law_mutualist_oligarchy_desc:0 "Political influence is concentrated among organized economic and professional associations, which guide governance through their collective interests."
+
+law_syndicalist_council_republic:0 "Congress of Labor Councils"
+law_syndicalist_council_republic_desc:0 "Political authority is exercised through councils of organized workers, coordinated at higher levels through congresses of labor delegates."
+
+law_syndicalist_single_party:0 "Unified Labor Front"
+law_syndicalist_single_party_desc:0 "All political activity is consolidated under a single movement representing organized labor, ensuring unity and preventing factional division."
+
+law_syndicalist_bureaucracy:0 "Union Administration"
+law_syndicalist_bureaucracy_desc:0 "Administrative roles are filled through union structures, integrating governance directly with organized labor."
+
+law_syndicalist_economy:0 "Syndicated Economy"
+law_syndicalist_economy_desc:0 "Industries are managed by trade unions and worker syndicates, coordinating production through collective decision-making rather than state or private control."
+
+law_syndicalist_land_reform:0 "Collective Land Stewardship"
+law_syndicalist_land_reform_desc:0 "Agricultural land is reorganized under collective management, with rural workers directly overseeing production and distribution."
+
+law_blanquist_presidential_republic:0 "Revolutionary Executive Republic"
+law_blanquist_presidential_republic_desc:0 "The republic entrusts extraordinary powers to a singular executive authority, tasked with defending the revolution and ensuring its survival against internal and external enemies."
+
+law_blanquist_technocracy:0 "Rule of the Vanguard"
+law_blanquist_technocracy_desc:0 "Political power is concentrated in the hands of a disciplined revolutionary elite, whose duty is to guide society through reason, planning, and unwavering commitment to the revolutionary cause."
+
+law_blanquist_state_atheism:0 "Militant Secularization"
+law_blanquist_state_atheism_desc:0 "All religious influence is systematically eradicated, as faith is deemed incompatible with reason and liberation. The state enforces a strictly secular and rational social order."
+
+law_blanquist_bureaucracy:0 "Central Revolutionary Administration"
+law_blanquist_bureaucracy_desc:0 "A tightly controlled administrative hierarchy executes the will of the revolution, ensuring unity, discipline, and the suppression of counter-revolutionary inefficiency."
+
+law_blanquist_economy:0 "Directed National Economy"
+law_blanquist_economy_desc:0 "Economic life is subordinated to the needs of the revolution, with production and distribution coordinated by the state to secure stability and collective advancement."
