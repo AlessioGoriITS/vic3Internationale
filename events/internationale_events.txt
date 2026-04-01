@@ -20,61 +20,62 @@ mp_faction_events.1 = {
 	}
 
 	immediate = {
+		set_variable = { name = intl_strength_anarchist value = 20 }
+		set_variable = { name = intl_strength_mutualist value = 20 }
+		set_variable = { name = intl_strength_syndicalist value = 20 }
+		set_variable = { name = intl_strength_blanquist value = 20 }
+		set_variable = { name = intl_strength_marxist value = 20 }
+
 		add_modifier = {
 			name = mp_faction_extra_agitator_slots
 			days = long_modifier_time
 		}
 
-		# Five delegates, one per faction. Each is saved and flagged for GUI access.
 		create_character = {
-			culture = primary_culture
-			interest_group = ig:ig_industrialists
-			ideology = ideology_moderate
-			is_agitator = yes
-			save_scope_as = intl_char_anarchist
+			template = ecchi_rus_bakunin_character_template
+			on_created = {
+				set_variable = bakunin_var
+				save_scope_as = bakunin_scope
+			}
 		}
-		scope:intl_char_anarchist = {
+		scope:bakunin_scope = {
 			add_character_flag = intl_delegate_anarchist
 		}
+
+
+
 		create_character = {
-			culture = primary_culture
-			interest_group = ig:ig_landowners
-			ideology = ideology_moderate
-			is_agitator = yes
-			save_scope_as = intl_char_mutualist
+			template = intl_proudhon_character_template
+			on_created = {
+				set_variable = proudhon_var
+				save_scope_as = proudhon_scope
+			}
 		}
-		scope:intl_char_mutualist = {
-			add_character_flag = intl_delegate_mutualist
-		}
+
 		create_character = {
-			culture = primary_culture
-			interest_group = ig:ig_intelligentsia
-			ideology = ideology_moderate
-			is_agitator = yes
-			save_scope_as = intl_char_syndicalist
+			template = ecchi_bel_de_paepe_character_template
+			on_created = {
+				set_variable = bel_de_paepe_var
+				save_scope_as = bel_de_paepe_scope
+			}
 		}
-		scope:intl_char_syndicalist = {
-			add_character_flag = intl_delegate_syndicalist
-		}
+
+
 		create_character = {
-			culture = primary_culture
-			interest_group = ig:ig_trade_unions
-			ideology = ideology_moderate
-			is_agitator = yes
-			save_scope_as = intl_char_blanquist
+			template = fra_blanqui_character_template
+			on_created = {
+				set_variable = blanqui_var
+				save_scope_as = blanqui_scope
+			}
 		}
-		scope:intl_char_blanquist = {
-			add_character_flag = intl_delegate_blanquist
-		}
+		
+
 		create_character = {
-			culture = primary_culture
-			interest_group = ig:ig_rural_folk
-			ideology = ideology_moderate
-			is_agitator = yes
-			save_scope_as = intl_char_marxist
-		}
-		scope:intl_char_marxist = {
-			add_character_flag = intl_delegate_marxist
+			template = agitator_karl_marx
+			on_created = {
+				set_variable = karl_marx_var
+				save_scope_as = karl_marx_scope
+			}
 		}
 	}
 
@@ -124,3 +125,9 @@ mp_faction_events.1 = {
 		set_variable = mp_faction_leader_confirmed
 	}
 }
+
+namespace = marx_events
+namespace = historical_agitators
+
+marx_events.1 = { trigger = { always = no } }
+historical_agitators.3 = { trigger = { always = no } }

@@ -1,0 +1,53 @@
+#5 Main Characters
+intl_proudhon_character_template = {
+	first_name = Pierre-Joseph
+	last_name = Proudhon
+	historical = yes
+	is_agitator = yes
+	culture = cu:french
+	religion = rel:atheist
+	female = no
+	interest_group = ig_intelligentsia
+	ideology = ideology_anarchist
+	birth_date = 1809.1.15
+	dna = dna_proudhon
+	traits = {
+		erudite # dude taught himself Latin
+		ambitious
+		persistent
+	}
+}
+
+ecchi_rus_bakunin_character_template = {
+	first_name = Mikhail
+	last_name = Bakunin
+	historical = yes
+	is_agitator = yes
+	culture = cu:russian
+	female = no
+	religion = rel:orthodox
+	ideology = ideology_anarchist
+	interest_group = ig_petty_bourgeoisie
+	dna = ecchi_dna_mikhail_bakunin
+	birth_date = 1814.5.30
+	traits = {
+		brave
+		persistent
+	}
+}
+
+ecchi_bel_de_paepe_character_template = {
+    first_name = Cesar
+    last_name = ecchi_De_Paepe
+    historical = yes
+    is_agitator = yes
+    culture = cu:flemish
+    ideology = ideology_vanguardist
+    interest_group = ig_trade_unions
+	dna = ecchi_dna_cesar_de_paepe
+    birth_date = 1841.7.12
+    traits = { demagogue direct }
+}
+
+#+Marx Vanilla
+#+Louis Blanqui Vanilla

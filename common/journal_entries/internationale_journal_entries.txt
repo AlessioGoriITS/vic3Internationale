@@ -1,7 +1,7 @@
 je_internationale = {
 	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
 
-	group = je_group_global_international_situations
+	group = je_group_foreign_affairs
 
 	should_be_pinned_by_default = yes
 
@@ -19,6 +19,7 @@ je_internationale = {
 		set_variable = { name = intl_strength_syndicalist value = 20 }
 		set_variable = { name = intl_strength_blanquist value = 20 }
 		set_variable = { name = intl_strength_marxist value = 20 }
+		intl_save_delegate_chars = yes
 		intl_update_parliament = yes
 	}
 
@@ -29,8 +30,8 @@ je_internationale = {
 			set_variable = { name = intl_strength_syndicalist value = 20 }
 			set_variable = { name = intl_strength_blanquist value = 20 }
 			set_variable = { name = intl_strength_marxist value = 20 }
+			intl_save_delegate_chars = yes
 			intl_update_parliament = yes
-
 		}
 	}
 

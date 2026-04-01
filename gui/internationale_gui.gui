@@ -1,7 +1,7 @@
 window = {
 	name = "internationale_gui_trigger"
 	parentanchor = hcenter|vcenter
-	size = { 760 760 }
+	size = { 1280 960 }
 	layer = windows_layer
 	filter_mouse = all
 	allow_outside = yes
@@ -44,20 +44,6 @@ window = {
 				using = fontsize_xxl
 				align = left|nobaseline
 				parentanchor = vcenter
-			}
-
-			# Fixed-width slot keeps title/icon layout identical to the old wide Close button;
-			# classic X centered inside.
-			widget = {
-				size = { 96 54 }
-				parentanchor = vcenter
-
-				button_icon_close = {
-					size = { 30 30 }
-					parentanchor = center
-					onclick = "[GetVariableSystem.Clear('internationale_open')]"
-					shortcut = "close_window"
-				}
 			}
 		}
 
@@ -123,10 +109,31 @@ window = {
 					layoutpolicy_horizontal = expanding
 				}
 			}
+
 		}
 
 		### SPACER
 		widget = { size = { 0 6 } }
+
+		### DELEGATES LABEL
+		widget = {
+			layoutpolicy_horizontal = expanding
+			size = { 0 26 }
+
+			background = {
+				using = dark_area
+				alpha = 0.1
+			}
+
+			textbox = {
+				size = { 100% 100% }
+				text = "intl_delegates_label"
+				using = fontsize_small
+				align = hcenter|nobaseline
+				parentanchor = center
+				alpha = 0.45
+			}
+		}
 
 		### FACTION TAB BUTTONS
 		hbox = {
@@ -149,6 +156,10 @@ window = {
 					visible = "[Not(GetVariableSystem.Exists('intl_tab_anarchist'))]"
 				}
 				blockoverride "tab_onclick_set" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_mutualist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_syndicalist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_blanquist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_marxist')]"
 					onclick = "[GetVariableSystem.Set('intl_tab_anarchist', 'true')]"
 				}
 				blockoverride "tab_onclick_clear" {
@@ -170,6 +181,10 @@ window = {
 					visible = "[Not(GetVariableSystem.Exists('intl_tab_mutualist'))]"
 				}
 				blockoverride "tab_onclick_set" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_anarchist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_syndicalist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_blanquist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_marxist')]"
 					onclick = "[GetVariableSystem.Set('intl_tab_mutualist', 'true')]"
 				}
 				blockoverride "tab_onclick_clear" {
@@ -191,6 +206,10 @@ window = {
 					visible = "[Not(GetVariableSystem.Exists('intl_tab_syndicalist'))]"
 				}
 				blockoverride "tab_onclick_set" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_anarchist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_mutualist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_blanquist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_marxist')]"
 					onclick = "[GetVariableSystem.Set('intl_tab_syndicalist', 'true')]"
 				}
 				blockoverride "tab_onclick_clear" {
@@ -212,6 +231,10 @@ window = {
 					visible = "[Not(GetVariableSystem.Exists('intl_tab_blanquist'))]"
 				}
 				blockoverride "tab_onclick_set" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_anarchist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_mutualist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_syndicalist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_marxist')]"
 					onclick = "[GetVariableSystem.Set('intl_tab_blanquist', 'true')]"
 				}
 				blockoverride "tab_onclick_clear" {
@@ -233,31 +256,15 @@ window = {
 					visible = "[Not(GetVariableSystem.Exists('intl_tab_marxist'))]"
 				}
 				blockoverride "tab_onclick_set" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_anarchist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_mutualist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_syndicalist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_blanquist')]"
 					onclick = "[GetVariableSystem.Set('intl_tab_marxist', 'true')]"
 				}
 				blockoverride "tab_onclick_clear" {
 					onclick = "[GetVariableSystem.Clear('intl_tab_marxist')]"
 				}
-			}
-		}
-
-		### DELEGATES LABEL
-		widget = {
-			layoutpolicy_horizontal = expanding
-			size = { 0 26 }
-
-			background = {
-				using = dark_area
-				alpha = 0.1
-			}
-
-			textbox = {
-				size = { 100% 100% }
-				text = "intl_delegates_label"
-				using = fontsize_small
-				align = hcenter|nobaseline
-				parentanchor = center
-				alpha = 0.45
 			}
 		}
 
@@ -274,7 +281,7 @@ window = {
 				}
 				blockoverride "card_portrait" {
 					widget = {
-						datacontext = "[Country.GetInterestGroup('ig_industrialists').GetLeader]"
+						datacontext = "[GetPlayer.MakeScope.Var('bakunin_scope_gui').GetCharacter]"
 						portrait = {
 							size = { 52 64 }
 							parentanchor = center
@@ -291,6 +298,10 @@ window = {
 					visible = "[Not(GetVariableSystem.Exists('intl_tab_anarchist'))]"
 				}
 				blockoverride "card_onclick_set" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_mutualist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_syndicalist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_blanquist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_marxist')]"
 					onclick = "[GetVariableSystem.Set('intl_tab_anarchist', 'true')]"
 				}
 				blockoverride "card_onclick_clear" {
@@ -299,19 +310,22 @@ window = {
 			}
 
 			intl_faction_card = {
+				parentanchor = center|left
 				blockoverride "card_color" {
 					color = { 0.9 0.6 0.1 1 }
 				}
 				blockoverride "card_portrait" {
 					widget = {
-						datacontext = "[Country.GetInterestGroup('ig_landowners').GetLeader]"
+						datacontext = "[GetPlayer.MakeScope.Var('proudhon_scope_gui').GetCharacter]"
 						portrait = {
 							size = { 52 64 }
 							parentanchor = center
 						}
 					}
 				}
-				blockoverride "card_name" { text = "intl_faction_mutualist" }
+				blockoverride "card_name" { 
+					text = "intl_faction_mutualist" 
+				}
 				blockoverride "card_delegate" { text = "intl_delegate_mutualist_name" }
 				blockoverride "card_role" { text = "intl_delegate_mutualist_role" }
 				blockoverride "card_active_visible" {
@@ -321,6 +335,10 @@ window = {
 					visible = "[Not(GetVariableSystem.Exists('intl_tab_mutualist'))]"
 				}
 				blockoverride "card_onclick_set" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_anarchist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_syndicalist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_blanquist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_marxist')]"
 					onclick = "[GetVariableSystem.Set('intl_tab_mutualist', 'true')]"
 				}
 				blockoverride "card_onclick_clear" {
@@ -334,7 +352,7 @@ window = {
 				}
 				blockoverride "card_portrait" {
 					widget = {
-						datacontext = "[Country.GetInterestGroup('ig_intelligentsia').GetLeader]"
+						datacontext = "[GetPlayer.MakeScope.Var('bel_de_paepe_scope_gui').GetCharacter]"
 						portrait = {
 							size = { 52 64 }
 							parentanchor = center
@@ -351,6 +369,10 @@ window = {
 					visible = "[Not(GetVariableSystem.Exists('intl_tab_syndicalist'))]"
 				}
 				blockoverride "card_onclick_set" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_anarchist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_mutualist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_blanquist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_marxist')]"
 					onclick = "[GetVariableSystem.Set('intl_tab_syndicalist', 'true')]"
 				}
 				blockoverride "card_onclick_clear" {
@@ -364,7 +386,7 @@ window = {
 				}
 				blockoverride "card_portrait" {
 					widget = {
-						datacontext = "[Country.GetInterestGroup('ig_trade_unions').GetLeader]"
+						datacontext = "[GetPlayer.MakeScope.Var('blanqui_scope_gui').GetCharacter]"
 						portrait = {
 							size = { 52 64 }
 							parentanchor = center
@@ -381,6 +403,10 @@ window = {
 					visible = "[Not(GetVariableSystem.Exists('intl_tab_blanquist'))]"
 				}
 				blockoverride "card_onclick_set" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_anarchist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_mutualist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_syndicalist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_marxist')]"
 					onclick = "[GetVariableSystem.Set('intl_tab_blanquist', 'true')]"
 				}
 				blockoverride "card_onclick_clear" {
@@ -394,7 +420,7 @@ window = {
 				}
 				blockoverride "card_portrait" {
 					widget = {
-						datacontext = "[Country.GetInterestGroup('ig_rural_folk').GetLeader]"
+						datacontext = "[GetPlayer.MakeScope.Var('karl_marx_scope_gui').GetCharacter]"
 						portrait = {
 							size = { 52 64 }
 							parentanchor = center
@@ -411,6 +437,10 @@ window = {
 					visible = "[Not(GetVariableSystem.Exists('intl_tab_marxist'))]"
 				}
 				blockoverride "card_onclick_set" {
+					onclick = "[GetVariableSystem.Clear('intl_tab_anarchist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_mutualist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_syndicalist')]"
+					onclick = "[GetVariableSystem.Clear('intl_tab_blanquist')]"
 					onclick = "[GetVariableSystem.Set('intl_tab_marxist', 'true')]"
 				}
 				blockoverride "card_onclick_clear" {
@@ -454,6 +484,7 @@ window = {
 						}
 					}
 
+
 					### Anarchist doctrine
 					intl_faction_detail_panel = {
 						visible = "[GetVariableSystem.Exists('intl_tab_anarchist')]"
@@ -461,6 +492,36 @@ window = {
 						blockoverride "detail_faction_name" { text = "intl_faction_anarchist" }
 						blockoverride "detail_title" { text = "intl_delegate_anarchist_title" }
 						blockoverride "detail_desc" { text = "intl_doctrine_anarchist" }
+						blockoverride "detail_portrait" {
+							widget = {
+								size = { 217 320 }
+								parentanchor = vcenter
+								datacontext = "[GetPlayer.MakeScope.Var('bakunin_scope_gui').GetCharacter]" 
+								tooltipwidget = { FancyTooltip_Character = {} }
+								character_portrait_large_torso = {
+									position = { 0 0 }
+									parentanchor = hcenter
+									blockoverride "show_hat" {}
+									blockoverride "tooltip" {}
+									blockoverride "portrait_icons" {}
+									blockoverride "portrait_button" {}
+								}
+								default_header_clean_faded = {
+									size = { 217 40 }
+									position = { 0 276 }
+									blockoverride "text" {}
+									parentanchor = hcenter
+									textbox = {
+										text = "[Character.GetFullName]"
+										parentanchor = vcenter|hcenter
+										position = { 0 -2 }
+										autoresize = yes
+										max_width = 217
+										using = fontsize_large
+									}
+								}
+							}
+						}
 					}
 
 					### Mutualist doctrine
@@ -470,6 +531,36 @@ window = {
 						blockoverride "detail_faction_name" { text = "intl_faction_mutualist" }
 						blockoverride "detail_title" { text = "intl_delegate_mutualist_title" }
 						blockoverride "detail_desc" { text = "intl_doctrine_mutualist" }
+						blockoverride "detail_portrait" {
+							widget = {
+								size = { 217 320 }
+								parentanchor = vcenter
+								datacontext = "[GetPlayer.MakeScope.Var('proudhon_scope_gui').GetCharacter]"
+								tooltipwidget = { FancyTooltip_Character = {} }
+								character_portrait_large_torso = {
+									position = { 0 0 }
+									parentanchor = hcenter
+									blockoverride "show_hat" {}
+									blockoverride "tooltip" {}
+									blockoverride "portrait_icons" {}
+									blockoverride "portrait_button" {}
+								}
+								default_header_clean_faded = {
+									size = { 217 40 }
+									position = { 0 276 }
+									blockoverride "text" {}
+									parentanchor = hcenter
+									textbox = {
+										text = "[Character.GetFullName]"
+										parentanchor = vcenter|hcenter
+										position = { 0 -2 }
+										autoresize = yes
+										max_width = 217
+										using = fontsize_large
+									}
+								}
+							}
+						}
 					}
 
 					### Syndicalist doctrine
@@ -479,6 +570,36 @@ window = {
 						blockoverride "detail_faction_name" { text = "intl_faction_syndicalist" }
 						blockoverride "detail_title" { text = "intl_delegate_syndicalist_title" }
 						blockoverride "detail_desc" { text = "intl_doctrine_syndicalist" }
+						blockoverride "detail_portrait" {
+							widget = {
+								size = { 217 320 }
+								parentanchor = vcenter
+								datacontext = "[GetPlayer.MakeScope.Var('bel_de_paepe_scope_gui').GetCharacter]"
+								tooltipwidget = { FancyTooltip_Character = {} }
+								character_portrait_large_torso = {
+									position = { 0 0 }
+									parentanchor = hcenter
+									blockoverride "show_hat" {}
+									blockoverride "tooltip" {}
+									blockoverride "portrait_icons" {}
+									blockoverride "portrait_button" {}
+								}
+								default_header_clean_faded = {
+									size = { 217 40 }
+									position = { 0 276 }
+									blockoverride "text" {}
+									parentanchor = hcenter
+									textbox = {
+										text = "[Character.GetFullName]"
+										parentanchor = vcenter|hcenter
+										position = { 0 -2 }
+										autoresize = yes
+										max_width = 217
+										using = fontsize_large
+									}
+								}
+							}
+						}
 					}
 
 					### Blanquist doctrine
@@ -488,6 +609,36 @@ window = {
 						blockoverride "detail_faction_name" { text = "intl_faction_blanquist" }
 						blockoverride "detail_title" { text = "intl_delegate_blanquist_title" }
 						blockoverride "detail_desc" { text = "intl_doctrine_blanquist" }
+						blockoverride "detail_portrait" {
+							widget = {
+								size = { 217 320 }
+								parentanchor = vcenter
+								datacontext = "[GetPlayer.MakeScope.Var('blanqui_scope_gui').GetCharacter]"
+								tooltipwidget = { FancyTooltip_Character = {} }
+								character_portrait_large_torso = {
+									position = { 0 0 }
+									parentanchor = hcenter
+									blockoverride "show_hat" {}
+									blockoverride "tooltip" {}
+									blockoverride "portrait_icons" {}
+									blockoverride "portrait_button" {}
+								}
+								default_header_clean_faded = {
+									size = { 217 40 }
+									position = { 0 276 }
+									blockoverride "text" {}
+									parentanchor = hcenter
+									textbox = {
+										text = "[Character.GetFullName]"
+										parentanchor = vcenter|hcenter
+										position = { 0 -2 }
+										autoresize = yes
+										max_width = 217
+										using = fontsize_large
+									}
+								}
+							}
+						}
 					}
 
 					### Marxist doctrine
@@ -497,8 +648,39 @@ window = {
 						blockoverride "detail_faction_name" { text = "intl_faction_marxist" }
 						blockoverride "detail_title" { text = "intl_delegate_marxist_title" }
 						blockoverride "detail_desc" { text = "intl_doctrine_marxist" }
+						blockoverride "detail_portrait" {
+							widget = {
+								size = { 217 320 }
+								parentanchor = vcenter
+								datacontext = "[GetPlayer.MakeScope.Var('karl_marx_scope_gui').GetCharacter]"
+								tooltipwidget = { FancyTooltip_Character = {} }
+								character_portrait_large_torso = {
+									position = { 0 0 }
+									parentanchor = hcenter
+									blockoverride "show_hat" {}
+									blockoverride "tooltip" {}
+									blockoverride "portrait_icons" {}
+									blockoverride "portrait_button" {}
+								}
+								default_header_clean_faded = {
+									size = { 217 40 }
+									position = { 0 276 }
+									blockoverride "text" {}
+									parentanchor = hcenter
+									textbox = {
+										text = "[Character.GetFullName]"
+										parentanchor = vcenter|hcenter
+										position = { 0 -2 }
+										autoresize = yes
+										max_width = 217
+										using = fontsize_large
+									}
+								}
+							}
+						}
 					}
 				}
+
 			}
 		}
 
@@ -525,6 +707,14 @@ window = {
 				alpha = 0.6
 			}
 		}
+	}
+
+	### CLOSE BUTTON — rendered after vbox so it sits on top
+	close_button = {
+		parentanchor = right|top
+		position = { -8 8 }
+		onclick = "[GetVariableSystem.Clear('internationale_open')]"
+		shortcut = "close_window"
 	}
 }
 
@@ -616,6 +806,7 @@ types internationale_gui_types {
 
 			textbox = {
 				layoutpolicy_horizontal = expanding
+
 				autoresize = yes
 				align = hcenter|nobaseline
 				using = fontsize_medium
@@ -656,6 +847,11 @@ types internationale_gui_types {
 			spacing = 12
 			margin = { 14 10 }
 
+			# Character portrait — overridden per instance with correct datacontext
+			block "detail_portrait" {
+				widget = { size = { 0 1 } }
+			}
+
 			icon = {
 				size = { 32 32 }
 				parentanchor = vcenter
@@ -692,7 +888,7 @@ types internationale_gui_types {
 				textbox = {
 					layoutpolicy_horizontal = expanding
 					autoresize = yes
-					max_width = 680
+					max_width = 460
 					using = fontsize_medium
 					align = left|nobaseline
 					alpha = 0.78

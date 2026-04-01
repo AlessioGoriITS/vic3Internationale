@@ -1,3 +1,56 @@
+intl_save_delegate_chars = {
+	random_scope_character = {
+				limit = {
+					has_variable = bakunin_var
+				}
+				save_scope_as = bakunin_scope
+			}
+	random_scope_character = {
+				limit = {
+					has_variable = proudhon_var
+				}
+				save_scope_as = proudhon_scope
+			}
+	random_scope_character = {
+				limit = {
+					has_variable = bel_de_paepe_var
+				}
+				save_scope_as = bel_de_paepe_scope
+			}
+	random_scope_character = {
+				limit = {
+					has_variable = blanqui_var
+				}
+				save_scope_as = blanqui_scope
+			}
+	random_scope_character = {
+				limit = {
+					has_variable = karl_marx_var
+				}
+				save_scope_as = karl_marx_scope
+			}
+	set_variable = {
+		name = bakunin_scope_gui
+		value = scope:bakunin_scope
+	}
+	set_variable = {
+		name = proudhon_scope_gui
+		value = scope:proudhon_scope
+	}
+	set_variable = {
+		name = bel_de_paepe_scope_gui
+		value = scope:bel_de_paepe_scope
+	}
+	set_variable = {
+		name = blanqui_scope_gui
+		value = scope:blanqui_scope
+	}
+	set_variable = {
+		name = karl_marx_scope_gui
+		value = scope:karl_marx_scope
+	}
+}
+
 intl_update_parliament = {
 
 	set_variable = { name = intl_allocated_seats value = 0 }
