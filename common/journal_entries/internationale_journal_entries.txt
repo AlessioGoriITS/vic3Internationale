@@ -25,11 +25,6 @@ je_internationale = {
 
 	on_monthly_pulse = {
 		effect = {
-			set_variable = { name = intl_strength_anarchist value = 20 }
-			set_variable = { name = intl_strength_mutualist value = 20 }
-			set_variable = { name = intl_strength_syndicalist value = 20 }
-			set_variable = { name = intl_strength_blanquist value = 20 }
-			set_variable = { name = intl_strength_marxist value = 20 }
 			intl_save_delegate_chars = yes
 			intl_update_parliament = yes
 		}

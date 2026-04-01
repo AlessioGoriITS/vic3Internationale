@@ -49,6 +49,63 @@ intl_save_delegate_chars = {
 		name = karl_marx_scope_gui
 		value = scope:karl_marx_scope
 	}
+
+	if = { limit = { has_variable = marxists_internationale_leader } 
+		set_variable = {
+			name = ideologyleader_scope_gui
+			value = scope:karl_marx_scope
+		}
+		set_variable = ISideologyleader_scope_gui
+	}
+	if = { limit = { has_variable = mutualist_internationale_leader } 
+		set_variable = {
+			name = ideologyleader_scope_gui
+			value = scope:proudhon_scope
+		}
+		set_variable = ISideologyleader_scope_gui
+	}
+	if = { limit = { has_variable = anarchist_internationale_leader } 
+		set_variable = {
+			name = ideologyleader_scope_gui
+			value = scope:bakunin_scope
+		}
+		set_variable = ISideologyleader_scope_gui
+	}
+	if = { limit = { has_variable = syndacalist_internationale_leader } 
+		set_variable = {
+			name = ideologyleader_scope_gui
+			value = scope:bel_de_paepe_scope
+		}
+		set_variable = ISideologyleader_scope_gui
+	}
+	if = { limit = { has_variable = blanquist_internationale_leader } 
+		set_variable = {
+			name = ideologyleader_scope_gui
+			value = scope:blanqui_scope
+		}
+		set_variable = ISideologyleader_scope_gui
+	}
+	if = { 
+		limit { 
+			has_variable = ISideologyleader_scope_gui 
+			NOT = {
+				any_scope_character = {
+					OR = { 
+						has_role = agitator
+						has_role = politician
+					}
+					OR = {
+						has_variable = bakunin_var
+						has_variable = proudhon_var
+						has_variable = bel_de_paepe_var
+						has_variable = blanqui_var
+						has_variable = karl_marx_var
+					}
+				}
+			}
+		} 
+	}
+
 }
 
 intl_update_parliament = {

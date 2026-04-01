@@ -82,47 +82,37 @@ mp_faction_events.1 = {
 	option = {
 		name = mp_faction_events.1.a
 		default_option = yes
-		set_variable = {
-			name = mp_faction_supported_ig
-			value = 1
-		}
+		set_variable = marxists_internationale_leader
 		set_variable = mp_faction_leader_confirmed
+		intl_save_delegate_chars = yes
 	}
 
 	option = {
 		name = mp_faction_events.1.b
-		set_variable = {
-			name = mp_faction_supported_ig
-			value = 2
-		}
+		set_variable = mutualist_internationale_leader
 		set_variable = mp_faction_leader_confirmed
+		intl_save_delegate_chars = yes
 	}
 
 	option = {
 		name = mp_faction_events.1.c
-		set_variable = {
-			name = mp_faction_supported_ig
-			value = 3
-		}
+		set_variable = anarchist_internationale_leader
 		set_variable = mp_faction_leader_confirmed
-	}
-
-	option = {
-		name = mp_faction_events.1.d
-		set_variable = {
-			name = mp_faction_supported_ig
-			value = 4
-		}
-		set_variable = mp_faction_leader_confirmed
+		intl_save_delegate_chars = yes
 	}
 
 	option = {
 		name = mp_faction_events.1.e
-		set_variable = {
-			name = mp_faction_supported_ig
-			value = 5
-		}
+		set_variable = syndacalist_internationale_leader
 		set_variable = mp_faction_leader_confirmed
+		intl_save_delegate_chars = yes
+	}
+
+	option = {
+		name = mp_faction_events.1.f
+		set_variable = blanquist_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+		intl_save_delegate_chars = yes
 	}
 }
 

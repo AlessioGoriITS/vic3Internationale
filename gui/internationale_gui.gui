@@ -78,13 +78,35 @@ window = {
 		widget = {
 			layoutpolicy_horizontal = expanding
 			size = { 0 290 }
-
-			using = entry_bg_fancy
+			background = {
+						texture = "gfx/interface/backgrounds/bg_internationale.dds"
+						size = { 90% 90% }
+						margin_left = -10
+						margin_right = -10
+					}
 			using = tooltip_below
 			tooltip = "intl_parliament_tooltip"
 
 			margin = { 10 5 }
 
+			container = {
+					visible = "[GetPlayer.MakeScope.Var('ISideologyleader_scope_gui').IsSet]"
+					datacontext = "[GetPlayer.MakeScope.Var('ideologyleader_scope_gui').GetCharacter]"
+					parentanchor = left
+					size = { 90% 90% }
+					position = { 25 -50 }
+					flowcontainer = {
+						
+						direction = vertical
+						character_portrait_front_vs_left = {
+							position = { 0 0 }
+							parentanchor = hcenter
+							blockoverride "highlight" {}
+							blockoverride "commander_order_icon" {}
+						}
+						
+					}
+				}
 			hbox = {
 				layoutpolicy_horizontal = expanding
 				size = { 100% 280 }
@@ -280,15 +302,15 @@ window = {
 					color = { 0.15 0.15 0.15 1 }
 				}
 				blockoverride "card_portrait" {
-					widget = {
+					character_portrait_small2 = {
+						position = { 0 35 }
+						parentanchor = vcenter
 						datacontext = "[GetPlayer.MakeScope.Var('bakunin_scope_gui').GetCharacter]"
-						portrait = {
-							size = { 52 64 }
-							parentanchor = center
-						}
+						blockoverride "show_hat" {}
+						blockoverride "highlight" {}
 					}
 				}
-				blockoverride "card_name" { text = "intl_faction_anarchist" }
+
 				blockoverride "card_delegate" { text = "intl_delegate_anarchist_name" }
 				blockoverride "card_role" { text = "intl_delegate_anarchist_role" }
 				blockoverride "card_active_visible" {
@@ -315,17 +337,15 @@ window = {
 					color = { 0.9 0.6 0.1 1 }
 				}
 				blockoverride "card_portrait" {
-					widget = {
+					character_portrait_small2 = {
+						position = { 0 35 }
+						parentanchor = vcenter
 						datacontext = "[GetPlayer.MakeScope.Var('proudhon_scope_gui').GetCharacter]"
-						portrait = {
-							size = { 52 64 }
-							parentanchor = center
-						}
+						blockoverride "show_hat" {}
+						blockoverride "highlight" {}
 					}
 				}
-				blockoverride "card_name" { 
-					text = "intl_faction_mutualist" 
-				}
+
 				blockoverride "card_delegate" { text = "intl_delegate_mutualist_name" }
 				blockoverride "card_role" { text = "intl_delegate_mutualist_role" }
 				blockoverride "card_active_visible" {
@@ -351,15 +371,15 @@ window = {
 					color = { 0.8 0.15 0.15 1 }
 				}
 				blockoverride "card_portrait" {
-					widget = {
+					character_portrait_small2 = {
+						position = { 0 35 }
+						parentanchor = vcenter
 						datacontext = "[GetPlayer.MakeScope.Var('bel_de_paepe_scope_gui').GetCharacter]"
-						portrait = {
-							size = { 52 64 }
-							parentanchor = center
-						}
+						blockoverride "show_hat" {}
+						blockoverride "highlight" {}
 					}
 				}
-				blockoverride "card_name" { text = "intl_faction_syndicalist" }
+
 				blockoverride "card_delegate" { text = "intl_delegate_syndicalist_name" }
 				blockoverride "card_role" { text = "intl_delegate_syndicalist_role" }
 				blockoverride "card_active_visible" {
@@ -385,15 +405,15 @@ window = {
 					color = { 0.2 0.3 0.7 1 }
 				}
 				blockoverride "card_portrait" {
-					widget = {
+					character_portrait_small2 = {
+						position = { 0 35 }
+						parentanchor = vcenter
 						datacontext = "[GetPlayer.MakeScope.Var('blanqui_scope_gui').GetCharacter]"
-						portrait = {
-							size = { 52 64 }
-							parentanchor = center
-						}
+						blockoverride "show_hat" {}
+						blockoverride "highlight" {}
 					}
 				}
-				blockoverride "card_name" { text = "intl_faction_blanquist" }
+
 				blockoverride "card_delegate" { text = "intl_delegate_blanquist_name" }
 				blockoverride "card_role" { text = "intl_delegate_blanquist_role" }
 				blockoverride "card_active_visible" {
@@ -419,15 +439,15 @@ window = {
 					color = { 0.55 0.2 0.6 1 }
 				}
 				blockoverride "card_portrait" {
-					widget = {
+					character_portrait_small2 = {
+						position = { 0 35 }
+						parentanchor = vcenter
 						datacontext = "[GetPlayer.MakeScope.Var('karl_marx_scope_gui').GetCharacter]"
-						portrait = {
-							size = { 52 64 }
-							parentanchor = center
-						}
+						blockoverride "show_hat" {}
+						blockoverride "highlight" {}
 					}
 				}
-				blockoverride "card_name" { text = "intl_faction_marxist" }
+
 				blockoverride "card_delegate" { text = "intl_delegate_marxist_name" }
 				blockoverride "card_role" { text = "intl_delegate_marxist_role" }
 				blockoverride "card_active_visible" {
@@ -492,11 +512,18 @@ window = {
 						blockoverride "detail_faction_name" { text = "intl_faction_anarchist" }
 						blockoverride "detail_title" { text = "intl_delegate_anarchist_title" }
 						blockoverride "detail_desc" { text = "intl_doctrine_anarchist" }
-						blockoverride "detail_portrait" {
+						blockoverride "detail_laws" {
+							button = { size = { 170 65 } using = default_button tooltip = "intl_law_placeholder_tt" hbox = { layoutpolicy_horizontal = expanding spacing = 5 margin = { 8 0 } icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" } vbox = { layoutpolicy_horizontal = expanding layoutpolicy_vertical = expanding expand = {} textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" } textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" } expand = {} } } }
+							button = { size = { 170 65 } using = default_button tooltip = "intl_law_placeholder_tt" hbox = { layoutpolicy_horizontal = expanding spacing = 5 margin = { 8 0 } icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" } vbox = { layoutpolicy_horizontal = expanding layoutpolicy_vertical = expanding expand = {} textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" } textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" } expand = {} } } }
+							button = { size = { 170 65 } using = default_button tooltip = "intl_law_placeholder_tt" hbox = { layoutpolicy_horizontal = expanding spacing = 5 margin = { 8 0 } icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" } vbox = { layoutpolicy_horizontal = expanding layoutpolicy_vertical = expanding expand = {} textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" } textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" } expand = {} } } }
+							button = { size = { 170 65 } using = default_button tooltip = "intl_law_placeholder_tt" hbox = { layoutpolicy_horizontal = expanding spacing = 5 margin = { 8 0 } icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" } vbox = { layoutpolicy_horizontal = expanding layoutpolicy_vertical = expanding expand = {} textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" } textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" } expand = {} } } }
+							button = { size = { 170 65 } using = default_button tooltip = "intl_law_placeholder_tt" hbox = { layoutpolicy_horizontal = expanding spacing = 5 margin = { 8 0 } icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" } vbox = { layoutpolicy_horizontal = expanding layoutpolicy_vertical = expanding expand = {} textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" } textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" } expand = {} } } }
+						}
+					blockoverride "detail_portrait" {
 							widget = {
 								size = { 217 320 }
 								parentanchor = vcenter
-								datacontext = "[GetPlayer.MakeScope.Var('bakunin_scope_gui').GetCharacter]" 
+								datacontext = "[GetPlayer.MakeScope.Var('bakunin_scope_gui').GetCharacter]"
 								tooltipwidget = { FancyTooltip_Character = {} }
 								character_portrait_large_torso = {
 									position = { 0 0 }
@@ -531,7 +558,104 @@ window = {
 						blockoverride "detail_faction_name" { text = "intl_faction_mutualist" }
 						blockoverride "detail_title" { text = "intl_delegate_mutualist_title" }
 						blockoverride "detail_desc" { text = "intl_doctrine_mutualist" }
-						blockoverride "detail_portrait" {
+						blockoverride "detail_laws" {
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+						}
+					blockoverride "detail_portrait" {
 							widget = {
 								size = { 217 320 }
 								parentanchor = vcenter
@@ -570,7 +694,104 @@ window = {
 						blockoverride "detail_faction_name" { text = "intl_faction_syndicalist" }
 						blockoverride "detail_title" { text = "intl_delegate_syndicalist_title" }
 						blockoverride "detail_desc" { text = "intl_doctrine_syndicalist" }
-						blockoverride "detail_portrait" {
+						blockoverride "detail_laws" {
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+						}
+					blockoverride "detail_portrait" {
 							widget = {
 								size = { 217 320 }
 								parentanchor = vcenter
@@ -609,7 +830,104 @@ window = {
 						blockoverride "detail_faction_name" { text = "intl_faction_blanquist" }
 						blockoverride "detail_title" { text = "intl_delegate_blanquist_title" }
 						blockoverride "detail_desc" { text = "intl_doctrine_blanquist" }
-						blockoverride "detail_portrait" {
+						blockoverride "detail_laws" {
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+						}
+					blockoverride "detail_portrait" {
 							widget = {
 								size = { 217 320 }
 								parentanchor = vcenter
@@ -648,7 +966,104 @@ window = {
 						blockoverride "detail_faction_name" { text = "intl_faction_marxist" }
 						blockoverride "detail_title" { text = "intl_delegate_marxist_title" }
 						blockoverride "detail_desc" { text = "intl_doctrine_marxist" }
-						blockoverride "detail_portrait" {
+						blockoverride "detail_laws" {
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+							button = {
+								size = { 170 65 }
+								using = default_button
+								tooltip = "intl_law_placeholder_tt"
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									spacing = 5
+									margin = { 8 0 }
+									icon = { size = { 40 40 } parentanchor = vcenter texture = "gfx/interface/icons/law_icons/command_economy.dds" }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										layoutpolicy_vertical = expanding
+										expand = {}
+										textbox = { layoutpolicy_horizontal = expanding align = nobaseline minimumsize = { -1 20 } using = fontsize_small text = "intl_law_group_placeholder" }
+										textbox = { layoutpolicy_horizontal = expanding minimumsize = { -1 20 } align = nobaseline fontsize_min = 10 text = "intl_law_placeholder" }
+										expand = {}
+									}
+								}
+							}
+						}
+					blockoverride "detail_portrait" {
 							widget = {
 								size = { 217 320 }
 								parentanchor = vcenter
@@ -770,55 +1185,34 @@ types internationale_gui_types {
 			block "card_onclick_set" { onclick = "" }
 		}
 
-		vbox = {
-			size = { 100% 100% }
-			parentanchor = center
-			spacing = 3
-			margin = { 4 6 }
+		# Portrait — absolutely positioned top-right, does not affect text layout
+		widget = {
+			size = { 60 68 }
+			parentanchor = top|right
+			position = { -4 4 }
+			using = not_clickthrough
 
-			# Portrait slot — 52x64 framed area, filled via blockoverride per card instance
-			widget = {
-				size = { 60 68 }
-				parentanchor = hcenter
-
-				# Circular frame behind portrait
+			block "card_portrait" {
 				icon = {
-					size = { 60 60 }
+					size = { 28 28 }
 					parentanchor = center
-					texture = "gfx/interface/backgrounds/round_frame_dec.dds"
-				}
-
-				# Portrait (real character via IG leader datacontext, set per instance)
-				widget = {
-					size = { 52 64 }
-					parentanchor = center
-					block "card_portrait" {
-						# Default fallback: faction-colored identity icon
-						icon = {
-							size = { 28 28 }
-							parentanchor = center
-							texture = "gfx/interface/icons/generic_icons/identity_overlay.dds"
-							block "card_color" { color = { 1 1 1 1 } }
-						}
-					}
+					texture = "gfx/interface/icons/generic_icons/identity_overlay.dds"
+					block "card_color" { color = { 1 1 1 1 } }
 				}
 			}
+		}
 
-			textbox = {
-				layoutpolicy_horizontal = expanding
-
-				autoresize = yes
-				align = hcenter|nobaseline
-				using = fontsize_medium
-				block "card_name" { text = "" }
-			}
+		vbox = {
+			layoutpolicy_horizontal = expanding
+			parentanchor = vcenter|hcenter
+			spacing = 0
+			margin = { 6 0 6 68 }
 
 			textbox = {
 				layoutpolicy_horizontal = expanding
 				autoresize = yes
 				align = hcenter|nobaseline
-				using = fontsize_small
-				alpha = 0.75
+				using = fontsize_large
 				block "card_delegate" { text = "" }
 			}
 
@@ -827,7 +1221,7 @@ types internationale_gui_types {
 				autoresize = yes
 				align = hcenter|nobaseline
 				using = fontsize_small
-				alpha = 0.5
+				alpha = 0.55
 				block "card_role" { text = "" }
 			}
 		}
@@ -893,6 +1287,15 @@ types internationale_gui_types {
 					align = left|nobaseline
 					alpha = 0.78
 					block "detail_desc" { text = "" }
+				}
+
+				# Law icons row
+				flowcontainer = {
+					direction = horizontal
+					spacing = 5
+					margin = { 0 6 }
+
+					block "detail_laws" {}
 				}
 			}
 		}
