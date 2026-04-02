@@ -845,6 +845,7 @@ law_mutualist_economy = {
 
 	unlocking_laws = {
 		law_council_republic
+		law_technocracy
 		law_corporate_state
 	}
 
@@ -853,27 +854,21 @@ law_mutualist_economy = {
 	}
 
 	modifier = {
-		state_shopkeepers_investment_pool_efficiency_mult = 0.65
 		state_farmers_investment_pool_efficiency_mult = 0.35
-		state_machinists_investment_pool_efficiency_mult = 0.45
-		state_engineers_investment_pool_efficiency_mult = 0.45
-		state_machinists_investment_pool_contribution_add = 0.10
-		state_engineers_investment_pool_contribution_add = 0.15
-		state_shopkeepers_investment_pool_contribution_add = 0.15
-		state_clerks_investment_pool_contribution_add = 0.20
-		state_clerks_investment_pool_efficiency_mult = 0.5
+		state_machinists_investment_pool_efficiency_mult = 0.60
+		state_engineers_investment_pool_efficiency_mult = 0.60
+		state_machinists_investment_pool_contribution_add = 0.25
+		state_engineers_investment_pool_contribution_add = 0.30
 		country_private_construction_allocation_mult = 0.60
-		country_government_dividends_reinvestment_add = 0.75
-		building_company_worker_dividends_add = 0.10
+		country_government_dividends_reinvestment_add = 0.90
+		building_company_worker_dividends_add = 0.50
 		country_free_charters_add = 3
 		country_max_companies_add = 1
 		country_loan_interest_rate_mult = -0.20
 		building_group_bg_manufacturing_allowed_collectivization_add = 1.0
-		building_economy_of_scale_level_cap_add = 10
 		building_group_bg_manufacturing_employee_mult = -0.10
 		building_group_bg_mining_employee_mult = -0.05
 		building_group_bg_service_employee_mult = -0.15
-		country_force_privatization_bool = yes
 		country_foreign_collectivization_bool = yes
 	}
 
@@ -895,15 +890,30 @@ law_mutualist_healthcare = {
 	progressiveness = 100
 
 	unlocking_technologies = {
-		pharmaceuticals
+		socialism
+	}
+
+	unlocking_laws = {
+		law_mutualist_oligarchy
+		law_council_republic
+		law_census_voting
+		law_landed_voting
+		law_wealth_voting
+		law_universal_suffrage
+		law_single_party_state
+		law_syndicalist_single_party
+		law_marxist_one_party_state
+		law_anarchy
 	}
 
 	institution = institution_health_system
 
 	institution_modifier = {
-		state_mortality_mult = -0.08
+		state_mortality_mult = -0.10
 		state_pollution_reduction_health_mult = -0.20
 		state_standard_of_living_add = 0.75
+		country_institution_cost_institution_health_system_mult = 1
+		state_tax_collection_mult = -0.05
 	}
 
 	can_impose = {

@@ -1,10 +1,10 @@
-﻿pm_financial_district_mutualist = {
+﻿pm_financial_district_syndacalist = {
 	texture = "gfx/interface/icons/production_method_icons/mixed_icon_ownership.dds"
 
 	unlocking_technologies = { mutual_funds }
 
 	unlocking_laws = {
-		law_mutualist_economy
+		law_syndicalist_economy
 	}
 
 	building_modifiers = {
