@@ -1,0 +1,107 @@
+﻿pm_company_headquarter_mixed_government_run = {
+	texture = "gfx/interface/icons/production_method_icons/mixed_ownership.dds"
+
+	unlocking_laws = {
+		law_state_capitalism
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_bureaucrats_add = 50
+			building_employment_clerks_add = 50
+			building_employment_capitalists_add = 25
+		}
+		unscaled = {
+			building_bureaucrats_shares_add = 10
+			building_clerks_shares_add = 2
+			building_capitalists_shares_add = 10
+		}
+	}
+}
+
+pm_company_headquarter_worker_cooperative = {
+	texture = "gfx/interface/icons/production_method_icons/worker_cooperative.dds"
+
+	unlocking_laws = {
+		law_cooperative_ownership
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_shopkeepers_add = 50
+			building_employment_clerks_add = 50
+		}
+		unscaled = {
+			building_shopkeepers_shares_add = 10
+			building_clerks_shares_add = 2
+		}
+	}
+}
+
+pm_company_headquarter_syndacalist_run = {
+	texture = "gfx/interface/icons/production_method_icons/worker_cooperative.dds"
+
+	unlocking_laws = {
+		law_syndacalist_economy
+	}
+
+	disallowing_laws = {
+		law_cooperative_ownership
+	}
+	
+	building_modifiers = {
+		level_scaled = {
+			building_employment_shopkeepers_add = 100
+		}
+		unscaled = {
+			building_shopkeepers_shares_add = 10
+			building_shopkeepers_shares_add = 2
+		}
+	}
+}
+
+pm_company_headquarter_blanquist_run = {
+	texture = "gfx/interface/icons/production_method_icons/mixed_ownership.dds"
+
+	unlocking_laws = {
+		law_blanquist_economy
+	}
+
+	disallowing_laws = {
+		law_command_economy
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_capitalists_add = 15
+			building_employment_shopkeepers_add = 35
+		}
+		unscaled = {
+			building_shopkeepers_shares_add = 10
+			building_capitalists_shares_add = 2
+		}
+	}
+}
+
+ pm_company_headquarter_marxist_run = {
+	texture = "gfx/interface/icons/production_method_icons/mixed_ownership.dds"
+
+	unlocking_laws = {
+		law_marxist_economy
+	}
+
+	disallowing_laws = {
+		law_command_economy
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_bureaucrats_add = 15
+			building_employment_engineers_add = 35
+		}
+		unscaled = {
+			building_engineers_shares_add = 10
+			building_bureaucrats_shares_add = 2
+		}
+	}
+}
