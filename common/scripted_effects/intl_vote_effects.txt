@@ -78,5 +78,186 @@ intl_cancel_vote = {
 	if = { limit = { has_global_variable = intl_vote_count_proposed } remove_global_variable = intl_vote_count_proposed }
 }
 
-# intl_resolve_vote — see plan Task 4 (all 25 law cases)
-# Implement in next session from docs/superpowers/plans/2026-04-03-vote-lifecycle.md
+intl_resolve_vote = {
+	if = {
+		limit = {
+			global_var:intl_vote_prestige_proposed > global_var:intl_vote_prestige_current
+		}
+
+		### PROPOSED LAW WINS — set proposed to 2 ###
+
+		# Blanquist
+		if = { limit = { global_var:intl_vote_law_proposed = flag:blanquist_presidential_republic }
+			set_global_variable = { name = intl_law_blanquist_presidential_republic value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:blanquist_technocracy }
+			set_global_variable = { name = intl_law_blanquist_technocracy value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:blanquist_state_atheism }
+			set_global_variable = { name = intl_law_blanquist_state_atheism value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:blanquist_bureaucracy }
+			set_global_variable = { name = intl_law_blanquist_bureaucracy value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:blanquist_economy }
+			set_global_variable = { name = intl_law_blanquist_economy value = 2 } }
+		# Anarchist
+		if = { limit = { global_var:intl_vote_law_proposed = flag:anarchist_council_republic }
+			set_global_variable = { name = intl_law_anarchist_council_republic value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:anarchist_anarchy }
+			set_global_variable = { name = intl_law_anarchist_anarchy value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:anarchist_bureaucracy }
+			set_global_variable = { name = intl_law_anarchist_bureaucracy value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:anarchist_economy }
+			set_global_variable = { name = intl_law_anarchist_economy value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:anarchist_multiculturalism }
+			set_global_variable = { name = intl_law_anarchist_multiculturalism value = 2 } }
+		# Marxist
+		if = { limit = { global_var:intl_vote_law_proposed = flag:marxist_council_republic }
+			set_global_variable = { name = intl_law_marxist_council_republic value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:marxist_army }
+			set_global_variable = { name = intl_law_marxist_army value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:marxist_bureaucracy }
+			set_global_variable = { name = intl_law_marxist_bureaucracy value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:marxist_economy }
+			set_global_variable = { name = intl_law_marxist_economy value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:marxist_one_party_state }
+			set_global_variable = { name = intl_law_marxist_one_party_state value = 2 } }
+		# Mutualist
+		if = { limit = { global_var:intl_vote_law_proposed = flag:mutualist_council_republic }
+			set_global_variable = { name = intl_law_mutualist_council_republic value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:mutualist_armed_neutrality }
+			set_global_variable = { name = intl_law_mutualist_armed_neutrality value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:mutualist_economy }
+			set_global_variable = { name = intl_law_mutualist_economy value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:mutualist_healthcare }
+			set_global_variable = { name = intl_law_mutualist_healthcare value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:mutualist_oligarchy }
+			set_global_variable = { name = intl_law_mutualist_oligarchy value = 2 } }
+		# Syndicalist
+		if = { limit = { global_var:intl_vote_law_proposed = flag:syndicalist_council_republic }
+			set_global_variable = { name = intl_law_syndicalist_council_republic value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:syndicalist_single_party }
+			set_global_variable = { name = intl_law_syndicalist_single_party value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:syndicalist_bureaucracy }
+			set_global_variable = { name = intl_law_syndicalist_bureaucracy value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:syndicalist_economy }
+			set_global_variable = { name = intl_law_syndicalist_economy value = 2 } }
+		if = { limit = { global_var:intl_vote_law_proposed = flag:syndicalist_land_reform }
+			set_global_variable = { name = intl_law_syndicalist_land_reform value = 2 } }
+
+		### CURRENT LAW LOSES — remove its variable ###
+
+		# Blanquist
+		if = { limit = { global_var:intl_vote_law_current = flag:blanquist_presidential_republic
+			has_global_variable = intl_law_blanquist_presidential_republic }
+			remove_global_variable = intl_law_blanquist_presidential_republic }
+		if = { limit = { global_var:intl_vote_law_current = flag:blanquist_technocracy
+			has_global_variable = intl_law_blanquist_technocracy }
+			remove_global_variable = intl_law_blanquist_technocracy }
+		if = { limit = { global_var:intl_vote_law_current = flag:blanquist_state_atheism
+			has_global_variable = intl_law_blanquist_state_atheism }
+			remove_global_variable = intl_law_blanquist_state_atheism }
+		if = { limit = { global_var:intl_vote_law_current = flag:blanquist_bureaucracy
+			has_global_variable = intl_law_blanquist_bureaucracy }
+			remove_global_variable = intl_law_blanquist_bureaucracy }
+		if = { limit = { global_var:intl_vote_law_current = flag:blanquist_economy
+			has_global_variable = intl_law_blanquist_economy }
+			remove_global_variable = intl_law_blanquist_economy }
+		# Anarchist
+		if = { limit = { global_var:intl_vote_law_current = flag:anarchist_council_republic
+			has_global_variable = intl_law_anarchist_council_republic }
+			remove_global_variable = intl_law_anarchist_council_republic }
+		if = { limit = { global_var:intl_vote_law_current = flag:anarchist_anarchy
+			has_global_variable = intl_law_anarchist_anarchy }
+			remove_global_variable = intl_law_anarchist_anarchy }
+		if = { limit = { global_var:intl_vote_law_current = flag:anarchist_bureaucracy
+			has_global_variable = intl_law_anarchist_bureaucracy }
+			remove_global_variable = intl_law_anarchist_bureaucracy }
+		if = { limit = { global_var:intl_vote_law_current = flag:anarchist_economy
+			has_global_variable = intl_law_anarchist_economy }
+			remove_global_variable = intl_law_anarchist_economy }
+		if = { limit = { global_var:intl_vote_law_current = flag:anarchist_multiculturalism
+			has_global_variable = intl_law_anarchist_multiculturalism }
+			remove_global_variable = intl_law_anarchist_multiculturalism }
+		# Marxist
+		if = { limit = { global_var:intl_vote_law_current = flag:marxist_council_republic
+			has_global_variable = intl_law_marxist_council_republic }
+			remove_global_variable = intl_law_marxist_council_republic }
+		if = { limit = { global_var:intl_vote_law_current = flag:marxist_army
+			has_global_variable = intl_law_marxist_army }
+			remove_global_variable = intl_law_marxist_army }
+		if = { limit = { global_var:intl_vote_law_current = flag:marxist_bureaucracy
+			has_global_variable = intl_law_marxist_bureaucracy }
+			remove_global_variable = intl_law_marxist_bureaucracy }
+		if = { limit = { global_var:intl_vote_law_current = flag:marxist_economy
+			has_global_variable = intl_law_marxist_economy }
+			remove_global_variable = intl_law_marxist_economy }
+		if = { limit = { global_var:intl_vote_law_current = flag:marxist_one_party_state
+			has_global_variable = intl_law_marxist_one_party_state }
+			remove_global_variable = intl_law_marxist_one_party_state }
+		# Mutualist
+		if = { limit = { global_var:intl_vote_law_current = flag:mutualist_council_republic
+			has_global_variable = intl_law_mutualist_council_republic }
+			remove_global_variable = intl_law_mutualist_council_republic }
+		if = { limit = { global_var:intl_vote_law_current = flag:mutualist_armed_neutrality
+			has_global_variable = intl_law_mutualist_armed_neutrality }
+			remove_global_variable = intl_law_mutualist_armed_neutrality }
+		if = { limit = { global_var:intl_vote_law_current = flag:mutualist_economy
+			has_global_variable = intl_law_mutualist_economy }
+			remove_global_variable = intl_law_mutualist_economy }
+		if = { limit = { global_var:intl_vote_law_current = flag:mutualist_healthcare
+			has_global_variable = intl_law_mutualist_healthcare }
+			remove_global_variable = intl_law_mutualist_healthcare }
+		if = { limit = { global_var:intl_vote_law_current = flag:mutualist_oligarchy
+			has_global_variable = intl_law_mutualist_oligarchy }
+			remove_global_variable = intl_law_mutualist_oligarchy }
+		# Syndicalist
+		if = { limit = { global_var:intl_vote_law_current = flag:syndicalist_council_republic
+			has_global_variable = intl_law_syndicalist_council_republic }
+			remove_global_variable = intl_law_syndicalist_council_republic }
+		if = { limit = { global_var:intl_vote_law_current = flag:syndicalist_single_party
+			has_global_variable = intl_law_syndicalist_single_party }
+			remove_global_variable = intl_law_syndicalist_single_party }
+		if = { limit = { global_var:intl_vote_law_current = flag:syndicalist_bureaucracy
+			has_global_variable = intl_law_syndicalist_bureaucracy }
+			remove_global_variable = intl_law_syndicalist_bureaucracy }
+		if = { limit = { global_var:intl_vote_law_current = flag:syndicalist_economy
+			has_global_variable = intl_law_syndicalist_economy }
+			remove_global_variable = intl_law_syndicalist_economy }
+		if = { limit = { global_var:intl_vote_law_current = flag:syndicalist_land_reform
+			has_global_variable = intl_law_syndicalist_land_reform }
+			remove_global_variable = intl_law_syndicalist_land_reform }
+
+		# Notify all — proposed wins
+		every_country = {
+			limit = {
+				OR = {
+					has_journal_entry = je_internationale
+					has_journal_entry = je_mp_faction_world
+				}
+			}
+			trigger_event = { id = intl_vote_events.2 popup = yes }
+		}
+	}
+	else = {
+		# Current law wins — no law variable changes
+		every_country = {
+			limit = {
+				OR = {
+					has_journal_entry = je_internationale
+					has_journal_entry = je_mp_faction_world
+				}
+			}
+			trigger_event = { id = intl_vote_events.3 popup = yes }
+		}
+	}
+
+	# Clear all vote state and set cooldown
+	every_country = {
+		limit = {
+			OR = {
+				has_journal_entry = je_internationale
+				has_journal_entry = je_mp_faction_world
+			}
+		}
+		set_variable = { name = intl_motion_cooldown_months value = 3 }
+	}
+	intl_cancel_vote = yes
+}
