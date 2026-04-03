@@ -296,6 +296,7 @@ law_anarchist_council_republic = {
 	}
 
 	can_enact = {
+		intl_law_permanently_enabled = { LAW = anarchist_council_republic }
 		NOT = { has_government_type = gov_chartered_company }
 	}
 
@@ -338,6 +339,7 @@ law_anarchist_anarchy = {
 	}
 
 	can_enact = {
+		intl_law_permanently_enabled = { LAW = anarchist_anarchy }
 		has_law_or_variant = law_type:law_council_republic
 	}
 
@@ -378,6 +380,10 @@ law_anarchist_bureaucracy = {
 		law_technocracy
 		law_blanquist_technocracy
 		law_elder_council
+	}
+
+	can_enact = {
+		intl_law_permanently_enabled = { LAW = anarchist_bureaucracy }
 	}
 
 	can_impose = {
@@ -422,6 +428,7 @@ law_anarchist_economy = {
 	}
 
 	can_enact = {
+		intl_law_permanently_enabled = { LAW = anarchist_economy }
 		has_law_or_variant = law_type:law_council_republic
 	}
 
@@ -488,6 +495,7 @@ law_anarchist_multiculturalism = {
 	}
 
 	can_enact = {
+		intl_law_permanently_enabled = { LAW = anarchist_multiculturalism }
 		has_law_or_variant = law_type:law_council_republic
 	}
 
