@@ -1,0 +1,82 @@
+# Internationale Conference — Vote Effects
+
+## script_parameter = CURRENT
+## script_parameter = PROPOSED
+intl_start_vote = {
+	if = {
+		limit = { NOT = { has_global_variable = intl_vote_active } }
+		set_global_variable = intl_vote_active
+		set_global_variable = { name = intl_vote_law_current value = flag:$CURRENT$ }
+		set_global_variable = { name = intl_vote_law_proposed value = flag:$PROPOSED$ }
+		set_global_variable = { name = intl_vote_months_left value = 6 }
+		set_global_variable = { name = intl_vote_prestige_current value = 0 }
+		set_global_variable = { name = intl_vote_prestige_proposed value = 0 }
+		set_global_variable = { name = intl_vote_count_current value = 0 }
+		set_global_variable = { name = intl_vote_count_proposed value = 0 }
+		every_country = {
+			limit = {
+				OR = {
+					has_journal_entry = je_internationale
+					has_journal_entry = je_mp_faction_world
+				}
+			}
+			trigger_event = { id = intl_vote_events.1 popup = yes }
+		}
+	}
+}
+
+## script_parameter = SIDE
+intl_cast_vote = {
+	set_variable = { name = intl_vote_stance value = $SIDE$ }
+	intl_update_vote_prestige = yes
+}
+
+intl_update_vote_prestige = {
+	set_global_variable = { name = intl_vote_prestige_current value = 0 }
+	set_global_variable = { name = intl_vote_prestige_proposed value = 0 }
+	set_global_variable = { name = intl_vote_count_current value = 0 }
+	set_global_variable = { name = intl_vote_count_proposed value = 0 }
+	every_country = {
+		limit = {
+			OR = {
+				has_journal_entry = je_internationale
+				has_journal_entry = je_mp_faction_world
+			}
+			has_variable = intl_vote_stance
+		}
+		if = {
+			limit = { intl_country_supports_current = yes }
+			change_global_variable = {
+				name = intl_vote_prestige_current
+				add = { value = prestige }
+			}
+			change_global_variable = { name = intl_vote_count_current add = 1 }
+		}
+		if = {
+			limit = { intl_country_supports_proposed = yes }
+			change_global_variable = {
+				name = intl_vote_prestige_proposed
+				add = { value = prestige }
+			}
+			change_global_variable = { name = intl_vote_count_proposed add = 1 }
+		}
+	}
+}
+
+intl_cancel_vote = {
+	every_country = {
+		limit = { has_variable = intl_vote_stance }
+		remove_variable = intl_vote_stance
+	}
+	if = { limit = { has_global_variable = intl_vote_active } remove_global_variable = intl_vote_active }
+	if = { limit = { has_global_variable = intl_vote_law_current } remove_global_variable = intl_vote_law_current }
+	if = { limit = { has_global_variable = intl_vote_law_proposed } remove_global_variable = intl_vote_law_proposed }
+	if = { limit = { has_global_variable = intl_vote_months_left } remove_global_variable = intl_vote_months_left }
+	if = { limit = { has_global_variable = intl_vote_prestige_current } remove_global_variable = intl_vote_prestige_current }
+	if = { limit = { has_global_variable = intl_vote_prestige_proposed } remove_global_variable = intl_vote_prestige_proposed }
+	if = { limit = { has_global_variable = intl_vote_count_current } remove_global_variable = intl_vote_count_current }
+	if = { limit = { has_global_variable = intl_vote_count_proposed } remove_global_variable = intl_vote_count_proposed }
+}
+
+# intl_resolve_vote — see plan Task 4 (all 25 law cases)
+# Implement in next session from docs/superpowers/plans/2026-04-03-vote-lifecycle.md

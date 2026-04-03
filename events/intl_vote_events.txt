@@ -1,0 +1,61 @@
+namespace = intl_vote_events
+
+# Vote started notification
+intl_vote_events.1 = {
+	type = country_event
+	placement = ROOT
+
+	title = intl_vote_events.1.t
+	desc = intl_vote_events.1.d
+	flavor = intl_vote_events.1.f
+
+	event_image = { video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2" }
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	duration = 3
+
+	option = {
+		name = intl_vote_events.1.a
+		default_option = yes
+	}
+}
+
+# Vote ended — proposed law wins
+intl_vote_events.2 = {
+	type = country_event
+	placement = ROOT
+
+	title = intl_vote_events.2.t
+	desc = intl_vote_events.2.d
+	flavor = intl_vote_events.2.f
+
+	event_image = { video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2" }
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	duration = 3
+
+	option = {
+		name = intl_vote_events.2.a
+		default_option = yes
+	}
+}
+
+# Vote ended — current law holds
+intl_vote_events.3 = {
+	type = country_event
+	placement = ROOT
+
+	title = intl_vote_events.3.t
+	desc = intl_vote_events.3.d
+	flavor = intl_vote_events.3.f
+
+	event_image = { video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2" }
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	duration = 3
+
+	option = {
+		name = intl_vote_events.3.a
+		default_option = yes
+	}
+}
