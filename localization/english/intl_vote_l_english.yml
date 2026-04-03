@@ -28,3 +28,5 @@
   intl_vote_events.10.t: "Raise a Motion"
   intl_vote_events.10.d: "Which law shall be brought before the Congress for a vote?"
   intl_vote_events.10.cancel: "Withdraw — raise no motion"
+  intl_vote_count_current_label: "Countries supporting: [GetGlobalVariable('intl_vote_count_current').GetValue(int32).ToString]"
+  intl_vote_count_proposed_label: "Countries supporting: [GetGlobalVariable('intl_vote_count_proposed').GetValue(int32).ToString]"
