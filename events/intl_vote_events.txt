@@ -40,6 +40,145 @@ intl_vote_events.2 = {
 	}
 }
 
+# Motion selection — fired on actor country when raising a motion
+# Shows vote pairs based on which laws are at value >= 2
+intl_vote_events.10 = {
+	type = country_event
+	placement = ROOT
+
+	title = intl_vote_events.10.t
+	desc = intl_vote_events.10.d
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+	event_image = { video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2" }
+
+	### GOVERNANCE — anarchist council challenged
+	option = {
+		name = intl_vote_events.10.propose_marxist_council_republic
+		trigger = {
+			intl_law_permanently_enabled = { LAW = anarchist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = marxist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = anarchist_council_republic PROPOSED = marxist_council_republic }
+	}
+	option = {
+		name = intl_vote_events.10.propose_mutualist_council_republic
+		trigger = {
+			intl_law_permanently_enabled = { LAW = anarchist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = mutualist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = anarchist_council_republic PROPOSED = mutualist_council_republic }
+	}
+	option = {
+		name = intl_vote_events.10.propose_syndicalist_council_republic
+		trigger = {
+			intl_law_permanently_enabled = { LAW = anarchist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = syndicalist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = anarchist_council_republic PROPOSED = syndicalist_council_republic }
+	}
+	option = {
+		name = intl_vote_events.10.propose_blanquist_presidential_republic
+		trigger = {
+			intl_law_permanently_enabled = { LAW = anarchist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = blanquist_presidential_republic } }
+		}
+		intl_start_vote = { CURRENT = anarchist_council_republic PROPOSED = blanquist_presidential_republic }
+	}
+
+	### GOVERNANCE — marxist council challenged
+	option = {
+		name = intl_vote_events.10.propose_anarchist_council_republic
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = anarchist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = marxist_council_republic PROPOSED = anarchist_council_republic }
+	}
+	option = {
+		name = intl_vote_events.10.propose_mutualist_cr_vs_marxist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = mutualist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = marxist_council_republic PROPOSED = mutualist_council_republic }
+	}
+	option = {
+		name = intl_vote_events.10.propose_syndicalist_cr_vs_marxist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = syndicalist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = marxist_council_republic PROPOSED = syndicalist_council_republic }
+	}
+
+	### ECONOMY — mutualist challenged
+	option = {
+		name = intl_vote_events.10.propose_marxist_economy
+		trigger = {
+			intl_law_permanently_enabled = { LAW = mutualist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = marxist_economy } }
+		}
+		intl_start_vote = { CURRENT = mutualist_economy PROPOSED = marxist_economy }
+	}
+	option = {
+		name = intl_vote_events.10.propose_anarchist_economy
+		trigger = {
+			intl_law_permanently_enabled = { LAW = mutualist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = anarchist_economy } }
+		}
+		intl_start_vote = { CURRENT = mutualist_economy PROPOSED = anarchist_economy }
+	}
+	option = {
+		name = intl_vote_events.10.propose_syndicalist_economy
+		trigger = {
+			intl_law_permanently_enabled = { LAW = mutualist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = syndicalist_economy } }
+		}
+		intl_start_vote = { CURRENT = mutualist_economy PROPOSED = syndicalist_economy }
+	}
+	option = {
+		name = intl_vote_events.10.propose_blanquist_economy
+		trigger = {
+			intl_law_permanently_enabled = { LAW = mutualist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = blanquist_economy } }
+		}
+		intl_start_vote = { CURRENT = mutualist_economy PROPOSED = blanquist_economy }
+	}
+
+	### ECONOMY — marxist challenged
+	option = {
+		name = intl_vote_events.10.propose_mutualist_economy
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = mutualist_economy } }
+		}
+		intl_start_vote = { CURRENT = marxist_economy PROPOSED = mutualist_economy }
+	}
+	option = {
+		name = intl_vote_events.10.propose_anarchist_econ_vs_marxist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = anarchist_economy } }
+		}
+		intl_start_vote = { CURRENT = marxist_economy PROPOSED = anarchist_economy }
+	}
+	option = {
+		name = intl_vote_events.10.propose_syndicalist_econ_vs_marxist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = syndicalist_economy } }
+		}
+		intl_start_vote = { CURRENT = marxist_economy PROPOSED = syndicalist_economy }
+	}
+
+	### CANCEL
+	option = {
+		name = intl_vote_events.10.cancel
+		default_option = yes
+	}
+}
+
 # Vote ended — current law holds
 intl_vote_events.3 = {
 	type = country_event

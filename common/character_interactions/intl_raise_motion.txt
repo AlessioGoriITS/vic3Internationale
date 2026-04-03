@@ -1,0 +1,65 @@
+intl_raise_motion = {
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	# Only show on the 5 Internationale delegate characters
+	potential = {
+		OR = {
+			has_variable = bakunin_var
+			has_variable = proudhon_var
+			has_variable = bel_de_paepe_var
+			has_variable = blanqui_var
+			has_variable = karl_marx_var
+		}
+		owner ?= {
+			OR = {
+				has_journal_entry = je_internationale
+				has_journal_entry = je_mp_faction_world
+			}
+		}
+	}
+
+	# Can only raise if no active vote and not on cooldown and at least one law is enabled
+	possible = {
+		scope:actor = {
+			NOT = { intl_vote_is_active = yes }
+			NOT = { has_variable = intl_motion_cooldown_months }
+		}
+		OR = {
+			has_global_variable = intl_law_blanquist_presidential_republic
+			has_global_variable = intl_law_blanquist_technocracy
+			has_global_variable = intl_law_blanquist_state_atheism
+			has_global_variable = intl_law_blanquist_bureaucracy
+			has_global_variable = intl_law_blanquist_economy
+			has_global_variable = intl_law_anarchist_council_republic
+			has_global_variable = intl_law_anarchist_anarchy
+			has_global_variable = intl_law_anarchist_bureaucracy
+			has_global_variable = intl_law_anarchist_economy
+			has_global_variable = intl_law_anarchist_multiculturalism
+			has_global_variable = intl_law_marxist_council_republic
+			has_global_variable = intl_law_marxist_army
+			has_global_variable = intl_law_marxist_bureaucracy
+			has_global_variable = intl_law_marxist_economy
+			has_global_variable = intl_law_marxist_one_party_state
+			has_global_variable = intl_law_mutualist_council_republic
+			has_global_variable = intl_law_mutualist_armed_neutrality
+			has_global_variable = intl_law_mutualist_economy
+			has_global_variable = intl_law_mutualist_healthcare
+			has_global_variable = intl_law_mutualist_oligarchy
+			has_global_variable = intl_law_syndicalist_council_republic
+			has_global_variable = intl_law_syndicalist_single_party
+			has_global_variable = intl_law_syndicalist_bureaucracy
+			has_global_variable = intl_law_syndicalist_economy
+			has_global_variable = intl_law_syndicalist_land_reform
+		}
+	}
+
+	effect = {
+		scope:actor = {
+			trigger_event = { id = intl_vote_events.10 popup = yes }
+		}
+	}
+
+	ai_chance = {
+		value = 0
+	}
+}
