@@ -14,10 +14,13 @@ law_blanquist_presidential_republic = {
 
 	unlocking_laws = {
 		law_technocracy
+		law_blanquist_technocracy
 		law_state_atheism
+		law_blanquist_state_atheism
 	}
 
 	can_enact = {
+		intl_law_permanently_enabled = { LAW = blanquist_presidential_republic }
 	}
 
 	can_impose = {
@@ -63,9 +66,11 @@ law_blanquist_technocracy = {
 
 	unlocking_laws = {
 		law_state_atheism
+		law_blanquist_state_atheism
 	}
 
 	can_enact = {
+		intl_law_permanently_enabled = { LAW = blanquist_technocracy }
 	}
 
 	can_impose = {
@@ -121,6 +126,7 @@ law_blanquist_state_atheism = {
 	}
 
 	can_enact = {
+		intl_law_permanently_enabled = { LAW = blanquist_state_atheism }
 		ig:ig_devout ?= {
 			is_in_government = no
 		}
@@ -194,6 +200,10 @@ law_blanquist_bureaucracy = {
 
 	progressiveness = 0
 
+	can_enact = {
+		intl_law_permanently_enabled = { LAW = blanquist_bureaucracy }
+	}
+
 	can_impose = {
 		always = no
 	}
@@ -233,9 +243,15 @@ law_blanquist_economy = {
 	}
 
 	unlocking_laws = {
-        law_blanquist_state_atheism
-		law_single_party_state
-		law_technocracy
+	}
+
+	can_enact = {
+		intl_law_permanently_enabled = { LAW = blanquist_economy }
+		OR = {
+			has_law_or_variant = law_type:law_single_party_state
+			has_law_or_variant = law_type:law_technocracy
+			has_law_or_variant = law_type:law_state_atheism
+		}
 	}
 
 	can_impose = {
@@ -360,6 +376,7 @@ law_anarchist_bureaucracy = {
 
 	disallowing_laws = {
 		law_technocracy
+		law_blanquist_technocracy
 		law_elder_council
 	}
 
@@ -402,8 +419,10 @@ law_anarchist_economy = {
 	}
 
 	unlocking_laws = {
-		law_council_republic
-		law_corporate_state
+	}
+
+	can_enact = {
+		has_law_or_variant = law_type:law_council_republic
 	}
 
 	can_impose = {
@@ -464,8 +483,12 @@ law_anarchist_multiculturalism = {
 
 	unlocking_laws = {
 		law_state_atheism
+		law_blanquist_state_atheism
 		law_anarchist_bureaucracy
-		law_council_republic
+	}
+
+	can_enact = {
+		has_law_or_variant = law_type:law_council_republic
 	}
 
 	can_impose = {
@@ -501,6 +524,42 @@ law_anarchist_multiculturalism = {
 
 ### Marxist
 
+law_marxist_council_republic = {
+	group = lawgroup_governance_principles
+	parent = law_council_republic
+
+	icon = "gfx/interface/icons/law_icons/marxist/marxist_council_republic.png"
+
+	progressiveness = 200
+
+	unlocking_technologies = {
+		socialism
+	}
+
+	can_enact = {
+		NOT = { has_government_type = gov_chartered_company }
+	}
+
+	can_impose = {
+		always = no
+	}
+
+	modifier = {
+		country_legitimacy_headofstate_add = 100
+		country_legitimacy_ideological_incoherence_mult = 0.25
+		interest_group_ig_trade_unions_pol_str_mult = 1
+		country_authority_add = 200
+	}
+
+	ai_enact_weight_modifier = {
+		value = 0
+	}
+
+	ai_impose_chance = {
+		value = 0
+	}
+}
+
 law_marxist_army = {
 	group = lawgroup_army_model
 	parent = law_mass_conscription
@@ -513,8 +572,8 @@ law_marxist_army = {
 		enlistment_offices
 	}
 
-	unlocking_laws = {
-		law_council_republic
+	can_enact = {
+		has_law_or_variant = law_type:law_council_republic
 	}
 
 	can_impose = {
@@ -589,14 +648,14 @@ law_marxist_economy = {
 		law_women_in_the_fields
 	}
 
-	unlocking_laws = {
-		law_council_republic
-		law_autocracy
-		law_neo_absolutism
-		law_oligarchy
-		law_organic_regulation
-		law_single_party_state
-		law_technocracy
+	can_enact = {
+		has_law_or_variant = law_type:law_council_republic
+		OR = {
+			has_law_or_variant = law_type:law_single_party_state
+			has_law_or_variant = law_type:law_autocracy
+			has_law_or_variant = law_type:law_oligarchy
+			has_law_or_variant = law_type:law_technocracy
+		}
 	}
 
 	can_impose = {
@@ -843,10 +902,17 @@ law_mutualist_economy = {
 		law_women_in_the_fields
 	}
 
-	unlocking_laws = {
-		law_council_republic
-		law_technocracy
-		law_corporate_state
+	can_enact = {
+			OR = {
+				has_law_or_variant = law_type:law_council_republic
+				has_law_or_variant = law_type:law_corporate_state
+			}
+			OR = {
+				has_law_or_variant = law_type:law_single_party_state
+				has_law_or_variant = law_type:law_technocracy
+				has_law_or_variant = law_type:law_autocracy
+				has_law_or_variant = law_type:law_oligarchy
+			}
 	}
 
 	can_impose = {
@@ -894,16 +960,17 @@ law_mutualist_healthcare = {
 	}
 
 	unlocking_laws = {
-		law_mutualist_oligarchy
-		law_council_republic
-		law_census_voting
-		law_landed_voting
-		law_wealth_voting
-		law_universal_suffrage
-		law_single_party_state
-		law_syndicalist_single_party
-		law_marxist_one_party_state
-		law_anarchy
+	}
+
+	can_enact = {
+		OR = {
+			has_law_or_variant = law_type:law_single_party_state
+			has_law = law_type:law_mutualist_oligarchy
+			has_law_or_variant = law_type:law_census_voting
+			has_law_or_variant = law_type:law_universal_suffrage
+			has_law_or_variant = law_type:law_anarchy
+		}
+		
 	}
 
 	institution = institution_health_system
@@ -1041,7 +1108,7 @@ law_syndicalist_bureaucracy = {
 
 	disallowing_laws = {
 		law_technocracy
-		law_elder_council
+		law_blanquist_technocracy
 	}
 
 	can_impose = {
@@ -1083,8 +1150,14 @@ law_syndicalist_economy = {
 	}
 
 	unlocking_laws = {
-		law_council_republic
-		law_corporate_state
+		
+	}
+
+	can_enact = {
+		OR = {
+			has_law_or_variant = law_type:law_council_republic
+			has_law_or_variant = law_type:law_corporate_state
+		}
 	}
 
 	can_impose = {
@@ -1168,5 +1241,163 @@ law_syndicalist_land_reform = {
 
 	ai_impose_chance = {
 		value = 0
+	}
+}
+
+REPLACE_OR_CREATE:law_freedom_of_conscience = {
+	group = lawgroup_church_and_state
+
+	icon = "gfx/interface/icons/law_icons/freedom_of_conscience.dds"
+
+	progressiveness = 0
+
+	unlocking_technologies = {
+		rationalism
+	}
+
+	disallowing_laws = {
+		law_theocracy
+		law_anarchist_multiculturalism
+	}
+
+	on_activate = {
+		if = {
+			limit = {
+				has_law_or_variant = law_type:law_state_atheism
+			}
+			set_state_religion = root.country_definition.religion
+		}
+		if = {
+			limit = {
+				has_modifier = antireligious_policies
+			}
+			remove_modifier = antireligious_policies
+		}
+		recalculate_pop_ig_support = yes
+	}
+
+	modifier = {
+		interest_group_ig_devout_pol_str_mult = 0.15
+		country_authority_add = 100
+		country_state_religion_wages_mult = 0.05
+		country_non_state_religion_wages_mult = -0.05
+
+		country_acceptance_state_religion_add = 20
+		country_acceptance_shared_religious_trait_add = 15
+		country_acceptance_shared_religious_trait_group_add = 5
+		country_acceptance_no_shared_religious_trait_add = 0
+
+		country_allow_conversion_violent_hostility_bool = yes
+		country_allow_conversion_cultural_erasure_bool = yes
+		country_allow_conversion_open_prejudice_bool = yes
+		country_allow_conversion_second_rate_citizen_bool = no
+		country_allow_conversion_full_acceptance_bool = no
+	}
+
+	can_impose = {
+		OR = {
+			AND = {
+				is_in_same_power_bloc = scope:target_country
+				AND = {
+					modifier:country_can_impose_same_lawgroup_church_and_state_in_power_bloc_bool = yes
+					has_law = scope:law
+				}
+			}
+			can_impose_law_default = yes
+		}
+	}
+
+	ai_enact_weight_modifier = { #Petitions
+		value = 0
+
+		if = {
+			limit = { ai_has_enact_weight_modifier_journal_entries = yes }
+			add = 750
+		}
+
+		if = {
+			limit = {
+				has_journal_entry = je_sick_man_education
+				has_law_or_variant = law_type:law_state_religion
+			}
+			add = 1000
+		}
+	}
+}
+
+REPLACE_OR_CREATE:law_total_separation = {
+	group = lawgroup_church_and_state
+
+	icon = "gfx/interface/icons/law_icons/total_separation.dds"
+
+	progressiveness = 50
+
+	unlocking_technologies = {
+		empiricism
+	}
+
+	disallowing_laws = {
+		law_theocracy
+		law_anarchist_multiculturalism
+	}
+
+	can_enact = {
+		OR = {
+			is_power_bloc_leader = no
+			power_bloc ?= {
+				NOT = { has_identity = identity:identity_religious }
+			}
+		}
+	}
+
+	on_activate = {
+		if = {
+			limit = {
+				has_law_or_variant = law_type:law_state_atheism
+			}
+			set_state_religion = root.country_definition.religion
+		}
+		if = {
+			limit = {
+				has_modifier = antireligious_policies
+			}
+			remove_modifier = antireligious_policies
+		}
+		recalculate_pop_ig_support = yes
+	}
+
+	modifier = {
+		country_acceptance_state_religion_add = 15
+		country_acceptance_shared_religious_trait_add = 15
+		country_acceptance_shared_religious_trait_group_add = 15
+		country_acceptance_no_shared_religious_trait_add = 15
+
+		country_allow_conversion_violent_hostility_bool = no
+		country_allow_conversion_cultural_erasure_bool = no
+		country_allow_conversion_open_prejudice_bool = no
+		country_allow_conversion_second_rate_citizen_bool = no
+		country_allow_conversion_full_acceptance_bool = no
+	}
+
+	can_impose = {
+		OR = {
+			AND = {
+				is_in_same_power_bloc = scope:target_country
+				AND = {
+					modifier:country_can_impose_same_lawgroup_church_and_state_in_power_bloc_bool = yes
+					has_law = scope:law
+				}
+			}
+			can_impose_law_default = yes
+		}
+	}
+
+	ai_enact_weight_modifier = { #Petitions
+		value = 0
+
+		if = {
+			limit = { ai_has_enact_weight_modifier_journal_entries = yes }
+			add = 750
+		}
 	}
 }

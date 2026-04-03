@@ -3,6 +3,7 @@
 # e.g. intl_law_in_conference = { LAW = blanquist_economy }
 
 # True when a law is a live conference candidate (value = 1, not yet finalized)
+## script_parameter = LAW
 intl_law_in_conference = {
 	has_global_variable = intl_law_$LAW$
 	global_var:intl_law_$LAW$ >= 1
@@ -11,6 +12,7 @@ intl_law_in_conference = {
 
 # True when a law has been permanently enabled by the conference (value >= 2)
 # This is the gate used in each law's can_enact block
+## script_parameter = LAW
 intl_law_permanently_enabled = {
 	has_global_variable = intl_law_$LAW$
 	global_var:intl_law_$LAW$ >= 2
