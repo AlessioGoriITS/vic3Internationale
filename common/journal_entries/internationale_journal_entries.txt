@@ -19,6 +19,14 @@ je_internationale = {
 		set_variable = { name = intl_strength_syndicalist value = 20 }
 		set_variable = { name = intl_strength_blanquist value = 20 }
 		set_variable = { name = intl_strength_marxist value = 20 }
+
+		# Base communist laws — one per lawgroup slot, permanently enabled from the start
+		set_global_variable = { name = intl_law_marxist_council_republic value = 2 }
+		set_global_variable = { name = intl_law_marxist_one_party_state value = 2 }
+		set_global_variable = { name = intl_law_marxist_economy value = 2 }
+		set_global_variable = { name = intl_law_marxist_bureaucracy value = 2 }
+		set_global_variable = { name = intl_law_marxist_army value = 2 }
+
 		intl_save_delegate_chars = yes
 		intl_update_parliament = yes
 	}

@@ -1,0 +1,15 @@
+intl_cast_vote_current_sgui = {
+	scope = country
+
+	effect = {
+		intl_cast_vote = { SIDE = 1 }
+	}
+}
+
+intl_cast_vote_proposed_sgui = {
+	scope = country
+
+	effect = {
+		intl_cast_vote = { SIDE = 2 }
+	}
+}

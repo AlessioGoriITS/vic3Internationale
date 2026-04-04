@@ -2,6 +2,8 @@
 
 ## script_parameter = CURRENT
 ## script_parameter = PROPOSED
+## script_parameter = CURRENT_FACTION
+## script_parameter = PROPOSED_FACTION
 intl_start_vote = {
 	if = {
 		limit = { NOT = { has_global_variable = intl_vote_active } }
@@ -13,6 +15,10 @@ intl_start_vote = {
 		set_global_variable = { name = intl_vote_prestige_proposed value = 0 }
 		set_global_variable = { name = intl_vote_count_current value = 0 }
 		set_global_variable = { name = intl_vote_count_proposed value = 0 }
+		set_global_variable = intl_vote_current_faction_$CURRENT_FACTION$
+		set_global_variable = intl_vote_proposed_faction_$PROPOSED_FACTION$
+		set_global_variable = intl_vote_current_law_$CURRENT$
+		set_global_variable = intl_vote_proposed_law_$PROPOSED$
 		every_country = {
 			limit = {
 				OR = {
@@ -76,6 +82,29 @@ intl_cancel_vote = {
 	if = { limit = { has_global_variable = intl_vote_prestige_proposed } remove_global_variable = intl_vote_prestige_proposed }
 	if = { limit = { has_global_variable = intl_vote_count_current } remove_global_variable = intl_vote_count_current }
 	if = { limit = { has_global_variable = intl_vote_count_proposed } remove_global_variable = intl_vote_count_proposed }
+	if = { limit = { has_global_variable = intl_vote_current_faction_anarchist } remove_global_variable = intl_vote_current_faction_anarchist }
+	if = { limit = { has_global_variable = intl_vote_current_faction_mutualist } remove_global_variable = intl_vote_current_faction_mutualist }
+	if = { limit = { has_global_variable = intl_vote_current_faction_syndicalist } remove_global_variable = intl_vote_current_faction_syndicalist }
+	if = { limit = { has_global_variable = intl_vote_current_faction_blanquist } remove_global_variable = intl_vote_current_faction_blanquist }
+	if = { limit = { has_global_variable = intl_vote_current_faction_marxist } remove_global_variable = intl_vote_current_faction_marxist }
+	if = { limit = { has_global_variable = intl_vote_proposed_faction_anarchist } remove_global_variable = intl_vote_proposed_faction_anarchist }
+	if = { limit = { has_global_variable = intl_vote_proposed_faction_mutualist } remove_global_variable = intl_vote_proposed_faction_mutualist }
+	if = { limit = { has_global_variable = intl_vote_proposed_faction_syndicalist } remove_global_variable = intl_vote_proposed_faction_syndicalist }
+	if = { limit = { has_global_variable = intl_vote_proposed_faction_blanquist } remove_global_variable = intl_vote_proposed_faction_blanquist }
+	if = { limit = { has_global_variable = intl_vote_proposed_faction_marxist } remove_global_variable = intl_vote_proposed_faction_marxist }
+	if = { limit = { has_global_variable = intl_vote_current_law_anarchist_council_republic } remove_global_variable = intl_vote_current_law_anarchist_council_republic }
+	if = { limit = { has_global_variable = intl_vote_current_law_marxist_council_republic } remove_global_variable = intl_vote_current_law_marxist_council_republic }
+	if = { limit = { has_global_variable = intl_vote_current_law_mutualist_economy } remove_global_variable = intl_vote_current_law_mutualist_economy }
+	if = { limit = { has_global_variable = intl_vote_current_law_marxist_economy } remove_global_variable = intl_vote_current_law_marxist_economy }
+	if = { limit = { has_global_variable = intl_vote_proposed_law_marxist_council_republic } remove_global_variable = intl_vote_proposed_law_marxist_council_republic }
+	if = { limit = { has_global_variable = intl_vote_proposed_law_mutualist_council_republic } remove_global_variable = intl_vote_proposed_law_mutualist_council_republic }
+	if = { limit = { has_global_variable = intl_vote_proposed_law_syndicalist_council_republic } remove_global_variable = intl_vote_proposed_law_syndicalist_council_republic }
+	if = { limit = { has_global_variable = intl_vote_proposed_law_blanquist_presidential_republic } remove_global_variable = intl_vote_proposed_law_blanquist_presidential_republic }
+	if = { limit = { has_global_variable = intl_vote_proposed_law_anarchist_council_republic } remove_global_variable = intl_vote_proposed_law_anarchist_council_republic }
+	if = { limit = { has_global_variable = intl_vote_proposed_law_mutualist_economy } remove_global_variable = intl_vote_proposed_law_mutualist_economy }
+	if = { limit = { has_global_variable = intl_vote_proposed_law_anarchist_economy } remove_global_variable = intl_vote_proposed_law_anarchist_economy }
+	if = { limit = { has_global_variable = intl_vote_proposed_law_syndicalist_economy } remove_global_variable = intl_vote_proposed_law_syndicalist_economy }
+	if = { limit = { has_global_variable = intl_vote_proposed_law_blanquist_economy } remove_global_variable = intl_vote_proposed_law_blanquist_economy }
 }
 
 intl_resolve_vote = {

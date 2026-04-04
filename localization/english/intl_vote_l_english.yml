@@ -1,4 +1,4 @@
- l_english:
+﻿ l_english:
   intl_vote_events.1.t: "A Motion Before the Congress"
   intl_vote_events.1.d: "A delegate has raised a motion to challenge a current law. The Congress has six months to deliberate."
   intl_vote_events.1.f: "The workers of the world are watching."
@@ -44,3 +44,44 @@
   intl_vote_events.10.propose_mutualist_economy: "Propose: Mutualist Cooperative Economy"
   intl_vote_events.10.propose_anarchist_econ_vs_marxist: "Propose: Anarchist Cooperative Economy"
   intl_vote_events.10.propose_syndicalist_econ_vs_marxist: "Propose: Syndicalist Economy"
+  intl_vote_months_left_label: "Months remaining: [GetGlobalVariable('intl_vote_months_left').GetValue(int32).ToString]"
+  intl_parl_tooltip_anarchist: "#bold Anarchist#!\nParliament share: #variable [GetPlayer.MakeScope.Var('intl_strength_anarchist').GetValue]#!%"
+  intl_parl_tooltip_mutualist: "#bold Mutualist#!\nParliament share: #variable [GetPlayer.MakeScope.Var('intl_strength_mutualist').GetValue]#!%"
+  intl_parl_tooltip_syndicalist: "#bold Syndicalist#!\nParliament share: #variable [GetPlayer.MakeScope.Var('intl_strength_syndicalist').GetValue]#!%"
+  intl_parl_tooltip_blanquist: "#bold Blanquist#!\nParliament share: #variable [GetPlayer.MakeScope.Var('intl_strength_blanquist').GetValue]#!%"
+  intl_parl_tooltip_marxist: "#bold Marxist#!\nParliament share: #variable [GetPlayer.MakeScope.Var('intl_strength_marxist').GetValue]#!%"
+
+  # Debate panel
+  intl_vote_panel_title: "Current Policy Being Voted"
+  intl_faction_tag_anarchist: "Anarchist"
+  intl_faction_tag_mutualist: "Mutualist"
+  intl_faction_tag_syndicalist: "Syndicalist"
+  intl_faction_tag_blanquist: "Blanquist"
+  intl_faction_tag_marxist: "Marxist"
+  intl_vote_bar_center_label: "Congress Support"
+  intl_vote_count_current_pct: "[GetGlobalVariable('intl_vote_count_current').GetValue(int32).ToString] countries"
+  intl_vote_count_proposed_pct: "[GetGlobalVariable('intl_vote_count_proposed').GetValue(int32).ToString] countries"
+
+  # Law display names
+  intl_lawname_anarchist_council_republic: "Anarchist Council Republic"
+  intl_lawname_marxist_council_republic: "Marxist Council Republic"
+  intl_lawname_mutualist_council_republic: "Mutualist Council Republic"
+  intl_lawname_syndicalist_council_republic: "Syndicalist Council Republic"
+  intl_lawname_blanquist_presidential_republic: "Blanquist Presidential Republic"
+  intl_lawname_mutualist_economy: "Mutualist Cooperative Economy"
+  intl_lawname_marxist_economy: "Marxist Planned Economy"
+  intl_lawname_anarchist_economy: "Anarchist Cooperative Economy"
+  intl_lawname_syndicalist_economy: "Syndicalist Economy"
+  intl_lawname_blanquist_economy: "Blanquist Command Economy"
+
+  # Law descriptions
+  intl_lawdesc_anarchist_council_republic: "Power dispersed to freely associating communes. No central authority, no hierarchy — governance through direct federation."
+  intl_lawdesc_marxist_council_republic: "The revolutionary vanguard leads through a democratic council of workers' representatives until class conflict is resolved."
+  intl_lawdesc_mutualist_council_republic: "Governance through federated worker cooperatives, balancing free association with mutual credit institutions."
+  intl_lawdesc_syndicalist_council_republic: "Industrial unions form the organs of state. Each syndicate governs its sphere — coordination through congress."
+  intl_lawdesc_blanquist_presidential_republic: "A disciplined revolutionary party seizes the state and holds it until the conditions for socialism are secured."
+  intl_lawdesc_mutualist_economy: "Enterprises reorganised as worker cooperatives, self-governed through mutual credit and free association."
+  intl_lawdesc_marxist_economy: "The proletarian state directs key industries through centralised planning, ensuring rational allocation of resources."
+  intl_lawdesc_anarchist_economy: "All productive property held in common by free communes. No wages, no markets — contribution by ability, access by need."
+  intl_lawdesc_syndicalist_economy: "Workers' unions hold collective ownership of industries, coordinating production through syndicate councils."
+  intl_lawdesc_blanquist_economy: "State command over the commanding heights, with disciplined allocation subordinated to the revolutionary programme."

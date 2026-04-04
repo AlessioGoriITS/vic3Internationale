@@ -1,0 +1,79 @@
+REPLACE_OR_CREATE:pm_traditional_patronage = {
+	texture = "gfx/interface/icons/production_method_icons/ownership_aristocrats.dds"
+
+	disallowing_laws = {
+		law_command_economy
+		law_blanquist_economy
+		law_marxist_economy
+		law_cooperative_ownership
+		law_anarchist_economy
+		law_mutualist_economy
+		law_syndicalist_economy
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_academics_add = 1000
+			building_employment_clerks_add = 3000
+			building_employment_laborers_add = 1000
+		}
+	}
+}
+
+REPLACE_OR_CREATE:pm_bourgeoisie_patronage = {
+	texture = "gfx/interface/icons/production_method_icons/privately_owned.dds"
+
+	unlocking_technologies = {
+		realism
+	}
+
+	disallowing_laws = {
+		law_command_economy
+		law_blanquist_economy
+		law_marxist_economy
+		law_cooperative_ownership
+		law_anarchist_economy
+		law_mutualist_economy
+		law_syndicalist_economy
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_academics_add = 1500
+			building_employment_clerks_add = 2500
+			building_employment_laborers_add = 1000
+		}
+	}
+}
+
+REPLACE_OR_CREATE:pm_free_urban_clergy = {
+	texture = "gfx/interface/icons/production_method_icons/ownership_bureacrats.dds"
+
+	disallowing_laws = {
+		law_state_religion
+		law_state_atheism
+		law_blanquist_state_atheism
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_clerks_add = 100
+			building_employment_clergymen_add = 150
+		}
+	}
+}
+
+REPLACE_OR_CREATE:pm_no_urban_clergy = {
+	texture = "gfx/interface/icons/production_method_icons/state_atheism.dds"
+	unlocking_laws = {
+		law_state_atheism
+		law_blanquist_state_atheism
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_clerks_add = 150
+			building_employment_bureaucrats_add = 50
+		}
+	}
+}

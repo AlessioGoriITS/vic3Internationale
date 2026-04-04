@@ -132,6 +132,20 @@ window = {
 				}
 			}
 
+			### CURRENT MOTION BUTTON — overlaid at bottom center of parliament
+			button_standard = {
+				size = { 260 32 }
+				parentanchor = hcenter|bottom
+				position = { 0 -6 }
+				text = "intl_tab_current_motion"
+				using = fontsize_medium
+				onclick = "[GetVariableSystem.Clear('intl_tab_anarchist')]"
+				onclick = "[GetVariableSystem.Clear('intl_tab_mutualist')]"
+				onclick = "[GetVariableSystem.Clear('intl_tab_syndicalist')]"
+				onclick = "[GetVariableSystem.Clear('intl_tab_blanquist')]"
+				onclick = "[GetVariableSystem.Clear('intl_tab_marxist')]"
+			}
+
 		}
 
 		### SPACER
@@ -163,31 +177,6 @@ window = {
 			size = { 0 30 }
 			spacing = 2
 			margin = { 8 0 }
-
-			### CURRENT MOTION TAB
-			intl_tab_button = {
-				blockoverride "tab_color" {
-					color = { 0.55 0.48 0.28 1 }
-				}
-				blockoverride "tab_text" {
-					text = "intl_tab_current_motion"
-				}
-				blockoverride "tab_active_visible" {
-					visible = "[Not(Or(Or(Or(Or(GetVariableSystem.Exists('intl_tab_anarchist'), GetVariableSystem.Exists('intl_tab_mutualist')), GetVariableSystem.Exists('intl_tab_syndicalist')), GetVariableSystem.Exists('intl_tab_blanquist')), GetVariableSystem.Exists('intl_tab_marxist')))]"
-				}
-				blockoverride "tab_inactive_visible" {
-					visible = "[Or(Or(Or(Or(GetVariableSystem.Exists('intl_tab_anarchist'), GetVariableSystem.Exists('intl_tab_mutualist')), GetVariableSystem.Exists('intl_tab_syndicalist')), GetVariableSystem.Exists('intl_tab_blanquist')), GetVariableSystem.Exists('intl_tab_marxist'))]"
-				}
-				blockoverride "tab_onclick_set" {
-					onclick = "[GetVariableSystem.Clear('intl_tab_anarchist')]"
-					onclick = "[GetVariableSystem.Clear('intl_tab_mutualist')]"
-					onclick = "[GetVariableSystem.Clear('intl_tab_syndicalist')]"
-					onclick = "[GetVariableSystem.Clear('intl_tab_blanquist')]"
-					onclick = "[GetVariableSystem.Clear('intl_tab_marxist')]"
-				}
-				blockoverride "tab_onclick_clear" {
-				}
-			}
 
 			intl_tab_button = {
 				blockoverride "tab_color" {
@@ -502,6 +491,7 @@ window = {
 		scrollarea = {
 			layoutpolicy_horizontal = expanding
 			layoutpolicy_vertical = expanding
+
 			minimumsize = { 0 90 }
 			scrollbarpolicy_horizontal = always_off
 
@@ -548,116 +538,93 @@ window = {
 
 					### CURRENT MOTION — active vote interface
 					widget = {
+						parentanchor = right
 						layoutpolicy_horizontal = expanding
-						size = { 0 310 }
+						size = { 0 360 }
 						visible = "[And(Not(Or(Or(Or(Or(GetVariableSystem.Exists('intl_tab_anarchist'), GetVariableSystem.Exists('intl_tab_mutualist')), GetVariableSystem.Exists('intl_tab_syndicalist')), GetVariableSystem.Exists('intl_tab_blanquist')), GetVariableSystem.Exists('intl_tab_marxist'))), GetGlobalVariable('intl_vote_active').IsSet)]"
 
-						hbox = {
-							layoutpolicy_horizontal = expanding
-							spacing = 8
-							margin = { 10 8 }
-
-							### LEFT — current law
-							widget = {
-								size = { 350 290 }
-								background = { using = entry_bg_fancy alpha = 0.4 }
-								vbox = {
-									parentanchor = center
-									spacing = 8
-									margin = { 10 10 }
-									textbox = {
-										size = { 320 28 }
-										text = "intl_vote_current_label"
-										using = fontsize_medium
-										align = hcenter|nobaseline
-										alpha = 0.7
-									}
-									textbox = {
-										size = { 320 60 }
-										text = "intl_vote_law_name_placeholder"
-										using = fontsize_large
-										align = hcenter|nobaseline
-									}
-									textbox = {
-										size = { 320 28 }
-										text = "intl_vote_count_current_label"
-										using = fontsize_small
-										align = hcenter|nobaseline
-										alpha = 0.6
-									}
-									button_standard = {
-										size = { 220 36 }
-										parentanchor = hcenter
-										text = "intl_vote_keep_button"
+							### LEFT CONTAINER
+							hbox = {
+								size = { 50% 360 }
+								widget = {
+									size = { 270 360 }
+									character_portrait_front_vs_left = { visible = "[GetGlobalVariable('intl_vote_current_faction_anarchist').IsSet]" datacontext = "[GetPlayer.MakeScope.Var('bakunin_scope_gui').GetCharacter]" blockoverride "portrait_icons" {} blockoverride "portrait_button_onclick" { onclick = "" } blockoverride "portrait_button_onrightclick" { onrightclick = "" } }
+									character_portrait_front_vs_left = { visible = "[GetGlobalVariable('intl_vote_current_faction_mutualist').IsSet]" datacontext = "[GetPlayer.MakeScope.Var('proudhon_scope_gui').GetCharacter]" blockoverride "portrait_icons" {} blockoverride "portrait_button_onclick" { onclick = "" } blockoverride "portrait_button_onrightclick" { onrightclick = "" } }
+									character_portrait_front_vs_left = { visible = "[GetGlobalVariable('intl_vote_current_faction_syndicalist').IsSet]" datacontext = "[GetPlayer.MakeScope.Var('bel_de_paepe_scope_gui').GetCharacter]" blockoverride "portrait_icons" {} blockoverride "portrait_button_onclick" { onclick = "" } blockoverride "portrait_button_onrightclick" { onrightclick = "" } }
+									character_portrait_front_vs_left = { visible = "[GetGlobalVariable('intl_vote_current_faction_blanquist').IsSet]" datacontext = "[GetPlayer.MakeScope.Var('blanqui_scope_gui').GetCharacter]" blockoverride "portrait_icons" {} blockoverride "portrait_button_onclick" { onclick = "" } blockoverride "portrait_button_onrightclick" { onrightclick = "" } }
+									character_portrait_front_vs_left = { visible = "[GetGlobalVariable('intl_vote_current_faction_marxist').IsSet]" datacontext = "[GetPlayer.MakeScope.Var('karl_marx_scope_gui').GetCharacter]" blockoverride "portrait_icons" {} blockoverride "portrait_button_onclick" { onclick = "" } blockoverride "portrait_button_onrightclick" { onrightclick = "" } }
+								}
+								widget = {
+									layoutpolicy_horizontal = expanding
+									size = { 0 360 }
+									background = { using = entry_bg_fancy alpha = 0.35 }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										spacing = 6
+										margin = { 10 10 }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 18 } text = "intl_vote_current_label" using = fontsize_small align = left|nobaseline alpha = 0.55 }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 46 } text = "intl_lawname_anarchist_council_republic" using = fontsize_large align = left|nobaseline visible = "[GetGlobalVariable('intl_vote_current_law_anarchist_council_republic').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 46 } text = "intl_lawname_marxist_council_republic" using = fontsize_large align = left|nobaseline visible = "[GetGlobalVariable('intl_vote_current_law_marxist_council_republic').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 46 } text = "intl_lawname_mutualist_economy" using = fontsize_large align = left|nobaseline visible = "[GetGlobalVariable('intl_vote_current_law_mutualist_economy').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 46 } text = "intl_lawname_marxist_economy" using = fontsize_large align = left|nobaseline visible = "[GetGlobalVariable('intl_vote_current_law_marxist_economy').IsSet]" }
+										divider = {}
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 80 } text = "intl_lawdesc_anarchist_council_republic" using = fontsize_small align = left|nobaseline autoresize = yes alpha = 0.55 visible = "[GetGlobalVariable('intl_vote_current_law_anarchist_council_republic').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 80 } text = "intl_lawdesc_marxist_council_republic" using = fontsize_small align = left|nobaseline autoresize = yes alpha = 0.55 visible = "[GetGlobalVariable('intl_vote_current_law_marxist_council_republic').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 80 } text = "intl_lawdesc_mutualist_economy" using = fontsize_small align = left|nobaseline autoresize = yes alpha = 0.55 visible = "[GetGlobalVariable('intl_vote_current_law_mutualist_economy').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 80 } text = "intl_lawdesc_marxist_economy" using = fontsize_small align = left|nobaseline autoresize = yes alpha = 0.55 visible = "[GetGlobalVariable('intl_vote_current_law_marxist_economy').IsSet]" }
+										expand = {}
+										button_standard = { size = { 100% 36 } text = "intl_vote_keep_button" enabled = "[Not(GetPlayer.MakeScope.Var('intl_vote_stance').IsSet)]" onclick = "[GetScriptedGui('intl_cast_vote_current_sgui').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]" }
 									}
 								}
 							}
 
-							### CENTER — status
-							widget = {
-								size = { 160 290 }
-								vbox = {
-									parentanchor = center
-									spacing = 10
-									textbox = {
-										size = { 140 50 }
-										text = "VS"
-										using = fontsize_xxl
-										align = hcenter|nobaseline
-										alpha = 0.5
-									}
-									progressbar = {
-										size = { 140 20 }
-										value = "[GetGlobalVariable('intl_vote_prestige_current').GetValue(int32)]"
-										max = "[Add(GetGlobalVariable('intl_vote_prestige_current').GetValue(int32), GetGlobalVariable('intl_vote_prestige_proposed').GetValue(int32))]"
-									}
-									textbox = {
-										size = { 140 24 }
-										text = "intl_vote_months_left_label"
-										using = fontsize_small
-										align = hcenter|nobaseline
+							### RIGHT CONTAINER
+							hbox = {
+
+								size = { 50% 360 }
+								widget = {
+									layoutpolicy_horizontal = expanding
+									size = { 0 360 }
+									background = { using = entry_bg_fancy alpha = 0.35 }
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										spacing = 6
+										margin = { 10 10 }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 18 } text = "intl_vote_proposed_label" using = fontsize_small align = right|nobaseline alpha = 0.55 }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 46 } text = "intl_lawname_marxist_council_republic" using = fontsize_large align = right|nobaseline visible = "[GetGlobalVariable('intl_vote_proposed_law_marxist_council_republic').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 46 } text = "intl_lawname_mutualist_council_republic" using = fontsize_large align = right|nobaseline visible = "[GetGlobalVariable('intl_vote_proposed_law_mutualist_council_republic').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 46 } text = "intl_lawname_syndicalist_council_republic" using = fontsize_large align = right|nobaseline visible = "[GetGlobalVariable('intl_vote_proposed_law_syndicalist_council_republic').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 46 } text = "intl_lawname_blanquist_presidential_republic" using = fontsize_large align = right|nobaseline visible = "[GetGlobalVariable('intl_vote_proposed_law_blanquist_presidential_republic').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 46 } text = "intl_lawname_anarchist_council_republic" using = fontsize_large align = right|nobaseline visible = "[GetGlobalVariable('intl_vote_proposed_law_anarchist_council_republic').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 46 } text = "intl_lawname_mutualist_economy" using = fontsize_large align = right|nobaseline visible = "[GetGlobalVariable('intl_vote_proposed_law_mutualist_economy').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 46 } text = "intl_lawname_anarchist_economy" using = fontsize_large align = right|nobaseline visible = "[GetGlobalVariable('intl_vote_proposed_law_anarchist_economy').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 46 } text = "intl_lawname_syndicalist_economy" using = fontsize_large align = right|nobaseline visible = "[GetGlobalVariable('intl_vote_proposed_law_syndicalist_economy').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 46 } text = "intl_lawname_blanquist_economy" using = fontsize_large align = right|nobaseline visible = "[GetGlobalVariable('intl_vote_proposed_law_blanquist_economy').IsSet]" }
+										divider = {}
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 80 } text = "intl_lawdesc_marxist_council_republic" using = fontsize_small align = right|nobaseline autoresize = yes alpha = 0.55 visible = "[GetGlobalVariable('intl_vote_proposed_law_marxist_council_republic').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 80 } text = "intl_lawdesc_mutualist_council_republic" using = fontsize_small align = right|nobaseline autoresize = yes alpha = 0.55 visible = "[GetGlobalVariable('intl_vote_proposed_law_mutualist_council_republic').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 80 } text = "intl_lawdesc_syndicalist_council_republic" using = fontsize_small align = right|nobaseline autoresize = yes alpha = 0.55 visible = "[GetGlobalVariable('intl_vote_proposed_law_syndicalist_council_republic').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 80 } text = "intl_lawdesc_blanquist_presidential_republic" using = fontsize_small align = right|nobaseline autoresize = yes alpha = 0.55 visible = "[GetGlobalVariable('intl_vote_proposed_law_blanquist_presidential_republic').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 80 } text = "intl_lawdesc_anarchist_council_republic" using = fontsize_small align = right|nobaseline autoresize = yes alpha = 0.55 visible = "[GetGlobalVariable('intl_vote_proposed_law_anarchist_council_republic').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 80 } text = "intl_lawdesc_mutualist_economy" using = fontsize_small align = right|nobaseline autoresize = yes alpha = 0.55 visible = "[GetGlobalVariable('intl_vote_proposed_law_mutualist_economy').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 80 } text = "intl_lawdesc_anarchist_economy" using = fontsize_small align = right|nobaseline autoresize = yes alpha = 0.55 visible = "[GetGlobalVariable('intl_vote_proposed_law_anarchist_economy').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 80 } text = "intl_lawdesc_syndicalist_economy" using = fontsize_small align = right|nobaseline autoresize = yes alpha = 0.55 visible = "[GetGlobalVariable('intl_vote_proposed_law_syndicalist_economy').IsSet]" }
+										textbox = { layoutpolicy_horizontal = expanding size = { 0 80 } text = "intl_lawdesc_blanquist_economy" using = fontsize_small align = right|nobaseline autoresize = yes alpha = 0.55 visible = "[GetGlobalVariable('intl_vote_proposed_law_blanquist_economy').IsSet]" }
+										expand = {}
+										button_standard = { size = { 100% 36 } text = "intl_vote_support_button" enabled = "[Not(GetPlayer.MakeScope.Var('intl_vote_stance').IsSet)]" onclick = "[GetScriptedGui('intl_cast_vote_proposed_sgui').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]" }
 									}
 								}
-							}
-
-							### RIGHT — proposed law
-							widget = {
-								size = { 350 290 }
-								background = { using = entry_bg_fancy alpha = 0.4 }
-								vbox = {
-									parentanchor = center
-									spacing = 8
-									margin = { 10 10 }
-									textbox = {
-										size = { 320 28 }
-										text = "intl_vote_proposed_label"
-										using = fontsize_medium
-										align = hcenter|nobaseline
-										alpha = 0.7
-									}
-									textbox = {
-										size = { 320 60 }
-										text = "intl_vote_law_name_placeholder"
-										using = fontsize_large
-										align = hcenter|nobaseline
-									}
-									textbox = {
-										size = { 320 28 }
-										text = "intl_vote_count_proposed_label"
-										using = fontsize_small
-										align = hcenter|nobaseline
-										alpha = 0.6
-									}
-									button_standard = {
-										size = { 220 36 }
-										parentanchor = hcenter
-										text = "intl_vote_support_button"
-									}
+								widget = {
+									size = { 270 360 }
+									character_portrait_front_vs_right = { visible = "[GetGlobalVariable('intl_vote_proposed_faction_anarchist').IsSet]" datacontext = "[GetPlayer.MakeScope.Var('bakunin_scope_gui').GetCharacter]" blockoverride "portrait_icons" {} blockoverride "portrait_button_onclick" { onclick = "" } blockoverride "portrait_button_onrightclick" { onrightclick = "" } }
+									character_portrait_front_vs_right = { visible = "[GetGlobalVariable('intl_vote_proposed_faction_mutualist').IsSet]" datacontext = "[GetPlayer.MakeScope.Var('proudhon_scope_gui').GetCharacter]" blockoverride "portrait_icons" {} blockoverride "portrait_button_onclick" { onclick = "" } blockoverride "portrait_button_onrightclick" { onrightclick = "" } }
+									character_portrait_front_vs_right = { visible = "[GetGlobalVariable('intl_vote_proposed_faction_syndicalist').IsSet]" datacontext = "[GetPlayer.MakeScope.Var('bel_de_paepe_scope_gui').GetCharacter]" blockoverride "portrait_icons" {} blockoverride "portrait_button_onclick" { onclick = "" } blockoverride "portrait_button_onrightclick" { onrightclick = "" } }
+									character_portrait_front_vs_right = { visible = "[GetGlobalVariable('intl_vote_proposed_faction_blanquist').IsSet]" datacontext = "[GetPlayer.MakeScope.Var('blanqui_scope_gui').GetCharacter]" blockoverride "portrait_icons" {} blockoverride "portrait_button_onclick" { onclick = "" } blockoverride "portrait_button_onrightclick" { onrightclick = "" } }
+									character_portrait_front_vs_right = { visible = "[GetGlobalVariable('intl_vote_proposed_faction_marxist').IsSet]" datacontext = "[GetPlayer.MakeScope.Var('karl_marx_scope_gui').GetCharacter]" blockoverride "portrait_icons" {} blockoverride "portrait_button_onclick" { onclick = "" } blockoverride "portrait_button_onrightclick" { onrightclick = "" } }
 								}
 							}
-						}
-					}					}
-
+						
+					}
 
 					### Anarchist doctrine
 					intl_faction_detail_panel = {
@@ -1033,6 +1000,7 @@ types internationale_gui_types {
 	type intl_faction_detail_panel = widget {
 		layoutpolicy_horizontal = expanding
 		minimumsize = { 0 80 }
+		parentanchor = right
 
 		background = {
 			using = entry_bg_fancy
@@ -1041,7 +1009,8 @@ types internationale_gui_types {
 		hbox = {
 			layoutpolicy_horizontal = expanding
 			spacing = 12
-			margin = { 14 10 }
+			
+			margin = { 0 10 }
 
 			# Character portrait — overridden per instance with correct datacontext
 			block "detail_portrait" {
@@ -1062,8 +1031,8 @@ types internationale_gui_types {
 			vbox = {
 				layoutpolicy_horizontal = expanding
 				spacing = 5
-				parentanchor = top
-				position = { 0 -100 }
+				margin_top = -240
+				
 
 				textbox = {
 					autoresize = yes
@@ -1084,6 +1053,7 @@ types internationale_gui_types {
 				}
 
 				textbox = {
+					margin_top = -240
 					layoutpolicy_horizontal = expanding
 					multiline = yes
 					autoresize = yes

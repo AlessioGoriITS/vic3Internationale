@@ -6,7 +6,7 @@
  internationale_open_button_tt: "Open the Internationale management window"
  intl_parliament_title: "Congress of the Internationale"
  intl_parliament_desc: "The balance of tendencies within the Workers' International"
- intl_parliament_tooltip: "Representation of ideological factions within the Internationale.\nEach faction's strength shapes the direction of the movement."
+ intl_parliament_tooltip: "Representation of ideological factions within the Internationale.\nEach faction's strength shapes the direction of the movement.\n\n#bold Anarchist:#! #variable [GetPlayer.MakeScope.Var('intl_strength_anarchist').GetValue]#!%\n#bold Mutualist:#! #variable [GetPlayer.MakeScope.Var('intl_strength_mutualist').GetValue]#!%\n#bold Syndicalist:#! #variable [GetPlayer.MakeScope.Var('intl_strength_syndicalist').GetValue]#!%\n#bold Blanquist:#! #variable [GetPlayer.MakeScope.Var('intl_strength_blanquist').GetValue]#!%\n#bold Marxist:#! #variable [GetPlayer.MakeScope.Var('intl_strength_marxist').GetValue]#!%"
  intl_faction_anarchist: "Anarchist"
  intl_faction_mutualist: "Mutualist"
  intl_faction_syndicalist: "Syndicalist"
@@ -28,11 +28,11 @@
  intl_delegate_marxist_name: "Karl Marx"
  intl_delegate_marxist_role: "Theorist"
  intl_delegate_marxist_title: "Karl Marx · Theorist"
- intl_doctrine_anarchist: "Mikhail preaches the immediate dissolution of all state apparatus. The revolution needs no vanguard — only the spontaneous will of the oppressed, acting in free federation. All authority is tyranny; all hierarchy, an affront to human dignity."
- intl_doctrine_mutualist: "Property is theft — but its abolition must come through fair exchange and workers' mutual credit banks, not violent seizure. Through federated cooperatives and equitable contracts, the labourer shall reclaim the full product of his toil."
- intl_doctrine_syndicalist: "The union is the embryo of the new society. Through the general strike and industrial sabotage the workers shall reclaim what is rightfully theirs. The trade union, not the party, is the vehicle of emancipation."
- intl_doctrine_blanquist: "The masses are not yet ready. A dedicated revolutionary vanguard must seize power by force, then exercise a temporary dictatorship to educate the people and dismantle the old order before genuine liberty can be established."
- intl_doctrine_marxist: "Historical materialism reveals the inevitable collapse of capitalism. The proletariat must seize state power and wield it as a weapon of class struggle until all class distinctions are abolished and the state itself withers away."
+ intl_doctrine_anarchist: "The state is the root of oppression. Bakunin calls for its immediate abolition and its replacement by free communes bound together through voluntary federation — no masters, no hierarchies, no coercive authority of any kind."
+ intl_doctrine_mutualist: "Proudhon envisions a society of small producers exchanging goods at cost through mutual credit banks. Workers own their tools, profit is abolished, and market exchange persists — but freed from exploitation and wage labor."
+ intl_doctrine_syndicalist: "Pelloutier places the trade union at the heart of revolution. Through direct action and the general strike, workers seize control of industry without need for political parties or the state. Production managed by the unions themselves."
+ intl_doctrine_blanquist: "Revolution is not made by spontaneous uprisings but by disciplined cadres seizing the moment. Blanqui advocates a conspiratorial vanguard that captures state power and uses it to impose the socialist order from above, until the working class is ready to govern itself."
+ intl_doctrine_marxist: "History moves through the conflict of classes. Marx argues that capitalism contains the seeds of its own destruction. The proletariat must seize state power, establish the dictatorship of the working class, and build the material conditions for stateless communism."
  intl_detail_placeholder: "Select a faction or delegate to read their doctrine."
  intl_footer_text: "Workers of the world, unite!"
  intl_debug.2.t: "Faction Strength Adjuster"
@@ -58,23 +58,28 @@ law_anarchist_anarchy_desc:0 "All formal structures of state authority are disma
 law_anarchist_bureaucracy:0 "Self-Managed Administration"
 law_anarchist_bureaucracy_desc:0 "Administrative duties are carried out by locally elected and recallable delegates, ensuring that governance remains accountable and decentralized."
 
-law_anarchist_economy:0 "Voluntary Cooperative Economy"
+law_anarchist_economy:0 "Cooperative Economy"
 law_anarchist_economy_desc:0 "Production and exchange are organized through networks of worker cooperatives and communal associations, free from centralized control or coercion."
 
 law_anarchist_multiculturalism:0 "Open Communal Society"
 law_anarchist_multiculturalism_desc:0 "All peoples and cultures coexist without imposed hierarchy or discrimination, united through shared principles of autonomy and mutual respect."
 
-law_marxist_army:0 "People's Mass Army"
+
+law_marxist_council_republic:0 "Dictatorship of the Vanguard"
+law_marxist_council_republic_desc:0 "Power is held by a revolutionary intelligentsia acting in the name of the proletariat, directing society through centralized authority and ideological discipline."
+
+law_marxist_army:0 "Mass People's Army"
 law_marxist_army_desc:0 "The defense of the revolution rests in the hands of the masses, with widespread conscription and political integration ensuring loyalty and strength."
 
-law_marxist_bureaucracy:0 "Proletarian State Administration"
+law_marxist_bureaucracy:0 "Proletarian Administration"
 law_marxist_bureaucracy_desc:0 "A centralized administrative apparatus enforces the will of the working class, coordinating policy and maintaining order during the transition to socialism."
 
-law_marxist_economy:0 "Planned Socialist Economy"
+law_marxist_economy:0 "Planned Economy"
 law_marxist_economy_desc:0 "The state directs all major economic activity, organizing production according to collective need rather than private profit."
 
 law_marxist_one_party_state:0 "Workers' Party State"
 law_marxist_one_party_state_desc:0 "Political power is unified under a single party representing the interests of the working class, ensuring ideological cohesion and revolutionary continuity."
+
 
 law_mutualist_council_republic:0 "Federal Council Republic"
 law_mutualist_council_republic_desc:0 "A decentralized republic where local councils retain significant autonomy, cooperating through federative structures rather than central authority."
@@ -85,13 +90,14 @@ law_mutualist_armed_neutrality_desc:0 "The nation maintains a defensive posture,
 law_mutualist_economy:0 "Mutual Exchange Economy"
 law_mutualist_economy_desc:0 "Economic life is structured around cooperatives, mutual credit, and voluntary exchange, balancing individual initiative with collective benefit."
 
-law_mutualist_healthcare:0 "Mutual Aid Health System"
+law_mutualist_healthcare:0 "Mutual Aid Healthcare"
 law_mutualist_healthcare_desc:0 "Healthcare is provided through cooperative institutions and mutual associations, ensuring broad access while maintaining local control."
 
 law_mutualist_oligarchy:0 "Associative Oligarchy"
 law_mutualist_oligarchy_desc:0 "Political influence is concentrated among organized economic and professional associations, which guide governance through their collective interests."
 
-law_syndicalist_council_republic:0 "Congress of Labor Councils"
+
+law_syndicalist_council_republic:0 "Labor Council Congress"
 law_syndicalist_council_republic_desc:0 "Political authority is exercised through councils of organized workers, coordinated at higher levels through congresses of labor delegates."
 
 law_syndicalist_single_party:0 "Unified Labor Front"
@@ -100,23 +106,24 @@ law_syndicalist_single_party_desc:0 "All political activity is consolidated unde
 law_syndicalist_bureaucracy:0 "Union Administration"
 law_syndicalist_bureaucracy_desc:0 "Administrative roles are filled through union structures, integrating governance directly with organized labor."
 
-law_syndicalist_economy:0 "Syndicated Economy"
+law_syndicalist_economy:0 "Syndicate Economy"
 law_syndicalist_economy_desc:0 "Industries are managed by trade unions and worker syndicates, coordinating production through collective decision-making rather than state or private control."
 
-law_syndicalist_land_reform:0 "Collective Land Stewardship"
+law_syndicalist_land_reform:0 "Collective Land Reform"
 law_syndicalist_land_reform_desc:0 "Agricultural land is reorganized under collective management, with rural workers directly overseeing production and distribution."
 
-law_blanquist_presidential_republic:0 "Revolutionary Executive Republic"
+
+law_blanquist_presidential_republic:0 "Revolutionary Republic"
 law_blanquist_presidential_republic_desc:0 "The republic entrusts extraordinary powers to a singular executive authority, tasked with defending the revolution and ensuring its survival against internal and external enemies."
 
-law_blanquist_technocracy:0 "Rule of the Vanguard"
+law_blanquist_technocracy:0 "Vanguard Rule"
 law_blanquist_technocracy_desc:0 "Political power is concentrated in the hands of a disciplined revolutionary elite, whose duty is to guide society through reason, planning, and unwavering commitment to the revolutionary cause."
 
-law_blanquist_state_atheism:0 "Militant Secularization"
+law_blanquist_state_atheism:0 "Militant Secularism"
 law_blanquist_state_atheism_desc:0 "All religious influence is systematically eradicated, as faith is deemed incompatible with reason and liberation. The state enforces a strictly secular and rational social order."
 
-law_blanquist_bureaucracy:0 "Central Revolutionary Administration"
+law_blanquist_bureaucracy:0 "Revolutionary Administration"
 law_blanquist_bureaucracy_desc:0 "A tightly controlled administrative hierarchy executes the will of the revolution, ensuring unity, discipline, and the suppression of counter-revolutionary inefficiency."
 
-law_blanquist_economy:0 "Directed National Economy"
+law_blanquist_economy:0 "Directed Economy"
 law_blanquist_economy_desc:0 "Economic life is subordinated to the needs of the revolution, with production and distribution coordinated by the state to secure stability and collective advancement."
