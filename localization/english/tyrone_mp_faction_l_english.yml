@@ -1,15 +1,2 @@
 ﻿﻿l_english:
-  je_group_mp_faction:0 "Faction Struggle"
-  je_mp_faction_leader:0 "Lead the Faction Struggle"
-  je_mp_faction_leader_desc:0 "Only one great power can open this struggle. Choose which interest bloc you back and raise five aligned agitators (moderate ideology placeholder). When you confirm, other major powers gain the wider journal entry."
-  je_mp_faction_world:0 "Faction Struggle"
-  je_mp_faction_world_desc:0 "The struggle has begun abroad. The initiator has chosen a side; your objectives will be defined here as the content is expanded."
-  je_mp_faction_world_complete_wip_tt:0 "Completion conditions not yet defined."
-  mp_faction_events.1.t:0 "Choose Your Faction"
-  mp_faction_events.1.d:0 "Five voices emerge, one for each major interest in the state. All currently share a moderate outlook as a placeholder. Select which bloc you will back openly."
-  mp_faction_events.1.f:0 "The cabinet watches to see where your weight will fall."
-  mp_faction_events.1.a:0 "Back the Industrialists"
-  mp_faction_events.1.b:0 "Back the Landowners"
-  mp_faction_events.1.c:0 "Back the Intelligentsia"
-  mp_faction_events.1.d:0 "Back the Trade Unions"
-  mp_faction_events.1.e:0 "Back the Rural Folk"
+  

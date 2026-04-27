@@ -11,8 +11,11 @@ intl_start_vote = {
 		set_global_variable = { name = intl_vote_law_current value = flag:$CURRENT$ }
 		set_global_variable = { name = intl_vote_law_proposed value = flag:$PROPOSED$ }
 		set_global_variable = { name = intl_vote_months_left value = 6 }
-		set_global_variable = { name = intl_vote_prestige_current value = 0 }
-		set_global_variable = { name = intl_vote_prestige_proposed value = 0 }
+		set_global_variable = { name = intl_vote_prestige_current value = 1 }
+		set_global_variable = { name = intl_vote_prestige_proposed value = 1 }
+		set_global_variable = { name = intl_vote_prestige_current_neg value = -1 }
+		set_global_variable = { name = intl_vote_prestige_total value = 2 }
+		set_global_variable = { name = intl_vote_prestige_total_neg value = -2 }
 		set_global_variable = { name = intl_vote_count_current value = 0 }
 		set_global_variable = { name = intl_vote_count_proposed value = 0 }
 		set_global_variable = intl_vote_current_faction_$CURRENT_FACTION$
@@ -33,7 +36,25 @@ intl_start_vote = {
 
 ## script_parameter = SIDE
 intl_cast_vote = {
+	# Remove from whichever list this country was previously on
+	if = {
+		limit = { has_variable = intl_vote_stance  var:intl_vote_stance = 1 }
+		remove_list_global_variable = { name = intl_vote_keep_list target = this }
+	}
+	if = {
+		limit = { has_variable = intl_vote_stance  var:intl_vote_stance = 2 }
+		remove_list_global_variable = { name = intl_vote_proposed_list target = this }
+	}
 	set_variable = { name = intl_vote_stance value = $SIDE$ }
+	# Add to new list
+	if = {
+		limit = { var:intl_vote_stance = 1 }
+		add_to_global_variable_list = { name = intl_vote_keep_list target = this }
+	}
+	if = {
+		limit = { var:intl_vote_stance = 2 }
+		add_to_global_variable_list = { name = intl_vote_proposed_list target = this }
+	}
 	intl_update_vote_prestige = yes
 }
 
@@ -66,6 +87,21 @@ intl_update_vote_prestige = {
 			}
 			change_global_variable = { name = intl_vote_count_proposed add = 1 }
 		}
+	}
+	# Derived variables for the double-direction progress bar
+	# left side needs a negative value; total needed for min/max bounds
+	set_global_variable = { name = intl_vote_prestige_current_neg value = 0 }
+	change_global_variable = {
+		name = intl_vote_prestige_current_neg
+		add = { value = global_var:intl_vote_prestige_current multiply = -1 }
+	}
+	set_global_variable = {
+		name = intl_vote_prestige_total
+		value = { value = global_var:intl_vote_prestige_current add = global_var:intl_vote_prestige_proposed }
+	}
+	set_global_variable = {
+		name = intl_vote_prestige_total_neg
+		value = { value = global_var:intl_vote_prestige_total multiply = -1 }
 	}
 }
 
@@ -105,6 +141,11 @@ intl_cancel_vote = {
 	if = { limit = { has_global_variable = intl_vote_proposed_law_anarchist_economy } remove_global_variable = intl_vote_proposed_law_anarchist_economy }
 	if = { limit = { has_global_variable = intl_vote_proposed_law_syndicalist_economy } remove_global_variable = intl_vote_proposed_law_syndicalist_economy }
 	if = { limit = { has_global_variable = intl_vote_proposed_law_blanquist_economy } remove_global_variable = intl_vote_proposed_law_blanquist_economy }
+	clear_global_variable_list = intl_vote_keep_list
+	clear_global_variable_list = intl_vote_proposed_list
+	if = { limit = { has_global_variable = intl_vote_prestige_current_neg } remove_global_variable = intl_vote_prestige_current_neg }
+	if = { limit = { has_global_variable = intl_vote_prestige_total } remove_global_variable = intl_vote_prestige_total }
+	if = { limit = { has_global_variable = intl_vote_prestige_total_neg } remove_global_variable = intl_vote_prestige_total_neg }
 }
 
 intl_resolve_vote = {

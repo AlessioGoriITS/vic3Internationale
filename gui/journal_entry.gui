@@ -223,6 +223,9 @@ types journal_entry_panel_types {
 				### Internationale — open management window ###
 				internationale_journal_button = {}
 
+				### Berlin Conference — open conference screen ###
+				berlin_conf_journal_button = {}
+
 				expand = {}
 				expand = {}
 

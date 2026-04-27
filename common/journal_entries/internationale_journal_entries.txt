@@ -1,19 +1,32 @@
 je_internationale = {
 	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
 
-	group = je_group_foreign_affairs
+	group = je_group_global_international_situations
 
 	should_be_pinned_by_default = yes
 
 	is_shown_when_inactive = {
-		is_player = yes
+		hidden_trigger = {
+			always = yes
+		}
 	}
 
 	possible = {
-		is_player = yes
+		any_country = {
+			country_rank = rank_value:great_power
+			has_law_or_variant = law_type:law_council_republic
+		}
 	}
 
-	immediate = {
+	should_be_involved = {
+		NOT = {
+			is_involved_in_journal_entry = je_internationale
+		}
+		has_technology_researched = egalitarianism
+		country_rank >= rank_value:major_power
+	}
+
+	immediate_all_involved = {
 		set_variable = { name = intl_strength_anarchist value = 20 }
 		set_variable = { name = intl_strength_mutualist value = 20 }
 		set_variable = { name = intl_strength_syndicalist value = 20 }
@@ -27,8 +40,10 @@ je_internationale = {
 		set_global_variable = { name = intl_law_marxist_bureaucracy value = 2 }
 		set_global_variable = { name = intl_law_marxist_army value = 2 }
 
-		intl_save_delegate_chars = yes
-		intl_update_parliament = yes
+		hidden_effect = {
+			intl_save_delegate_chars = yes
+			intl_update_parliament = yes
+		}
 	}
 
 	on_monthly_pulse = {

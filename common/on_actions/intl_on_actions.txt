@@ -34,6 +34,7 @@ intl_parliament_update_on_action = {
 				is_player = yes
 				has_journal_entry = je_internationale
 			}
+			intl_save_delegate_list = yes
 			intl_save_delegate_chars = yes
 			intl_update_parliament = yes
 		}

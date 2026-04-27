@@ -1,6 +1,14 @@
 intl_cast_vote_current_sgui = {
 	scope = country
 
+	is_shown = {
+		has_global_variable = intl_vote_active
+	}
+
+	is_valid = {
+		NOT = { var:intl_vote_stance = 1 }
+	}
+
 	effect = {
 		intl_cast_vote = { SIDE = 1 }
 	}
@@ -8,6 +16,14 @@ intl_cast_vote_current_sgui = {
 
 intl_cast_vote_proposed_sgui = {
 	scope = country
+
+	is_shown = {
+		has_global_variable = intl_vote_active
+	}
+
+	is_valid = {
+		NOT = { var:intl_vote_stance = 2 }
+	}
 
 	effect = {
 		intl_cast_vote = { SIDE = 2 }

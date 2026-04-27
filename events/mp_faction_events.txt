@@ -1,0 +1,40 @@
+namespace = mp_faction_events
+
+# Faction selection — fired on the Internationale host country when je_internationale activates
+mp_faction_events.1 = {
+	type = country_event
+	placement = ROOT
+
+	title = mp_faction_events.1.t
+	desc = mp_faction_events.1.d
+	flavor = mp_faction_events.1.f
+
+	event_image = { video = "gfx/event_pictures/europenorthamerica_springtime_of_nations.bk2" }
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	option = {
+		name = mp_faction_events.1.anarchist
+		set_variable = anarchist_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+	}
+	option = {
+		name = mp_faction_events.1.mutualist
+		set_variable = mutualist_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+	}
+	option = {
+		name = mp_faction_events.1.syndicalist
+		set_variable = syndacalist_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+	}
+	option = {
+		name = mp_faction_events.1.blanquist
+		set_variable = blanquist_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+	}
+	option = {
+		name = mp_faction_events.1.marxist
+		set_variable = marxists_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+	}
+}
