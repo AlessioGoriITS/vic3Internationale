@@ -1,3 +1,8 @@
 je_group_mp_faction = {
 	context = country
 }
+
+je_group_internationalism = {
+	context = country
+}
+

@@ -65,3 +65,26 @@ je_internationale = {
 
 	weight = 1000
 }
+
+
+je_blanquism = {
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	group = je_group_internationalism
+
+	should_be_pinned_by_default = yes
+
+	is_shown_when_inactive = {
+	}
+
+	possible = {
+	}
+
+	complete = {
+	}
+
+	on_complete = {
+	}
+
+	weight = 1000
+}
