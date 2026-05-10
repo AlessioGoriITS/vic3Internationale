@@ -1,0 +1,135 @@
+@panel_width_minus_30 = 510
+
+flowcontainer = {
+	name = "blanquist_preparation_widget"
+	direction = vertical
+	parentanchor = hcenter
+	spacing = 8
+	minimumsize = { @panel_width_minus_30 -1 }
+
+	background = {
+		alpha = 0.45
+		using = entry_bg_fancy_dark
+	}
+
+	widget = {
+		size = { @panel_width_minus_30 125 }
+		parentanchor = hcenter
+
+		widget = {
+			size = { 88 105 }
+			position = { 10 10 }
+			visible = "[JournalEntry.GetCountry.MakeScope.Var('blanquist_vanguard_leader_scope_gui').IsSet]"
+
+			character_portrait_medium = {
+				datacontext = "[JournalEntry.GetCountry.MakeScope.Var('blanquist_vanguard_leader_scope_gui').GetCharacter]"
+				parentanchor = center
+				using = tooltip_es
+				blockoverride "show_hat" {}
+				blockoverride "highlight" {}
+			}
+		}
+
+		textbox = {
+			position = { 110 12 }
+			size = { 380 30 }
+			text = "blanquist_preparation_widget_title"
+			using = fontsize_large
+			align = left|nobaseline
+		}
+
+		textbox = {
+			position = { 110 46 }
+			size = { 380 70 }
+			text = "blanquist_preparation_widget_desc"
+			using = fontsize_small
+			align = left|nobaseline
+			multiline = yes
+		}
+	}
+
+	widget = {
+		size = { @panel_width_minus_30 34 }
+		parentanchor = hcenter
+
+		icon = {
+			position = { 10 5 }
+			size = { 24 24 }
+			texture = "gfx/interface/icons/generic_icons/green_checkmark.dds"
+			visible = "[JournalEntry.GetCountry.MakeScope.Var('blanquist_cells_prepared').IsSet]"
+		}
+
+		icon = {
+			position = { 10 5 }
+			size = { 24 24 }
+			texture = "gfx/interface/icons/generic_icons/red_cross.dds"
+			visible = "[Not(JournalEntry.GetCountry.MakeScope.Var('blanquist_cells_prepared').IsSet)]"
+		}
+
+		textbox = {
+			position = { 44 3 }
+			size = { 456 28 }
+			text = "blanquist_cells_checkbox"
+			align = left|nobaseline
+			using = fontsize_medium
+		}
+	}
+
+	widget = {
+		size = { @panel_width_minus_30 34 }
+		parentanchor = hcenter
+
+		icon = {
+			position = { 10 5 }
+			size = { 24 24 }
+			texture = "gfx/interface/icons/generic_icons/green_checkmark.dds"
+			visible = "[JournalEntry.GetCountry.MakeScope.Var('blanquist_state_infiltrated').IsSet]"
+		}
+
+		icon = {
+			position = { 10 5 }
+			size = { 24 24 }
+			texture = "gfx/interface/icons/generic_icons/red_cross.dds"
+			visible = "[Not(JournalEntry.GetCountry.MakeScope.Var('blanquist_state_infiltrated').IsSet)]"
+		}
+
+		textbox = {
+			position = { 44 3 }
+			size = { 456 28 }
+			text = "blanquist_infiltration_checkbox"
+			align = left|nobaseline
+			using = fontsize_medium
+		}
+	}
+
+	widget = {
+		size = { @panel_width_minus_30 34 }
+		parentanchor = hcenter
+
+		icon = {
+			position = { 10 5 }
+			size = { 24 24 }
+			texture = "gfx/interface/icons/generic_icons/green_checkmark.dds"
+			visible = "[JournalEntry.GetCountry.MakeScope.Var('blanquist_cadres_armed').IsSet]"
+		}
+
+		icon = {
+			position = { 10 5 }
+			size = { 24 24 }
+			texture = "gfx/interface/icons/generic_icons/red_cross.dds"
+			visible = "[Not(JournalEntry.GetCountry.MakeScope.Var('blanquist_cadres_armed').IsSet)]"
+		}
+
+		textbox = {
+			position = { 44 3 }
+			size = { 456 28 }
+			text = "blanquist_cadres_checkbox"
+			align = left|nobaseline
+			using = fontsize_medium
+		}
+	}
+
+	widget = {
+		size = { 1 8 }
+	}
+}

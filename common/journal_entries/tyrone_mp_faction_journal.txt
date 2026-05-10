@@ -8,7 +8,7 @@ je_mp_faction_leader = {
 	group = je_group_mp_faction
 
 	weight = 100
-	should_be_pinned_by_default = yes
+	should_be_pinned_by_default_uninvolved_or_context = yes
 
 	status_desc = {
 		first_valid = {
@@ -19,9 +19,6 @@ je_mp_faction_leader = {
 	}
 
 	is_shown_when_inactive = {
-		NOT = {
-			has_global_variable = mp_faction_phase_2
-		}
 	}
 
 	possible = {
@@ -84,7 +81,7 @@ je_mp_faction_world = {
 	group = je_group_mp_faction
 
 	weight = 100
-	should_be_pinned_by_default = yes
+	should_be_pinned_by_default_uninvolved_or_context = yes
 
 	status_desc = {
 		first_valid = {

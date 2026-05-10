@@ -1,4 +1,4 @@
-ideology_blanquist = { 
+﻿ideology_blanquist = { 
 	icon = "gfx/interface/icons/ideology_icons/ideology_leader/ideology_leader_blanquist.dds"
 
 	character_ideology = yes
@@ -11,6 +11,7 @@ ideology_blanquist = {
 		law_social_monarchy = strongly_disapprove
 		law_theocracy = strongly_disapprove
 		law_council_republic = neutral
+		law_blanquist_presidential_republic = strongly_approve
 	}
 
 	lawgroup_distribution_of_power = {
@@ -23,6 +24,7 @@ ideology_blanquist = {
 		law_landed_voting = strongly_disapprove
 		law_technocracy = strongly_approve
 		law_single_party_state = approve
+		law_blanquist_technocracy = strongly_approve
 	}
 
 	lawgroup_economic_system = {
@@ -34,6 +36,7 @@ ideology_blanquist = {
 		law_laissez_faire = strongly_disapprove
 		law_industry_banned = strongly_disapprove
 		law_extraction_economy = strongly_disapprove
+		law_blanquist_economy = strongly_approve
 	}
 
 	lawgroup_church_and_state = {
@@ -41,16 +44,22 @@ ideology_blanquist = {
 		law_freedom_of_conscience = strongly_disapprove
 		law_total_separation = neutral
 		law_state_atheism = strongly_approve
+		law_blanquist_state_atheism = strongly_approve
 	}
 
 	lawgroup_bureaucracy = {
 		law_hereditary_bureaucrats = strongly_disapprove
 		law_appointed_bureaucrats = strongly_approve
 		law_elected_bureaucrats = disapprove
+		law_blanquist_bureaucracy = strongly_approve
 	}
 
 	country_trigger = {
-		has_technology_researched = political_agitation
+		OR = {
+			has_technology_researched = socialism
+			has_technology_researched = anarchism
+			has_technology_researched = political_agitation
+		}
 	}
 }
 
@@ -67,6 +76,7 @@ ideology_marxist = {
 		law_social_monarchy = strongly_disapprove
 		law_theocracy = strongly_disapprove
 		law_council_republic = strongly_approve
+		law_marxist_council_republic = strongly_approve
 	}
 
 	lawgroup_distribution_of_power = {
@@ -79,6 +89,7 @@ ideology_marxist = {
 		law_landed_voting = strongly_disapprove
 		law_technocracy = neutral
 		law_single_party_state = strongly_approve
+		law_marxist_one_party_state = strongly_approve
 	}
 
 	lawgroup_economic_system = {
@@ -90,6 +101,7 @@ ideology_marxist = {
 		law_laissez_faire = strongly_disapprove
 		law_industry_banned = strongly_disapprove
 		law_extraction_economy = strongly_disapprove
+		law_marxist_economy = strongly_approve
 	}
 
 	lawgroup_army_model = {
@@ -97,16 +109,22 @@ ideology_marxist = {
 		law_professional_army = neutral
 		law_mass_conscription = strongly_approve
 		law_peasant_levies = disapprove
+		law_marxist_army = strongly_approve
 	}
 
 	lawgroup_bureaucracy = {
 		law_hereditary_bureaucrats = strongly_disapprove
 		law_appointed_bureaucrats = strongly_approve
 		law_elected_bureaucrats = approve
+		law_marxist_bureaucracy = strongly_approve
 	}
 
 	country_trigger = {
-		has_technology_researched = political_agitation
+		OR = {
+			has_technology_researched = socialism
+			has_technology_researched = anarchism
+			has_technology_researched = political_agitation
+		}
 	}
 }
 
@@ -123,6 +141,7 @@ ideology_mutualist = {
 		law_social_monarchy = strongly_disapprove
 		law_theocracy = strongly_disapprove
 		law_council_republic = strongly_approve
+		law_mutualist_council_republic = strongly_approve
 	}
 
 	lawgroup_distribution_of_power = {
@@ -135,6 +154,7 @@ ideology_mutualist = {
 		law_landed_voting = strongly_disapprove
 		law_technocracy = neutral
 		law_single_party_state = strongly_approve
+		law_mutualist_oligarchy = strongly_approve
 	}
 
 	lawgroup_economic_system = {
@@ -146,6 +166,7 @@ ideology_mutualist = {
 		law_laissez_faire = strongly_disapprove
 		law_industry_banned = strongly_disapprove
 		law_extraction_economy = strongly_disapprove
+		law_mutualist_economy = strongly_approve
 	}
 
 	lawgroup_army_model = {
@@ -153,6 +174,7 @@ ideology_mutualist = {
 		law_professional_army = disapprove
 		law_mass_conscription = neutral
 		law_peasant_levies = strongly_disapprove
+		law_mutualist_armed_neutrality = strongly_approve
 	}
 
 	lawgroup_health_system = {
@@ -160,9 +182,77 @@ ideology_mutualist = {
 		law_no_health_system = disapprove
 		law_charitable_health_system = neutral
 		law_public_health_insurance = strongly_approve
+		law_mutualist_healthcare = strongly_approve
 	}
 
 	country_trigger = {
-		has_technology_researched = political_agitation
+		OR = {
+			has_technology_researched = socialism
+			has_technology_researched = anarchism
+			has_technology_researched = political_agitation
+		}
 	}
 }
+
+ideology_syndicalist = {
+	icon = "gfx/interface/icons/ideology_icons/ideology_leader/ideology_leader_syndicalism.dds"
+
+	character_ideology = yes
+
+	lawgroup_governance_principles = {
+		law_monarchy = strongly_disapprove
+		law_presidential_republic = disapprove
+		law_parliamentary_republic = neutral
+		law_corporate_state = neutral
+		law_social_monarchy = strongly_disapprove
+		law_theocracy = strongly_disapprove
+		law_council_republic = strongly_approve
+		law_syndicalist_council_republic = strongly_approve
+	}
+
+	lawgroup_distribution_of_power = {
+		law_oligarchy = disapprove
+		law_autocracy = strongly_disapprove
+		law_anarchy = neutral
+		law_universal_suffrage = disapprove
+		law_census_voting = strongly_disapprove
+		law_wealth_voting = strongly_disapprove
+		law_landed_voting = strongly_disapprove
+		law_technocracy = disapprove
+		law_single_party_state = approve
+		law_syndicalist_single_party = strongly_approve
+	}
+
+	lawgroup_economic_system = {
+		law_command_economy = neutral
+		law_cooperative_ownership = strongly_approve
+		law_interventionism = approve
+		law_agrarianism = neutral
+		law_traditionalism = strongly_disapprove
+		law_laissez_faire = strongly_disapprove
+		law_industry_banned = strongly_disapprove
+		law_extraction_economy = strongly_disapprove
+		law_syndicalist_economy = strongly_approve
+	}
+
+	lawgroup_bureaucracy = {
+		law_hereditary_bureaucrats = strongly_disapprove
+		law_appointed_bureaucrats = disapprove
+		law_elected_bureaucrats = strongly_approve
+		law_syndicalist_bureaucracy = strongly_approve
+	}
+
+	lawgroup_land_reform = {
+		law_collectivized_agriculture = strongly_approve
+		law_syndicalist_land_reform = strongly_approve
+	}
+
+	country_trigger = {
+		OR = {
+			has_technology_researched = socialism
+			has_technology_researched = anarchism
+			has_technology_researched = political_agitation
+		}
+	}
+}
+

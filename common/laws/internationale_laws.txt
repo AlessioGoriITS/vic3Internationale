@@ -1,4 +1,4 @@
-### Blanquist
+﻿### Blanquist
 
 law_blanquist_presidential_republic = {
 	group = lawgroup_governance_principles
@@ -7,6 +7,11 @@ law_blanquist_presidential_republic = {
 	icon = "gfx/interface/icons/law_icons/blanquist/blanquist_presidential_republic.dds"
 
 	progressiveness = 100
+
+	is_visible = {
+		has_variable = blanqui_var
+	}
+
 
 	unlocking_technologies = {
 		democracy
@@ -20,6 +25,7 @@ law_blanquist_presidential_republic = {
 	}
 
 	can_enact = {
+		has_variable = blanqui_var
 		intl_law_permanently_enabled = { LAW = blanquist_presidential_republic }
 	}
 
@@ -60,6 +66,11 @@ law_blanquist_technocracy = {
 
 	progressiveness = -50
 
+	is_visible = {
+		has_variable = blanqui_var
+	}
+
+
 	unlocking_technologies = {
 		central_archives
 	}
@@ -70,6 +81,7 @@ law_blanquist_technocracy = {
 	}
 
 	can_enact = {
+		has_variable = blanqui_var
 		intl_law_permanently_enabled = { LAW = blanquist_technocracy }
 	}
 
@@ -117,6 +129,11 @@ law_blanquist_state_atheism = {
 
 	progressiveness = 100
 
+	is_visible = {
+		has_variable = blanqui_var
+	}
+
+
 	unlocking_technologies = {
 		empiricism
 	}
@@ -126,6 +143,7 @@ law_blanquist_state_atheism = {
 	}
 
 	can_enact = {
+		has_variable = blanqui_var
 		intl_law_permanently_enabled = { LAW = blanquist_state_atheism }
 		ig:ig_devout ?= {
 			is_in_government = no
@@ -200,7 +218,13 @@ law_blanquist_bureaucracy = {
 
 	progressiveness = 0
 
+	is_visible = {
+		has_variable = blanqui_var
+	}
+
+
 	can_enact = {
+		has_variable = blanqui_var
 		intl_law_permanently_enabled = { LAW = blanquist_bureaucracy }
 	}
 
@@ -232,6 +256,11 @@ law_blanquist_economy = {
 
 	progressiveness = 100
 
+	is_visible = {
+		has_variable = blanqui_var
+	}
+
+
 	unlocking_technologies = {
 		mutual_funds
 	}
@@ -246,6 +275,7 @@ law_blanquist_economy = {
 	}
 
 	can_enact = {
+		has_variable = blanqui_var
 		intl_law_permanently_enabled = { LAW = blanquist_economy }
 		OR = {
 			has_law_or_variant = law_type:law_single_party_state
@@ -291,11 +321,17 @@ law_anarchist_council_republic = {
 
 	progressiveness = 200
 
+	is_visible = {
+		has_variable = bakunin_var
+	}
+
+
 	unlocking_technologies = {
 		anarchism
 	}
 
 	can_enact = {
+		has_variable = bakunin_var
 		intl_law_permanently_enabled = { LAW = anarchist_council_republic }
 		NOT = { has_government_type = gov_chartered_company }
 	}
@@ -330,6 +366,11 @@ law_anarchist_anarchy = {
 
 	progressiveness = 200
 
+	is_visible = {
+		has_variable = bakunin_var
+	}
+
+
 	unlocking_technologies = {
 		anarchism
 	}
@@ -339,6 +380,7 @@ law_anarchist_anarchy = {
 	}
 
 	can_enact = {
+		has_variable = bakunin_var
 		intl_law_permanently_enabled = { LAW = anarchist_anarchy }
 		has_law_or_variant = law_type:law_council_republic
 	}
@@ -376,6 +418,11 @@ law_anarchist_bureaucracy = {
 
 	progressiveness = 50
 
+	is_visible = {
+		has_variable = bakunin_var
+	}
+
+
 	disallowing_laws = {
 		law_technocracy
 		law_blanquist_technocracy
@@ -383,6 +430,7 @@ law_anarchist_bureaucracy = {
 	}
 
 	can_enact = {
+		has_variable = bakunin_var
 		intl_law_permanently_enabled = { LAW = anarchist_bureaucracy }
 	}
 
@@ -415,6 +463,11 @@ law_anarchist_economy = {
 
 	progressiveness = 100
 
+	is_visible = {
+		has_variable = bakunin_var
+	}
+
+
 	unlocking_technologies = {
 		anarchism
 	}
@@ -428,6 +481,7 @@ law_anarchist_economy = {
 	}
 
 	can_enact = {
+		has_variable = bakunin_var
 		intl_law_permanently_enabled = { LAW = anarchist_economy }
 		has_law_or_variant = law_type:law_council_republic
 	}
@@ -488,6 +542,11 @@ law_anarchist_multiculturalism = {
 
 	progressiveness = 100
 
+	is_visible = {
+		has_variable = bakunin_var
+	}
+
+
 	unlocking_laws = {
 		law_state_atheism
 		law_blanquist_state_atheism
@@ -495,6 +554,7 @@ law_anarchist_multiculturalism = {
 	}
 
 	can_enact = {
+		has_variable = bakunin_var
 		intl_law_permanently_enabled = { LAW = anarchist_multiculturalism }
 		has_law_or_variant = law_type:law_council_republic
 	}
@@ -540,11 +600,17 @@ law_marxist_council_republic = {
 
 	progressiveness = 200
 
+	is_visible = {
+		has_variable = karl_marx_var
+	}
+
+
 	unlocking_technologies = {
 		socialism
 	}
 
 	can_enact = {
+		has_variable = karl_marx_var
 		intl_law_permanently_enabled = { LAW = marxist_council_republic }
 		NOT = { has_government_type = gov_chartered_company }
 	}
@@ -577,11 +643,17 @@ law_marxist_army = {
 
 	progressiveness = 50
 
+	is_visible = {
+		has_variable = karl_marx_var
+	}
+
+
 	unlocking_technologies = {
 		enlistment_offices
 	}
 
 	can_enact = {
+		has_variable = karl_marx_var
 		intl_law_permanently_enabled = { LAW = marxist_army }
 		has_law_or_variant = law_type:law_council_republic
 	}
@@ -618,7 +690,13 @@ law_marxist_bureaucracy = {
 
 	progressiveness = 0
 
+	is_visible = {
+		has_variable = karl_marx_var
+	}
+
+
 	can_enact = {
+		has_variable = karl_marx_var
 		intl_law_permanently_enabled = { LAW = marxist_bureaucracy }
 	}
 
@@ -652,6 +730,11 @@ law_marxist_economy = {
 
 	progressiveness = 100
 
+	is_visible = {
+		has_variable = karl_marx_var
+	}
+
+
 	unlocking_technologies = {
 		socialism
 	}
@@ -663,6 +746,7 @@ law_marxist_economy = {
 	}
 
 	can_enact = {
+		has_variable = karl_marx_var
 		intl_law_permanently_enabled = { LAW = marxist_economy }
 		has_law_or_variant = law_type:law_council_republic
 		OR = {
@@ -714,6 +798,11 @@ law_marxist_one_party_state = {
 
 	progressiveness = 50
 
+	is_visible = {
+		has_variable = karl_marx_var
+	}
+
+
 	unlocking_technologies = {
 		socialism
 		corporatism
@@ -724,6 +813,7 @@ law_marxist_one_party_state = {
 	}
 
 	can_enact = {
+		has_variable = karl_marx_var
 		intl_law_permanently_enabled = { LAW = marxist_one_party_state }
 		OR = {
 			ig:ig_trade_unions ?= {
@@ -834,11 +924,17 @@ law_mutualist_council_republic = {
 
 	progressiveness = 200
 
+	is_visible = {
+		has_variable = proudhon_var
+	}
+
+
 	unlocking_technologies = {
 		socialism
 	}
 
 	can_enact = {
+		has_variable = proudhon_var
 		intl_law_permanently_enabled = { LAW = mutualist_council_republic }
 		NOT = { has_government_type = gov_chartered_company }
 	}
@@ -873,11 +969,17 @@ law_mutualist_armed_neutrality = {
 
 	progressiveness = 0
 
+	is_visible = {
+		has_variable = proudhon_var
+	}
+
+
 	unlocking_technologies = {
 		enlistment_offices
 	}
 
 	can_enact = {
+		has_variable = proudhon_var
 		intl_law_permanently_enabled = { LAW = mutualist_armed_neutrality }
 	}
 
@@ -914,6 +1016,11 @@ law_mutualist_economy = {
 
 	progressiveness = 100
 
+	is_visible = {
+		has_variable = proudhon_var
+	}
+
+
 	unlocking_technologies = {
 		socialism
 	}
@@ -924,6 +1031,7 @@ law_mutualist_economy = {
 	}
 
 	can_enact = {
+		has_variable = proudhon_var
 		intl_law_permanently_enabled = { LAW = mutualist_economy }
 		OR = {
 			has_law_or_variant = law_type:law_council_republic
@@ -977,6 +1085,11 @@ law_mutualist_healthcare = {
 
 	progressiveness = 100
 
+	is_visible = {
+		has_variable = proudhon_var
+	}
+
+
 	unlocking_technologies = {
 		socialism
 	}
@@ -985,6 +1098,7 @@ law_mutualist_healthcare = {
 	}
 
 	can_enact = {
+		has_variable = proudhon_var
 		intl_law_permanently_enabled = { LAW = mutualist_healthcare }
 		OR = {
 			has_law_or_variant = law_type:law_single_party_state
@@ -1026,7 +1140,13 @@ law_mutualist_oligarchy = {
 
 	progressiveness = -50
 
+	is_visible = {
+		has_variable = proudhon_var
+	}
+
+
 	can_enact = {
+		has_variable = proudhon_var
 		intl_law_permanently_enabled = { LAW = mutualist_oligarchy }
 	}
 
@@ -1066,11 +1186,17 @@ law_syndicalist_council_republic = {
 
 	progressiveness = 200
 
+	is_visible = {
+		has_variable = bel_de_paepe_var
+	}
+
+
 	unlocking_technologies = {
 		socialism
 	}
 
 	can_enact = {
+		has_variable = bel_de_paepe_var
 		intl_law_permanently_enabled = { LAW = syndicalist_council_republic }
 		NOT = { has_government_type = gov_chartered_company }
 	}
@@ -1104,7 +1230,13 @@ law_syndicalist_single_party = {
 
 	progressiveness = 50
 
+	is_visible = {
+		has_variable = bel_de_paepe_var
+	}
+
+
 	can_enact = {
+		has_variable = bel_de_paepe_var
 		intl_law_permanently_enabled = { LAW = syndicalist_single_party }
 	}
 
@@ -1137,12 +1269,18 @@ law_syndicalist_bureaucracy = {
 
 	progressiveness = 50
 
+	is_visible = {
+		has_variable = bel_de_paepe_var
+	}
+
+
 	disallowing_laws = {
 		law_technocracy
 		law_blanquist_technocracy
 	}
 
 	can_enact = {
+		has_variable = bel_de_paepe_var
 		intl_law_permanently_enabled = { LAW = syndicalist_bureaucracy }
 	}
 
@@ -1175,6 +1313,11 @@ law_syndicalist_economy = {
 
 	progressiveness = 100
 
+	is_visible = {
+		has_variable = bel_de_paepe_var
+	}
+
+
 	unlocking_technologies = {
 		socialism
 	}
@@ -1189,6 +1332,7 @@ law_syndicalist_economy = {
 	}
 
 	can_enact = {
+		has_variable = bel_de_paepe_var
 		intl_law_permanently_enabled = { LAW = syndicalist_economy }
 		OR = {
 			has_law_or_variant = law_type:law_council_republic
@@ -1247,6 +1391,11 @@ law_syndicalist_land_reform = {
 
 	progressiveness = 100
 
+	is_visible = {
+		has_variable = bel_de_paepe_var
+	}
+
+
 	unlocking_technologies = {
 		socialism
 	}
@@ -1257,6 +1406,7 @@ law_syndicalist_land_reform = {
 	}
 
 	can_enact = {
+		has_variable = bel_de_paepe_var
 		intl_law_permanently_enabled = { LAW = syndicalist_land_reform }
 	}
 
@@ -1441,3 +1591,5 @@ REPLACE_OR_CREATE:law_total_separation = {
 		}
 	}
 }
+
+

@@ -1,0 +1,190 @@
+﻿namespace = intl_communism
+
+# Replaces the vanilla communism.2 ideology choice with the five Internationale currents.
+intl_communism.2 = {
+	type = country_event
+	placement = root
+	title = intl_communism.2.t
+	desc = intl_communism.2.d
+	flavor = intl_communism.2.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		# Triggered by je_communism_2, or directly by je_communism_1 when Council Republic already exists.
+	}
+
+	immediate = {
+		ig:ig_trade_unions ?= {
+			save_scope_as = unions
+			leader = {
+				save_scope_as = union_leader
+			}
+		}
+	}
+
+	option = {
+		name = communism.2.anarchist
+		intl_clear_communism_law_visibility_vars = yes
+		set_variable = bakunin_var
+		intl_unlock_anarchist_laws = yes
+		intl_set_anarchist_movement_line = yes
+		ig:ig_trade_unions ?= {
+			set_variable = chose_anarchism
+		}
+		custom_tooltip = chose_internationale_anarchism.tt
+		if = {
+			limit = {
+				scope:union_leader = {
+					NOT = { has_ideology = ideology:ideology_anarchist }
+				}
+			}
+			scope:union_leader = {
+				set_ideology = ideology:ideology_anarchist
+			}
+		}
+		add_modifier = {
+			name = path_to_anarchy
+			days = normal_modifier_time
+		}
+		if = {
+			limit = {
+				has_law_or_variant = law_type:law_anarchy
+				average_sol >= 15
+			}
+			trigger_event = { id = communism.4 }
+		}
+		else = {
+			add_journal_entry = { type = je_anarchy }
+		}
+		add_journal_entry = { type = je_5_year_plan }
+	}
+
+	option = {
+		name = communism.2.mutualist
+		intl_clear_communism_law_visibility_vars = yes
+		set_variable = proudhon_var
+		intl_unlock_mutualist_laws = yes
+		intl_set_mutualist_movement_line = yes
+		ig:ig_trade_unions ?= {
+			set_variable = chose_communism
+		}
+		custom_tooltip = chose_internationale_mutualism.tt
+		if = {
+			limit = {
+				scope:union_leader = {
+					NOT = { has_ideology = ideology:ideology_mutualist }
+				}
+			}
+			scope:union_leader = {
+				set_ideology = ideology:ideology_mutualist
+			}
+		}
+		add_modifier = {
+			name = path_to_communism
+			days = normal_modifier_time
+		}
+		add_journal_entry = { type = je_communist_welfare }
+		add_journal_entry = { type = je_5_year_plan }
+	}
+
+	option = {
+		name = communism.2.syndicalist
+		intl_clear_communism_law_visibility_vars = yes
+		set_variable = bel_de_paepe_var
+		intl_unlock_syndicalist_laws = yes
+		intl_set_syndicalist_movement_line = yes
+		ig:ig_trade_unions ?= {
+			set_variable = chose_communism
+		}
+		custom_tooltip = chose_internationale_syndicalism.tt
+		if = {
+			limit = {
+				scope:union_leader = {
+					NOT = { has_ideology = ideology:ideology_syndicalist }
+				}
+			}
+			scope:union_leader = {
+				set_ideology = ideology:ideology_syndicalist
+			}
+		}
+		add_modifier = {
+			name = path_to_communism
+			days = normal_modifier_time
+		}
+		add_journal_entry = { type = je_communist_welfare }
+		add_journal_entry = { type = je_5_year_plan }
+	}
+
+	option = {
+		name = communism.2.blanquist
+		intl_clear_communism_law_visibility_vars = yes
+		set_variable = blanqui_var
+		intl_unlock_blanquist_laws = yes
+		intl_set_blanquist_movement_line = yes
+		ig:ig_trade_unions ?= {
+			set_variable = chose_vanguardism
+		}
+		custom_tooltip = chose_internationale_blanquism.tt
+		if = {
+			limit = {
+				scope:union_leader = {
+					NOT = { has_ideology = ideology:ideology_blanquist }
+				}
+			}
+			scope:union_leader = {
+				set_ideology = ideology:ideology_blanquist
+			}
+		}
+		add_modifier = {
+			name = path_to_vanguardism
+			days = normal_modifier_time
+		}
+		if = {
+			limit = {
+				NOT = { has_journal_entry = je_blanquism }
+				NOT = { has_variable = blanquist_preparation_done }
+			}
+			add_journal_entry = { type = je_blanquism }
+		}
+		add_journal_entry = { type = je_5_year_plan }
+	}
+
+	option = {
+		name = communism.2.marxist
+		default_option = yes
+		intl_clear_communism_law_visibility_vars = yes
+		set_variable = karl_marx_var
+		intl_unlock_marxist_laws = yes
+		intl_set_marxist_movement_line = yes
+		ig:ig_trade_unions ?= {
+			set_variable = chose_communism
+		}
+		custom_tooltip = chose_internationale_marxism.tt
+		if = {
+			limit = {
+				scope:union_leader = {
+					NOT = { has_ideology = ideology:ideology_marxist }
+				}
+			}
+			scope:union_leader = {
+				set_ideology = ideology:ideology_marxist
+			}
+		}
+		add_modifier = {
+			name = path_to_communism
+			days = normal_modifier_time
+		}
+		add_journal_entry = { type = je_communist_welfare }
+		add_journal_entry = { type = je_5_year_plan }
+	}
+}
+

@@ -3,12 +3,15 @@ je_internationale = {
 
 	group = je_group_global_international_situations
 
-	should_be_pinned_by_default = yes
+	widget = {
+		gui = "gui/internationale_journal_button.gui"
+		name = "internationale_journal_button"
+		container = "custom_widget_container_1"
+	}
+
+	should_be_pinned_by_default_uninvolved_or_context = yes
 
 	is_shown_when_inactive = {
-		hidden_trigger = {
-			always = yes
-		}
 	}
 
 	possible = {
@@ -72,18 +75,68 @@ je_blanquism = {
 
 	group = je_group_internationalism
 
-	should_be_pinned_by_default = yes
+	widget = {
+		gui = "gui/blanquist_journal_widgets.gui"
+		name = "blanquist_preparation_widget"
+		container = "custom_widget_container_1"
+	}
+
+	scripted_button = je_blanquism_prepare_cells
+	scripted_button = je_blanquism_infiltrate_state
+	scripted_button = je_blanquism_arm_cadres
+
+	should_be_pinned_by_default_uninvolved_or_context = yes
 
 	is_shown_when_inactive = {
 	}
 
-	possible = {
+	immediate = {
+		ig:ig_intelligentsia ?= {
+			leader = {
+				save_scope_as = blanquist_vanguard_leader
+				set_ideology = ideology:ideology_blanquist
+			}
+		}
+		set_variable = { name = blanquist_vanguard_leader_scope_gui value = scope:blanquist_vanguard_leader }
+	}
+
+	status_desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = je_blanquism_status_desc
+			}
+		}
 	}
 
 	complete = {
+		custom_tooltip = {
+			text = blanquist_cells_prepared_tt
+			has_variable = blanquist_cells_prepared
+		}
+		custom_tooltip = {
+			text = blanquist_state_infiltrated_tt
+			has_variable = blanquist_state_infiltrated
+		}
+		custom_tooltip = {
+			text = blanquist_cadres_armed_tt
+			has_variable = blanquist_cadres_armed
+		}
 	}
 
 	on_complete = {
+		custom_tooltip = {
+			text = blanquist_preparation_done_tt
+			set_variable = blanquist_preparation_done
+		}
+		custom_tooltip = {
+			text = blanquist_law_unlock_var_tt
+			set_variable = blanqui_var
+		}
+		intl_unlock_blanquist_laws = yes
+		add_modifier = {
+			name = path_to_vanguardism
+			days = normal_modifier_time
+		}
 	}
 
 	weight = 1000

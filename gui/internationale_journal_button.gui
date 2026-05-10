@@ -3,7 +3,6 @@
 types internationale_journal_types {
 	type internationale_journal_button = container {
 		parentanchor = hcenter
-		visible = "[EqualTo_string(JournalEntry.GetName, Localize('je_internationale'))]"
 		minimumsize = { @panel_width_minus_30 -1 }
 
 		background = {

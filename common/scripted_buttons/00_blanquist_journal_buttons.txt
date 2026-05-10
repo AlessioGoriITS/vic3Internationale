@@ -1,0 +1,183 @@
+je_blanquism_prepare_cells = {
+	name = je_blanquism_prepare_cells
+	desc = je_blanquism_prepare_cells_desc
+
+	visible = {
+		has_journal_entry = je_blanquism
+	}
+
+	possible = {
+		NOT = {
+			custom_tooltip = {
+				text = blanquist_cooldown_tt
+				has_variable = blanquist_interaction_cooldown
+			}
+		}
+		NOT = { has_variable = blanquist_cells_prepared }
+		any_political_movement = {
+			is_political_movement_type = movement_internationale
+			has_core_ideology = ideology:ideology_internationale_blanquist_movement
+			political_movement_support >= 0.10
+		}
+		ig:ig_intelligentsia ?= {
+			is_marginal = no
+			ig_clout >= 0.10
+			leader = {
+				is_character_alive = yes
+			}
+		}
+		radical_fraction = {
+			value >= 0.08
+		}
+		any_scope_building = {
+			is_building_type = building_university
+		}
+		OR = {
+			has_technology_researched = political_agitation
+			has_technology_researched = socialism
+			has_technology_researched = anarchism
+		}
+	}
+
+	selected = {
+		has_variable = blanquist_cells_prepared
+	}
+
+	effect = {
+		set_variable = blanquist_cells_prepared
+		set_variable = {
+			name = blanquist_interaction_cooldown
+			value = 12
+			months = 12
+		}
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+je_blanquism_infiltrate_state = {
+	name = je_blanquism_infiltrate_state
+	desc = je_blanquism_infiltrate_state_desc
+
+	visible = {
+		has_journal_entry = je_blanquism
+	}
+
+	possible = {
+		NOT = {
+			custom_tooltip = {
+				text = blanquist_cooldown_tt
+				has_variable = blanquist_interaction_cooldown
+			}
+		}
+		has_variable = blanquist_cells_prepared
+		NOT = { has_variable = blanquist_state_infiltrated }
+		any_political_movement = {
+			is_political_movement_type = movement_internationale
+			has_core_ideology = ideology:ideology_internationale_blanquist_movement
+			political_movement_support >= 0.15
+		}
+		OR = {
+			has_technology_researched = central_archives
+			has_technology_researched = identification_documents
+		}
+		government_legitimacy <= 75
+		bureaucracy >= 0
+		approaching_bureaucracy_shortage = no
+		any_scope_building = {
+			is_building_type = building_government_administration
+		}
+		OR = {
+			has_law_or_variant = law_type:law_appointed_bureaucrats
+			has_law_or_variant = law_type:law_elected_bureaucrats
+			has_law_or_variant = law_type:law_hereditary_bureaucrats
+		}
+	}
+
+	selected = {
+		has_variable = blanquist_state_infiltrated
+	}
+
+	effect = {
+		set_variable = blanquist_state_infiltrated
+		set_variable = {
+			name = blanquist_interaction_cooldown
+			value = 12
+			months = 12
+		}
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+je_blanquism_arm_cadres = {
+	name = je_blanquism_arm_cadres
+	desc = je_blanquism_arm_cadres_desc
+
+	visible = {
+		has_journal_entry = je_blanquism
+	}
+
+	possible = {
+		NOT = {
+			custom_tooltip = {
+				text = blanquist_cooldown_tt
+				has_variable = blanquist_interaction_cooldown
+			}
+		}
+		has_variable = blanquist_state_infiltrated
+		NOT = { has_variable = blanquist_cadres_armed }
+		any_political_movement = {
+			is_political_movement_type = movement_internationale
+			has_core_ideology = ideology:ideology_internationale_blanquist_movement
+			political_movement_support >= 0.20
+		}
+		OR = {
+			has_technology_researched = mass_communication
+			has_technology_researched = military_statistics
+		}
+		radical_fraction = {
+			value >= 0.12
+		}
+		government_legitimacy <= 60
+		ig:ig_armed_forces ?= {
+			is_marginal = no
+			ig_clout >= 0.05
+		}
+		OR = {
+			any_scope_building = {
+				is_building_type = building_arms_industry
+			}
+			any_scope_building = {
+				is_building_type = building_barracks
+			}
+		}
+		OR = {
+			has_law_or_variant = law_type:law_local_police
+			has_law_or_variant = law_type:law_dedicated_police
+			has_law_or_variant = law_type:law_militarized_police
+			has_law_or_variant = law_type:law_secret_police
+		}
+	}
+
+	selected = {
+		has_variable = blanquist_cadres_armed
+	}
+
+	effect = {
+		set_variable = blanquist_cadres_armed
+		set_variable = {
+			name = blanquist_interaction_cooldown
+			value = 12
+			months = 12
+		}
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
