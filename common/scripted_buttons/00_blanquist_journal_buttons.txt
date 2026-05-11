@@ -4,6 +4,7 @@ je_blanquism_prepare_cells = {
 
 	visible = {
 		has_journal_entry = je_blanquism
+		NOT = { has_variable = blanquist_cells_prepared }
 	}
 
 	possible = {
@@ -13,29 +14,14 @@ je_blanquism_prepare_cells = {
 				has_variable = blanquist_interaction_cooldown
 			}
 		}
-		NOT = { has_variable = blanquist_cells_prepared }
+		
 		any_political_movement = {
 			is_political_movement_type = movement_internationale
 			has_core_ideology = ideology:ideology_internationale_blanquist_movement
 			political_movement_support >= 0.10
 		}
-		ig:ig_intelligentsia ?= {
-			is_marginal = no
-			ig_clout >= 0.10
-			leader = {
-				is_character_alive = yes
-			}
-		}
 		radical_fraction = {
-			value >= 0.08
-		}
-		any_scope_building = {
-			is_building_type = building_university
-		}
-		OR = {
-			has_technology_researched = political_agitation
-			has_technology_researched = socialism
-			has_technology_researched = anarchism
+			value >= 0.10
 		}
 	}
 
@@ -44,6 +30,9 @@ je_blanquism_prepare_cells = {
 	}
 
 	effect = {
+		add_radicals = {
+			value = 0.1
+		}
 		set_variable = blanquist_cells_prepared
 		set_variable = {
 			name = blanquist_interaction_cooldown
@@ -63,6 +52,8 @@ je_blanquism_infiltrate_state = {
 
 	visible = {
 		has_journal_entry = je_blanquism
+		has_variable = blanquist_cells_prepared
+		NOT = { has_variable = blanquist_state_infiltrated }
 	}
 
 	possible = {
@@ -72,27 +63,19 @@ je_blanquism_infiltrate_state = {
 				has_variable = blanquist_interaction_cooldown
 			}
 		}
-		has_variable = blanquist_cells_prepared
-		NOT = { has_variable = blanquist_state_infiltrated }
+		radical_fraction = {
+			value >= 0.20
+		}
 		any_political_movement = {
 			is_political_movement_type = movement_internationale
 			has_core_ideology = ideology:ideology_internationale_blanquist_movement
-			political_movement_support >= 0.15
+			political_movement_support >= 0.10
 		}
-		OR = {
-			has_technology_researched = central_archives
-			has_technology_researched = identification_documents
-		}
-		government_legitimacy <= 75
-		bureaucracy >= 0
-		approaching_bureaucracy_shortage = no
-		any_scope_building = {
-			is_building_type = building_government_administration
-		}
-		OR = {
-			has_law_or_variant = law_type:law_appointed_bureaucrats
-			has_law_or_variant = law_type:law_elected_bureaucrats
-			has_law_or_variant = law_type:law_hereditary_bureaucrats
+		government_legitimacy <= 25
+		has_law_or_variant = law_type:law_appointed_bureaucrats
+		custom_tooltip = {
+			text = is_democratic_tt
+			country_has_voting_franchise = yes
 		}
 	}
 
@@ -107,6 +90,18 @@ je_blanquism_infiltrate_state = {
 			value = 12
 			months = 12
 		}
+		create_character = {
+			is_agitator = yes
+			interest_group = ig:ig_petty_bourgeoisie
+			ideology = ideology_blanquist
+			traits = {
+				charismatic
+				ambitious
+			}
+		}
+		add_radicals = {
+			value = 0.1
+		}
 	}
 
 	ai_chance = {
@@ -120,6 +115,8 @@ je_blanquism_arm_cadres = {
 
 	visible = {
 		has_journal_entry = je_blanquism
+		has_variable = blanquist_state_infiltrated
+		NOT = { has_variable = blanquist_cadres_armed }
 	}
 
 	possible = {
@@ -129,39 +126,26 @@ je_blanquism_arm_cadres = {
 				has_variable = blanquist_interaction_cooldown
 			}
 		}
-		has_variable = blanquist_state_infiltrated
-		NOT = { has_variable = blanquist_cadres_armed }
 		any_political_movement = {
 			is_political_movement_type = movement_internationale
 			has_core_ideology = ideology:ideology_internationale_blanquist_movement
-			political_movement_support >= 0.20
-		}
-		OR = {
-			has_technology_researched = mass_communication
-			has_technology_researched = military_statistics
+			political_movement_support >= 0.10
 		}
 		radical_fraction = {
-			value >= 0.12
-		}
-		government_legitimacy <= 60
-		ig:ig_armed_forces ?= {
-			is_marginal = no
-			ig_clout >= 0.05
+			value >= 0.25
 		}
 		OR = {
-			any_scope_building = {
-				is_building_type = building_arms_industry
-			}
-			any_scope_building = {
-				is_building_type = building_barracks
+			has_law = law_type:law_secret_police
+			AND = {
+				ig:ig_armed_forces ?= {
+					is_marginal = no
+					ig_clout >= 0.05
+				}
+				has_law = law_type:law_national_guard
 			}
 		}
-		OR = {
-			has_law_or_variant = law_type:law_local_police
-			has_law_or_variant = law_type:law_dedicated_police
-			has_law_or_variant = law_type:law_militarized_police
-			has_law_or_variant = law_type:law_secret_police
-		}
+		government_legitimacy <= 25
+		
 	}
 
 	selected = {
@@ -175,6 +159,308 @@ je_blanquism_arm_cadres = {
 			value = 12
 			months = 12
 		}
+		
+		create_character = {
+			ig_leader = yes
+			interest_group = ig:ig_armed_forces
+			ideology = ideology_blanquist
+			traits = {
+				charismatic
+				ambitious
+			}
+		}
+		add_radicals = {
+			value = 0.1
+		}
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+je_blanquism_execute_coup = {
+	name = je_blanquism_execute_coup
+	desc = je_blanquism_execute_coup_desc
+
+	visible = {
+		has_journal_entry = je_blanquism
+		has_variable = blanquist_cells_prepared
+		has_variable = blanquist_state_infiltrated
+		has_variable = blanquist_cadres_armed
+		NOT = { has_variable = blanquist_coup_button_clicked }
+		NOT = { has_variable = blanquist_coup_executed }
+	}
+
+	possible = {
+		
+	}
+
+	selected = {
+		has_variable = blanquist_coup_executed
+	}
+
+	effect = {
+		set_variable = blanquist_coup_button_clicked
+		trigger_event = { id = intl_communism.3 popup = yes }
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+je_blanquist_reform_bureaucracy = {
+	name = je_blanquist_reform_bureaucracy
+	desc = je_blanquist_reform_bureaucracy_desc
+
+	visible = {
+		has_journal_entry = je_blanquist_consolidation
+		NOT = { has_law = law_type:law_blanquist_bureaucracy }
+	}
+
+	possible = {
+		NOT = { is_enacting_law = law_type:law_blanquist_bureaucracy }
+	}
+
+	selected = {
+		OR = {
+			has_law = law_type:law_blanquist_bureaucracy
+			is_enacting_law = law_type:law_blanquist_bureaucracy
+		}
+	}
+
+	effect = {
+		if = {
+			limit = { enacting_any_law = yes }
+			cancel_enactment = yes
+		}
+		start_enactment = law_type:law_blanquist_bureaucracy
+		add_enactment_modifier = {
+			name = blanquist_bureaucratic_reform_drive
+		}
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+je_blanquist_reform_atheism = {
+	name = je_blanquist_reform_atheism
+	desc = je_blanquist_reform_atheism_desc
+
+	visible = {
+		has_journal_entry = je_blanquist_consolidation
+		NOT = { has_law = law_type:law_blanquist_state_atheism }
+	}
+
+	possible = {
+		NOT = { is_enacting_law = law_type:law_blanquist_state_atheism }
+	}
+
+	selected = {
+		OR = {
+			has_law = law_type:law_blanquist_state_atheism
+			is_enacting_law = law_type:law_blanquist_state_atheism
+		}
+	}
+
+	effect = {
+		if = {
+			limit = { enacting_any_law = yes }
+			cancel_enactment = yes
+		}
+		start_enactment = law_type:law_blanquist_state_atheism
+		add_enactment_modifier = {
+			name = blanquist_atheist_reform_drive
+		}
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+je_blanquist_reform_economy = {
+	name = je_blanquist_reform_economy
+	desc = je_blanquist_reform_economy_desc
+
+	visible = {
+		has_journal_entry = je_blanquist_consolidation
+		NOT = { has_law = law_type:law_blanquist_economy }
+	}
+
+	possible = {
+		NOT = { is_enacting_law = law_type:law_blanquist_economy }
+	}
+
+	selected = {
+		OR = {
+			has_law = law_type:law_blanquist_economy
+			is_enacting_law = law_type:law_blanquist_economy
+		}
+	}
+
+	effect = {
+		if = {
+			limit = { enacting_any_law = yes }
+			cancel_enactment = yes
+		}
+		start_enactment = law_type:law_blanquist_economy
+		add_enactment_modifier = {
+			name = blanquist_economic_reform_drive
+		}
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+je_blanquist_reform_state_police = {
+	name = je_blanquist_reform_state_police
+	desc = je_blanquist_reform_state_police_desc
+
+	visible = {
+		has_journal_entry = je_blanquist_consolidation
+		NOT = { has_law = law_type:law_secret_police }
+	}
+
+	possible = {
+		NOT = { is_enacting_law = law_type:law_secret_police }
+	}
+
+	selected = {
+		OR = {
+			has_law = law_type:law_secret_police
+			is_enacting_law = law_type:law_secret_police
+		}
+	}
+
+	effect = {
+		if = {
+			limit = { enacting_any_law = yes }
+			cancel_enactment = yes
+		}
+		start_enactment = law_type:law_secret_police
+		add_enactment_modifier = {
+			name = blanquist_state_police_reform_drive
+		}
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+je_mutualist_summon_intelligentsia_agitator = {
+	name = je_mutualist_summon_intelligentsia_agitator
+	desc = je_mutualist_summon_intelligentsia_agitator_desc
+
+	visible = {
+		has_journal_entry = je_mutualist_worker_councils
+		NOT = { has_variable = mutualist_intelligentsia_agitator_summoned }
+	}
+
+	possible = {
+		ig:ig_intelligentsia ?= {
+			is_marginal = no
+		}
+	}
+
+	selected = {
+		has_variable = mutualist_intelligentsia_agitator_summoned
+	}
+
+	effect = {
+		custom_tooltip = {
+			text = mutualist_intelligentsia_agitator_appears_tt
+			create_character = {
+				is_agitator = yes
+				interest_group = ig:ig_intelligentsia
+				ideology = ideology_mutualist
+				traits = {
+					persistent
+					direct
+				}
+			}
+		}
+		add_radicals = {
+			strata = upper
+			value = 0.05
+		}
+		set_variable = mutualist_intelligentsia_agitator_summoned
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+je_mutualist_install_petite_bourgeoisie_leader = {
+	name = je_mutualist_install_petite_bourgeoisie_leader
+	desc = je_mutualist_install_petite_bourgeoisie_leader_desc
+
+	visible = {
+		has_journal_entry = je_mutualist_worker_councils
+		NOT = { has_variable = mutualist_petite_bourgeoisie_leader_installed }
+	}
+
+	possible = {
+		ig:ig_petty_bourgeoisie ?= {
+			is_marginal = no
+			custom_tooltip = {
+				text = mutualist_pb_leader_not_conservative_tt
+				leader = {
+					NOT = {
+						OR = {
+							has_ideology = ideology:ideology_traditionalist
+							has_ideology = ideology:ideology_traditionalist_minoritarian
+							has_ideology = ideology:ideology_royalist
+							has_ideology = ideology:ideology_authoritarian
+							has_ideology = ideology:ideology_fascist
+							has_ideology = ideology:ideology_ethno_nationalist
+							has_ideology = ideology:ideology_theocrat
+							has_ideology = ideology:ideology_integralist
+							has_ideology = ideology:ideology_carlist
+							has_ideology = ideology:ideology_carlist_2
+							has_ideology = ideology:ideology_miguelist
+							has_ideology = ideology:ideology_miguelist_2
+						}
+					}
+				}
+			}
+			leader = {
+				NOT = {
+					law_stance = {
+						law = law_type:law_monarchy
+						value > neutral
+					}
+				}
+			}
+		}
+	}
+
+	selected = {
+		has_variable = mutualist_petite_bourgeoisie_leader_installed
+	}
+
+	effect = {
+		custom_tooltip = {
+			text = mutualist_petite_bourgeoisie_leader_appears_tt
+			create_character = {
+				ig_leader = yes
+				interest_group = ig:ig_petty_bourgeoisie
+				ideology = ideology_mutualist
+				traits = {
+					persistent
+					meticulous
+				}
+			}
+		}
+		set_variable = mutualist_petite_bourgeoisie_leader_installed
+		trigger_event = { id = intl_communism.5 popup = yes }
 	}
 
 	ai_chance = {

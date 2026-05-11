@@ -1,0 +1,104 @@
+gov_internationale_anarchist_federation = {
+	transfer_of_power = parliamentary_elective
+	new_leader_on_reform_government = yes
+
+	male_ruler = "RULER_TITLE_ANARCHIST_DELEGATE"
+	female_ruler = "RULER_TITLE_ANARCHIST_DELEGATE"
+
+	possible = {
+		has_variable = bakunin_var
+		has_law = law_type:law_anarchist_council_republic
+		has_gov_regency = no
+	}
+
+	on_government_type_change = {
+		change_to_parliamentary_elective = yes
+	}
+	on_post_government_type_change = {
+		post_change_to_parliamentary_elective = yes
+	}
+}
+
+gov_internationale_mutualist_federation = {
+	transfer_of_power = parliamentary_elective
+	new_leader_on_reform_government = yes
+
+	male_ruler = "RULER_TITLE_MUTUALIST_COORDINATOR"
+	female_ruler = "RULER_TITLE_MUTUALIST_COORDINATOR"
+
+	possible = {
+		has_variable = proudhon_var
+		has_law = law_type:law_mutualist_council_republic
+		has_gov_regency = no
+	}
+
+	on_government_type_change = {
+		change_to_parliamentary_elective = yes
+	}
+	on_post_government_type_change = {
+		post_change_to_parliamentary_elective = yes
+	}
+}
+
+gov_internationale_syndicalist_congress = {
+	transfer_of_power = parliamentary_elective
+	new_leader_on_reform_government = yes
+
+	male_ruler = "RULER_TITLE_SYNDICALIST_SECRETARY"
+	female_ruler = "RULER_TITLE_SYNDICALIST_SECRETARY"
+
+	possible = {
+		has_variable = bel_de_paepe_var
+		has_law = law_type:law_syndicalist_council_republic
+		has_gov_regency = no
+	}
+
+	on_government_type_change = {
+		change_to_parliamentary_elective = yes
+	}
+	on_post_government_type_change = {
+		post_change_to_parliamentary_elective = yes
+	}
+}
+
+gov_internationale_blanquist_republic = {
+	transfer_of_power = dictatorial
+	new_leader_on_reform_government = no
+
+	male_ruler = "RULER_TITLE_REVOLUTIONARY_DIRECTOR"
+	female_ruler = "RULER_TITLE_REVOLUTIONARY_DIRECTOR"
+
+	possible = {
+		has_variable = blanqui_var
+		has_law = law_type:law_blanquist_presidential_republic
+		has_gov_regency = no
+	}
+
+	on_government_type_change = {
+		change_to_dictatorial = yes
+	}
+	on_post_government_type_change = {
+		post_change_to_dictatorial = yes
+	}
+}
+
+gov_internationale_marxist_workers_state = {
+	transfer_of_power = presidential_elective
+	new_leader_on_reform_government = no
+
+	male_ruler = "RULER_TITLE_WORKERS_STATE_CHAIRMAN"
+	female_ruler = "RULER_TITLE_WORKERS_STATE_CHAIRWOMAN"
+
+	possible = {
+		has_variable = karl_marx_var
+		has_law = law_type:law_marxist_council_republic
+		has_gov_regency = no
+	}
+
+	on_government_type_change = {
+		change_to_presidential_elective = yes
+	}
+	on_post_government_type_change = {
+		post_change_to_presidential_elective = yes
+	}
+}

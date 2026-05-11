@@ -1,0 +1,71 @@
+﻿# --- syndicalist_modifiers.txt ---
+modifier_syndicalist_factory_council_overseers = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	state_shopkeepers_investment_pool_efficiency_mult = 0.15
+	state_shopkeepers_investment_pool_contribution_add = 0.03
+	country_shopkeepers_pol_str_mult = 0.10
+}
+
+# --- tyrone_mp_faction_modifiers.txt ---
+mp_faction_extra_agitator_slots = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	country_agitator_slots_add = 5
+}
+
+modifier_blanquist_revolutionary_order = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_positive.dds
+	state_turmoil_effects_mult = -1.0
+	country_law_enactment_stall_mult = -0.8
+	country_law_enactment_time_mult = 0.25
+	political_movement_radicalism_add = -1
+}
+
+blanquist_revolutionary_director_popularity = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_positive.dds
+	character_popularity_add = 50
+}
+
+blanquist_bureaucratic_reform_drive = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	country_law_enactment_success_add = 0.10
+	country_law_enactment_time_mult = -0.25
+}
+
+blanquist_atheist_reform_drive = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	country_law_enactment_success_add = 0.10
+	country_law_enactment_time_mult = -0.25
+}
+
+blanquist_economic_reform_drive = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	country_law_enactment_success_add = 0.10
+	country_law_enactment_time_mult = -0.25
+}
+
+blanquist_state_police_reform_drive = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	country_law_enactment_success_add = 0.10
+	country_law_enactment_time_mult = -0.25
+}
+
+modifier_blanquist_movement_hegemony = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_positive.dds
+	political_movement_pop_attraction_mult = 1
+}
+
+
+modifier_mutualist_worker_council_construction = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	state_construction_mult = 0.10
+}
+
+modifier_mutualist_monarchist_ig_backlash = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	interest_group_approval_add = -5
+}
+
+modifier_mutualist_petite_bourgeoisie_split = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
+	interest_group_approval_add = -5
+}

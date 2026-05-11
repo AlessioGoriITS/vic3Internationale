@@ -1,0 +1,1169 @@
+﻿# --- internationale_communism_events.txt ---
+namespace = intl_communism
+
+# Replaces the vanilla communism.2 ideology choice with the five Internationale currents.
+intl_communism.2 = {
+	type = country_event
+	placement = root
+	title = intl_communism.2.t
+	desc = intl_communism.2.d
+	flavor = intl_communism.2.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		# Triggered by je_communism_2, or directly by je_communism_1 when Council Republic already exists.
+	}
+
+	immediate = {
+		ig:ig_trade_unions ?= {
+			save_scope_as = unions
+			leader = {
+				save_scope_as = union_leader
+			}
+		}
+	}
+
+	option = {
+		name = communism.2.anarchist
+		intl_clear_communism_law_visibility_vars = yes
+		set_variable = bakunin_var
+		intl_unlock_anarchist_laws = yes
+		intl_set_anarchist_movement_line = yes
+		ig:ig_trade_unions ?= {
+			set_variable = chose_anarchism
+		}
+		custom_tooltip = chose_internationale_anarchism.tt
+		if = {
+			limit = {
+				scope:union_leader = {
+					NOT = { has_ideology = ideology:ideology_anarchist }
+				}
+			}
+			scope:union_leader = {
+				set_ideology = ideology:ideology_anarchist
+			}
+		}
+		add_modifier = {
+			name = path_to_anarchy
+			days = normal_modifier_time
+		}
+		if = {
+			limit = {
+				has_law_or_variant = law_type:law_anarchy
+				average_sol >= 15
+			}
+			trigger_event = { id = communism.4 }
+		}
+		else = {
+			add_journal_entry = { type = je_anarchy }
+		}
+		add_journal_entry = { type = je_5_year_plan }
+	}
+
+	option = {
+		name = communism.2.mutualist
+		intl_clear_communism_law_visibility_vars = yes
+		set_variable = proudhon_var
+		intl_unlock_mutualist_laws = yes
+		intl_set_mutualist_movement_line = yes
+		ig:ig_trade_unions ?= {
+			set_variable = chose_communism
+		}
+		custom_tooltip = chose_internationale_mutualism.tt
+		if = {
+			limit = {
+				scope:union_leader = {
+					NOT = { has_ideology = ideology:ideology_mutualist }
+				}
+			}
+			scope:union_leader = {
+				set_ideology = ideology:ideology_mutualist
+			}
+		}
+		add_modifier = {
+			name = path_to_communism
+			days = normal_modifier_time
+		}
+		if = {
+			limit = {
+				NOT = { has_journal_entry = je_mutualist_worker_councils }
+				NOT = { has_variable = mutualist_worker_councils_founded }
+			}
+			add_journal_entry = { type = je_mutualist_worker_councils }
+		}
+		add_journal_entry = { type = je_communist_welfare }
+		add_journal_entry = { type = je_5_year_plan }
+	}
+
+	option = {
+		name = communism.2.syndicalist
+		intl_clear_communism_law_visibility_vars = yes
+		set_variable = bel_de_paepe_var
+		intl_unlock_syndicalist_laws = yes
+		intl_set_syndicalist_movement_line = yes
+		ig:ig_trade_unions ?= {
+			set_variable = chose_communism
+		}
+		custom_tooltip = chose_internationale_syndicalism.tt
+		if = {
+			limit = {
+				scope:union_leader = {
+					NOT = { has_ideology = ideology:ideology_syndicalist }
+				}
+			}
+			scope:union_leader = {
+				set_ideology = ideology:ideology_syndicalist
+			}
+		}
+		add_modifier = {
+			name = path_to_communism
+			days = normal_modifier_time
+		}
+		if = {
+			limit = {
+				NOT = { has_journal_entry = je_syndicalist_amendments }
+				NOT = { has_variable = syndicalist_amendments_recorded }
+			}
+			add_journal_entry = { type = je_syndicalist_amendments }
+		}
+		add_journal_entry = { type = je_communist_welfare }
+		add_journal_entry = { type = je_5_year_plan }
+	}
+
+	option = {
+		name = communism.2.blanquist
+		intl_clear_communism_law_visibility_vars = yes
+		set_variable = blanqui_var
+		intl_unlock_blanquist_laws = yes
+		intl_set_blanquist_movement_line = yes
+		ig:ig_trade_unions ?= {
+			set_variable = chose_vanguardism
+		}
+		custom_tooltip = chose_internationale_blanquism.tt
+		if = {
+			limit = {
+				scope:union_leader = {
+					NOT = { has_ideology = ideology:ideology_blanquist }
+				}
+			}
+			scope:union_leader = {
+				set_ideology = ideology:ideology_blanquist
+			}
+		}
+		add_modifier = {
+			name = path_to_vanguardism
+			days = normal_modifier_time
+		}
+		if = {
+			limit = {
+				NOT = { has_journal_entry = je_blanquism }
+				NOT = { has_variable = blanquist_preparation_done }
+			}
+			add_journal_entry = { type = je_blanquism }
+		}
+		add_journal_entry = { type = je_5_year_plan }
+	}
+
+	option = {
+		name = communism.2.marxist
+		default_option = yes
+		intl_clear_communism_law_visibility_vars = yes
+		set_variable = karl_marx_var
+		intl_unlock_marxist_laws = yes
+		intl_set_marxist_movement_line = yes
+		ig:ig_trade_unions ?= {
+			set_variable = chose_communism
+		}
+		custom_tooltip = chose_internationale_marxism.tt
+		if = {
+			limit = {
+				scope:union_leader = {
+					NOT = { has_ideology = ideology:ideology_marxist }
+				}
+			}
+			scope:union_leader = {
+				set_ideology = ideology:ideology_marxist
+			}
+		}
+		add_modifier = {
+			name = path_to_communism
+			days = normal_modifier_time
+		}
+		add_journal_entry = { type = je_communist_welfare }
+		add_journal_entry = { type = je_5_year_plan }
+	}
+}
+
+intl_communism.3 = {
+	type = country_event
+	placement = root
+	title = intl_communism.3.t
+	desc = intl_communism.3.d
+	flavor = intl_communism.3.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+		ig:ig_armed_forces ?= {
+			leader = {
+				set_ideology = ideology:ideology_blanquist
+			}
+		}
+		ig:ig_intelligentsia ?= {
+			leader = {
+				save_scope_as = blanquist_revolutionary_director
+				set_ideology = ideology:ideology_blanquist
+			}
+		}
+		ig:ig_petty_bourgeoisie ?= {
+			leader = {
+				set_ideology = ideology:ideology_blanquist
+			}
+		}
+		ig:ig_trade_unions ?= {
+			leader = {
+				set_ideology = ideology:ideology_blanquist
+			}
+		}
+	}
+
+	option = {
+		name = intl_communism.3.a
+		default_option = yes
+		intl_unlock_blanquist_laws = yes
+		set_variable = blanqui_var
+		activate_law = law_type:law_blanquist_presidential_republic
+		activate_law = law_type:law_blanquist_technocracy
+		set_variable = blanquist_coup_executed
+		set_variable = blanquist_coup_event_resolved
+		scope:blanquist_revolutionary_director = {
+			set_character_as_ruler = yes
+			add_modifier = {
+				name = blanquist_revolutionary_director_popularity
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_journal_entry = je_blanquist_consolidation }
+				NOT = { has_variable = blanquist_consolidation_done }
+			}
+			add_journal_entry = { type = je_blanquist_consolidation }
+		}
+		add_modifier = {
+			name = modifier_blanquist_revolutionary_order
+			years = 10
+		}
+		add_radicals = {
+			value = 0.15
+		}
+	}
+}
+
+intl_communism.4 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.4.t
+	desc = intl_communism.4.d
+	flavor = intl_communism.4.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		has_variable = mutualist_cooperative_mandate_done
+	}
+
+	immediate = {
+		activate_law = law_type:law_mutualist_economy
+	}
+
+	option = {
+		name = intl_communism.4.a
+		default_option = yes
+		active_law:lawgroup_economic_system ?= {
+			add_amendment = {
+				type = amendment_mutualist_public_credit
+				sponsor = PREV.ig:ig_trade_unions
+			}
+		}
+	}
+
+	option = {
+		name = intl_communism.4.b
+		active_law:lawgroup_economic_system ?= {
+			add_amendment = {
+				type = amendment_mutualist_free_association
+				sponsor = PREV.ig:ig_petty_bourgeoisie
+			}
+		}
+	}
+
+	option = {
+		name = intl_communism.4.c
+		active_law:lawgroup_economic_system ?= {
+			add_amendment = {
+				type = amendment_mutualist_workshop_discipline
+				sponsor = PREV.ig:ig_trade_unions
+			}
+		}
+	}
+}
+
+intl_communism.5 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.5.t
+	desc = intl_communism.5.d
+	flavor = intl_communism.5.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	immediate = {
+		ig:ig_petty_bourgeoisie ?= {
+			leader = {
+				save_scope_as = mutualist_pb_leader
+			}
+		}
+	}
+
+	option = {
+		name = intl_communism.5.a
+		default_option = yes
+		add_radicals = {
+			strata = middle
+			value = 0.10
+		}
+		every_interest_group = {
+			limit = {
+				NOT = { is_interest_group_type = ig_petty_bourgeoisie }
+				law_stance = {
+					law = law_type:law_monarchy
+					value > neutral
+				}
+			}
+			add_modifier = {
+				name = modifier_mutualist_monarchist_ig_backlash
+				years = 5
+			}
+		}
+	}
+
+	option = {
+		name = intl_communism.5.b
+		add_radicals = {
+			value = 0.05
+		}
+		ig:ig_petty_bourgeoisie ?= {
+			add_modifier = {
+				name = modifier_mutualist_petite_bourgeoisie_split
+				years = 5
+			}
+		}
+		scope:mutualist_pb_leader = {
+			replace_character_roles = { add = { agitator } remove_all = yes }
+		}
+		create_character = {
+			ig_leader = yes
+			interest_group = ig:ig_petty_bourgeoisie
+			ideology = ideology_fascist
+			traits = {
+				ambitious
+				bigoted
+			}
+		}
+	}
+}
+
+intl_communism.6 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.6.t
+	desc = intl_communism.6.d
+	flavor = intl_communism.6.f
+
+	category = enactment
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	cooldown = { months = 12 }
+
+	trigger = {
+		OR = {
+			is_enacting_law = law_type:law_cooperative_ownership
+			is_enacting_law = law_type:law_mutualist_economy
+		}
+		
+		enactment_phase < 2
+	}
+
+	immediate = {
+		currently_enacting_law = {
+			save_scope_as = current_law_scope
+		}
+	}
+
+	cancellation_trigger = {
+		NOT = { currently_enacting_law = scope:current_law_scope }
+	}
+
+	option = {
+		name = intl_communism.6.a
+		default_option = yes
+		highlighted_option = yes
+		add_enactment_phase = 1
+	}
+}
+
+# --- internationale_events.txt ---
+namespace = mp_faction_events
+
+# Fired only from je_mp_faction_leader (leader country). Other countries never receive this event.
+mp_faction_events.1 = {
+	type = country_event
+	placement = root
+
+	title = mp_faction_events.1.t
+	desc = mp_faction_events.1.d
+	flavor = mp_faction_events.1.f
+
+	duration = 3
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	trigger = {
+		# triggered by je_mp_faction_leader immediate only
+	}
+
+	immediate = {
+		set_variable = { name = intl_strength_anarchist value = 20 }
+		set_variable = { name = intl_strength_mutualist value = 20 }
+		set_variable = { name = intl_strength_syndicalist value = 20 }
+		set_variable = { name = intl_strength_blanquist value = 20 }
+		set_variable = { name = intl_strength_marxist value = 20 }
+
+		add_modifier = {
+			name = mp_faction_extra_agitator_slots
+			days = long_modifier_time
+		}
+
+		create_character = {
+			template = ecchi_rus_bakunin_character_template
+			on_created = {
+				set_variable = bakunin_var
+				save_scope_as = bakunin_scope
+			}
+		}
+		scope:bakunin_scope = {
+			add_character_flag = intl_delegate_anarchist
+		}
+
+
+
+		create_character = {
+			template = intl_proudhon_character_template
+			on_created = {
+				set_variable = proudhon_var
+				save_scope_as = proudhon_scope
+			}
+		}
+
+		create_character = {
+			template = ecchi_bel_de_paepe_character_template
+			on_created = {
+				set_variable = bel_de_paepe_var
+				save_scope_as = bel_de_paepe_scope
+			}
+		}
+
+
+		create_character = {
+			template = fra_blanqui_character_template
+			on_created = {
+				set_variable = blanqui_var
+				save_scope_as = blanqui_scope
+			}
+		}
+		
+
+		create_character = {
+			template = agitator_karl_marx
+			on_created = {
+				set_variable = karl_marx_var
+				save_scope_as = karl_marx_scope
+			}
+		}
+	}
+
+	option = {
+		name = mp_faction_events.1.a
+		default_option = yes
+		set_variable = marxists_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+		intl_save_delegate_chars = yes
+	}
+
+	option = {
+		name = mp_faction_events.1.b
+		set_variable = mutualist_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+		intl_save_delegate_chars = yes
+	}
+
+	option = {
+		name = mp_faction_events.1.c
+		set_variable = anarchist_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+		intl_save_delegate_chars = yes
+	}
+
+	option = {
+		name = mp_faction_events.1.e
+		set_variable = syndacalist_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+		intl_save_delegate_chars = yes
+	}
+
+	option = {
+		name = mp_faction_events.1.f
+		set_variable = blanquist_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+		intl_save_delegate_chars = yes
+	}
+}
+
+namespace = marx_events
+namespace = historical_agitators
+
+marx_events.1 = { trigger = { always = no } }
+historical_agitators.3 = { trigger = { always = no } }
+
+# --- intl_debug.txt ---
+namespace = intl_debug
+
+intl_debug.1 = {
+	type = country_event
+	hidden = yes
+
+	immediate = {
+		set_variable = { name = intl_strength_anarchist value = 20 }
+		set_variable = { name = intl_strength_mutualist value = 20 }
+		set_variable = { name = intl_strength_syndicalist value = 20 }
+		set_variable = { name = intl_strength_blanquist value = 20 }
+		set_variable = { name = intl_strength_marxist value = 20 }
+	}
+
+	option = {
+		name = ok
+	}
+}
+
+intl_debug.2 = {
+	type = country_event
+
+	title = intl_debug.2.t
+	desc = intl_debug.2.desc
+	flavor = intl_debug.2.t
+
+	event_image = {
+		video = "middleeast_courtroom_upheaval"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	duration = 3
+
+	immediate = {
+		if = { limit = { NOT = { has_variable = intl_strength_anarchist } } set_variable = { name = intl_strength_anarchist value = 0 } }
+		if = { limit = { NOT = { has_variable = intl_strength_mutualist } } set_variable = { name = intl_strength_mutualist value = 0 } }
+		if = { limit = { NOT = { has_variable = intl_strength_syndicalist } } set_variable = { name = intl_strength_syndicalist value = 0 } }
+		if = { limit = { NOT = { has_variable = intl_strength_blanquist } } set_variable = { name = intl_strength_blanquist value = 0 } }
+		if = { limit = { NOT = { has_variable = intl_strength_marxist } } set_variable = { name = intl_strength_marxist value = 0 } }
+	}
+
+	option = {
+		name = intl_debug.2.add_anarchist
+		change_variable = { name = intl_strength_anarchist add = 10 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.rem_anarchist
+		change_variable = { name = intl_strength_anarchist add = -10 }
+		clamp_variable = { name = intl_strength_anarchist min = 0 max = 1000 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.add_mutualist
+		change_variable = { name = intl_strength_mutualist add = 10 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.rem_mutualist
+		change_variable = { name = intl_strength_mutualist add = -10 }
+		clamp_variable = { name = intl_strength_mutualist min = 0 max = 1000 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.add_syndicalist
+		change_variable = { name = intl_strength_syndicalist add = 10 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.rem_syndicalist
+		change_variable = { name = intl_strength_syndicalist add = -10 }
+		clamp_variable = { name = intl_strength_syndicalist min = 0 max = 1000 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.add_blanquist
+		change_variable = { name = intl_strength_blanquist add = 10 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.rem_blanquist
+		change_variable = { name = intl_strength_blanquist add = -10 }
+		clamp_variable = { name = intl_strength_blanquist min = 0 max = 1000 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.add_marxist
+		change_variable = { name = intl_strength_marxist add = 10 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.rem_marxist
+		change_variable = { name = intl_strength_marxist add = -10 }
+		clamp_variable = { name = intl_strength_marxist min = 0 max = 1000 }
+		intl_update_parliament = yes
+	}
+	option = {
+		name = intl_debug.2.close
+		default_option = yes
+		intl_update_parliament = yes
+	}
+}
+
+intl_debug.3 = {
+	type = country_event
+
+	title = intl_debug.3.t
+	desc = intl_debug.3.t
+	flavor = intl_debug.3.t
+
+	event_image = {
+		video = "middleeast_courtroom_upheaval"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_military.dds"
+
+	duration = 3
+
+	cooldown = { days = never_fire_again_modifier_time }
+
+	option = {
+		name = intl_debug.3.t
+        default_option = yes
+
+        set_variable = { name = intl_strength_anarchist value = 20 }
+		set_variable = { name = intl_strength_mutualist value = 20 }
+		set_variable = { name = intl_strength_syndicalist value = 20 }
+		set_variable = { name = intl_strength_blanquist value = 20 }
+		set_variable = { name = intl_strength_marxist value = 20 }
+		intl_update_parliament = yes
+	}
+}
+
+# --- intl_vote_events.txt ---
+namespace = intl_vote_events
+
+# Vote started notification
+intl_vote_events.1 = {
+	type = country_event
+	placement = ROOT
+
+	title = intl_vote_events.1.t
+	desc = intl_vote_events.1.d
+	flavor = intl_vote_events.1.f
+
+	event_image = { video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2" }
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	duration = 3
+
+	option = {
+		name = intl_vote_events.1.a
+		default_option = yes
+	}
+}
+
+# Vote ended â€” proposed law wins
+intl_vote_events.2 = {
+	type = country_event
+	placement = ROOT
+
+	title = intl_vote_events.2.t
+	desc = intl_vote_events.2.d
+	flavor = intl_vote_events.2.f
+
+	event_image = { video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2" }
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	duration = 3
+
+	option = {
+		name = intl_vote_events.2.a
+		default_option = yes
+	}
+}
+
+# Motion selection â€” fired on actor country when raising a motion
+# Shows vote pairs based on which laws are at value >= 2
+intl_vote_events.10 = {
+	type = country_event
+	placement = ROOT
+
+	title = intl_vote_events.10.t
+	desc = intl_vote_events.10.d
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+	event_image = { video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2" }
+
+	### GOVERNANCE â€” anarchist council challenged
+	option = {
+		name = intl_vote_events.10.propose_marxist_council_republic
+		trigger = {
+			intl_law_permanently_enabled = { LAW = anarchist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = marxist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = anarchist_council_republic PROPOSED = marxist_council_republic CURRENT_FACTION = anarchist PROPOSED_FACTION = marxist }
+	}
+	option = {
+		name = intl_vote_events.10.propose_mutualist_council_republic
+		trigger = {
+			intl_law_permanently_enabled = { LAW = anarchist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = mutualist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = anarchist_council_republic PROPOSED = mutualist_council_republic CURRENT_FACTION = anarchist PROPOSED_FACTION = mutualist }
+	}
+	option = {
+		name = intl_vote_events.10.propose_syndicalist_council_republic
+		trigger = {
+			intl_law_permanently_enabled = { LAW = anarchist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = syndicalist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = anarchist_council_republic PROPOSED = syndicalist_council_republic CURRENT_FACTION = anarchist PROPOSED_FACTION = syndicalist }
+	}
+	option = {
+		name = intl_vote_events.10.propose_blanquist_presidential_republic
+		trigger = {
+			intl_law_permanently_enabled = { LAW = anarchist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = blanquist_presidential_republic } }
+		}
+		intl_start_vote = { CURRENT = anarchist_council_republic PROPOSED = blanquist_presidential_republic CURRENT_FACTION = anarchist PROPOSED_FACTION = blanquist }
+	}
+
+	### GOVERNANCE â€” marxist council challenged
+	option = {
+		name = intl_vote_events.10.propose_anarchist_council_republic
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = anarchist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = marxist_council_republic PROPOSED = anarchist_council_republic CURRENT_FACTION = marxist PROPOSED_FACTION = anarchist }
+	}
+	option = {
+		name = intl_vote_events.10.propose_mutualist_cr_vs_marxist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = mutualist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = marxist_council_republic PROPOSED = mutualist_council_republic CURRENT_FACTION = marxist PROPOSED_FACTION = mutualist }
+	}
+	option = {
+		name = intl_vote_events.10.propose_syndicalist_cr_vs_marxist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = syndicalist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = marxist_council_republic PROPOSED = syndicalist_council_republic CURRENT_FACTION = marxist PROPOSED_FACTION = syndicalist }
+	}
+
+	### ECONOMY â€” mutualist challenged
+	option = {
+		name = intl_vote_events.10.propose_marxist_economy
+		trigger = {
+			intl_law_permanently_enabled = { LAW = mutualist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = marxist_economy } }
+		}
+		intl_start_vote = { CURRENT = mutualist_economy PROPOSED = marxist_economy CURRENT_FACTION = mutualist PROPOSED_FACTION = marxist }
+	}
+	option = {
+		name = intl_vote_events.10.propose_anarchist_economy
+		trigger = {
+			intl_law_permanently_enabled = { LAW = mutualist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = anarchist_economy } }
+		}
+		intl_start_vote = { CURRENT = mutualist_economy PROPOSED = anarchist_economy CURRENT_FACTION = mutualist PROPOSED_FACTION = anarchist }
+	}
+	option = {
+		name = intl_vote_events.10.propose_syndicalist_economy
+		trigger = {
+			intl_law_permanently_enabled = { LAW = mutualist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = syndicalist_economy } }
+		}
+		intl_start_vote = { CURRENT = mutualist_economy PROPOSED = syndicalist_economy CURRENT_FACTION = mutualist PROPOSED_FACTION = syndicalist }
+	}
+	option = {
+		name = intl_vote_events.10.propose_blanquist_economy
+		trigger = {
+			intl_law_permanently_enabled = { LAW = mutualist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = blanquist_economy } }
+		}
+		intl_start_vote = { CURRENT = mutualist_economy PROPOSED = blanquist_economy CURRENT_FACTION = mutualist PROPOSED_FACTION = blanquist }
+	}
+
+	### ECONOMY â€” marxist challenged
+	option = {
+		name = intl_vote_events.10.propose_mutualist_economy
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = mutualist_economy } }
+		}
+		intl_start_vote = { CURRENT = marxist_economy PROPOSED = mutualist_economy CURRENT_FACTION = marxist PROPOSED_FACTION = mutualist }
+	}
+	option = {
+		name = intl_vote_events.10.propose_anarchist_econ_vs_marxist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = anarchist_economy } }
+		}
+		intl_start_vote = { CURRENT = marxist_economy PROPOSED = anarchist_economy CURRENT_FACTION = marxist PROPOSED_FACTION = anarchist }
+	}
+	option = {
+		name = intl_vote_events.10.propose_syndicalist_econ_vs_marxist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = syndicalist_economy } }
+		}
+		intl_start_vote = { CURRENT = marxist_economy PROPOSED = syndicalist_economy CURRENT_FACTION = marxist PROPOSED_FACTION = syndicalist }
+	}
+
+	### CANCEL
+	option = {
+		name = intl_vote_events.10.cancel
+		default_option = yes
+	}
+}
+
+# Anarchist motion â€” Bakunin only
+intl_vote_events.11 = {
+	type = country_event
+	placement = ROOT
+
+	title = intl_vote_events.11.t
+	desc = intl_vote_events.11.d
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+	event_image = { video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2" }
+
+	option = {
+		name = intl_vote_events.11.propose_council_republic
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = anarchist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = marxist_council_republic PROPOSED = anarchist_council_republic CURRENT_FACTION = marxist PROPOSED_FACTION = anarchist }
+	}
+	option = {
+		name = intl_vote_events.11.propose_economy_vs_marxist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = anarchist_economy } }
+		}
+		intl_start_vote = { CURRENT = marxist_economy PROPOSED = anarchist_economy CURRENT_FACTION = marxist PROPOSED_FACTION = anarchist }
+	}
+	option = {
+		name = intl_vote_events.11.propose_economy_vs_mutualist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = mutualist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = anarchist_economy } }
+		}
+		intl_start_vote = { CURRENT = mutualist_economy PROPOSED = anarchist_economy CURRENT_FACTION = mutualist PROPOSED_FACTION = anarchist }
+	}
+	option = {
+		name = intl_vote_events.11.cancel
+		default_option = yes
+	}
+}
+
+# Mutualist motion â€” Proudhon only
+intl_vote_events.12 = {
+	type = country_event
+	placement = ROOT
+
+	title = intl_vote_events.12.t
+	desc = intl_vote_events.12.d
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+	event_image = { video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2" }
+
+	option = {
+		name = intl_vote_events.12.propose_council_republic_vs_anarchist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = anarchist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = mutualist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = anarchist_council_republic PROPOSED = mutualist_council_republic CURRENT_FACTION = anarchist PROPOSED_FACTION = mutualist }
+	}
+	option = {
+		name = intl_vote_events.12.propose_council_republic_vs_marxist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = mutualist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = marxist_council_republic PROPOSED = mutualist_council_republic CURRENT_FACTION = marxist PROPOSED_FACTION = mutualist }
+	}
+	option = {
+		name = intl_vote_events.12.propose_economy
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = mutualist_economy } }
+		}
+		intl_start_vote = { CURRENT = marxist_economy PROPOSED = mutualist_economy CURRENT_FACTION = marxist PROPOSED_FACTION = mutualist }
+	}
+	option = {
+		name = intl_vote_events.12.cancel
+		default_option = yes
+	}
+}
+
+# Syndicalist motion â€” De Paepe only
+intl_vote_events.13 = {
+	type = country_event
+	placement = ROOT
+
+	title = intl_vote_events.13.t
+	desc = intl_vote_events.13.d
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+	event_image = { video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2" }
+
+	option = {
+		name = intl_vote_events.13.propose_council_republic_vs_anarchist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = anarchist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = syndicalist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = anarchist_council_republic PROPOSED = syndicalist_council_republic CURRENT_FACTION = anarchist PROPOSED_FACTION = syndicalist }
+	}
+	option = {
+		name = intl_vote_events.13.propose_council_republic_vs_marxist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = syndicalist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = marxist_council_republic PROPOSED = syndicalist_council_republic CURRENT_FACTION = marxist PROPOSED_FACTION = syndicalist }
+	}
+	option = {
+		name = intl_vote_events.13.propose_economy_vs_mutualist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = mutualist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = syndicalist_economy } }
+		}
+		intl_start_vote = { CURRENT = mutualist_economy PROPOSED = syndicalist_economy CURRENT_FACTION = mutualist PROPOSED_FACTION = syndicalist }
+	}
+	option = {
+		name = intl_vote_events.13.propose_economy_vs_marxist
+		trigger = {
+			intl_law_permanently_enabled = { LAW = marxist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = syndicalist_economy } }
+		}
+		intl_start_vote = { CURRENT = marxist_economy PROPOSED = syndicalist_economy CURRENT_FACTION = marxist PROPOSED_FACTION = syndicalist }
+	}
+	option = {
+		name = intl_vote_events.13.cancel
+		default_option = yes
+	}
+}
+
+# Blanquist motion â€” Blanqui only
+intl_vote_events.14 = {
+	type = country_event
+	placement = ROOT
+
+	title = intl_vote_events.14.t
+	desc = intl_vote_events.14.d
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+	event_image = { video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2" }
+
+	option = {
+		name = intl_vote_events.14.propose_presidential_republic
+		trigger = {
+			intl_law_permanently_enabled = { LAW = anarchist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = blanquist_presidential_republic } }
+		}
+		intl_start_vote = { CURRENT = anarchist_council_republic PROPOSED = blanquist_presidential_republic CURRENT_FACTION = anarchist PROPOSED_FACTION = blanquist }
+	}
+	option = {
+		name = intl_vote_events.14.propose_economy
+		trigger = {
+			intl_law_permanently_enabled = { LAW = mutualist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = blanquist_economy } }
+		}
+		intl_start_vote = { CURRENT = mutualist_economy PROPOSED = blanquist_economy CURRENT_FACTION = mutualist PROPOSED_FACTION = blanquist }
+	}
+	option = {
+		name = intl_vote_events.14.cancel
+		default_option = yes
+	}
+}
+
+# Marxist motion â€” Marx only
+intl_vote_events.15 = {
+	type = country_event
+	placement = ROOT
+
+	title = intl_vote_events.15.t
+	desc = intl_vote_events.15.d
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+	event_image = { video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2" }
+
+	option = {
+		name = intl_vote_events.15.propose_council_republic
+		trigger = {
+			intl_law_permanently_enabled = { LAW = anarchist_council_republic }
+			NOT = { intl_law_permanently_enabled = { LAW = marxist_council_republic } }
+		}
+		intl_start_vote = { CURRENT = anarchist_council_republic PROPOSED = marxist_council_republic CURRENT_FACTION = anarchist PROPOSED_FACTION = marxist }
+	}
+	option = {
+		name = intl_vote_events.15.propose_economy
+		trigger = {
+			intl_law_permanently_enabled = { LAW = mutualist_economy }
+			NOT = { intl_law_permanently_enabled = { LAW = marxist_economy } }
+		}
+		intl_start_vote = { CURRENT = mutualist_economy PROPOSED = marxist_economy CURRENT_FACTION = mutualist PROPOSED_FACTION = marxist }
+	}
+	option = {
+		name = intl_vote_events.15.cancel
+		default_option = yes
+	}
+}
+
+# Vote ended â€” current law holds
+intl_vote_events.3 = {
+	type = country_event
+	placement = ROOT
+
+	title = intl_vote_events.3.t
+	desc = intl_vote_events.3.d
+	flavor = intl_vote_events.3.f
+
+	event_image = { video = "gfx/event_pictures/unspecific_ruler_speaking_to_people.bk2" }
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	duration = 3
+
+	option = {
+		name = intl_vote_events.3.a
+		default_option = yes
+	}
+}
+
+# --- mp_faction_events.txt ---
+namespace = mp_faction_events
+
+# Faction selection â€” fired on the Internationale host country when je_internationale activates
+mp_faction_events.1 = {
+	type = country_event
+	placement = ROOT
+
+	title = mp_faction_events.1.t
+	desc = mp_faction_events.1.d
+	flavor = mp_faction_events.1.f
+
+	event_image = { video = "gfx/event_pictures/europenorthamerica_springtime_of_nations.bk2" }
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	option = {
+		name = mp_faction_events.1.anarchist
+		set_variable = anarchist_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+	}
+	option = {
+		name = mp_faction_events.1.mutualist
+		set_variable = mutualist_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+	}
+	option = {
+		name = mp_faction_events.1.syndicalist
+		set_variable = syndacalist_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+	}
+	option = {
+		name = mp_faction_events.1.blanquist
+		set_variable = blanquist_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+	}
+	option = {
+		name = mp_faction_events.1.marxist
+		set_variable = marxists_internationale_leader
+		set_variable = mp_faction_leader_confirmed
+	}
+}

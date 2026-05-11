@@ -1050,18 +1050,30 @@ law_mutualist_economy = {
 	}
 
 	modifier = {
-		state_farmers_investment_pool_efficiency_mult = 0.35
-		state_machinists_investment_pool_efficiency_mult = 0.60
-		state_engineers_investment_pool_efficiency_mult = 0.60
-		state_machinists_investment_pool_contribution_add = 0.25
-		state_engineers_investment_pool_contribution_add = 0.30
+		state_machinists_investment_pool_efficiency_mult = 0.90
+		state_machinists_investment_pool_contribution_add = 0.35
+		country_machinists_pol_str_mult = 0.25
 		country_private_construction_allocation_mult = 0.60
 		country_government_dividends_reinvestment_add = 0.90
 		building_company_worker_dividends_add = 0.50
 		country_free_charters_add = 3
 		country_max_companies_add = 1
 		country_loan_interest_rate_mult = -0.20
-		building_group_bg_manufacturing_allowed_collectivization_add = 1.0
+		country_force_privatization_bool = yes
+		building_group_bg_manufacturing_allowed_collectivization_add = 0.25
+		building_group_bg_agriculture_allowed_collectivization_add = 0.25
+		building_group_bg_ranching_allowed_collectivization_add = 0.25
+		building_group_bg_subsistence_agriculture_allowed_collectivization_add = 0.25
+		building_group_bg_subsistence_ranching_allowed_collectivization_add = 0.25
+		building_group_bg_plantations_allowed_collectivization_add = 0.25
+		building_group_bg_mining_allowed_collectivization_add = 0.25
+		building_group_bg_heavy_industry_allowed_collectivization_add = 0.25
+		building_group_bg_military_industry_allowed_collectivization_add = 0.25
+		building_group_bg_light_industry_allowed_collectivization_add = 0.25
+		building_group_bg_extraction_allowed_collectivization_add = 0.25
+		building_group_bg_power_allowed_collectivization_add = 0.25
+		building_group_bg_private_infrastructure_allowed_collectivization_add = 0.25
+		building_group_bg_arts_allowed_collectivization_add = 0.25
 		building_group_bg_manufacturing_employee_mult = -0.10
 		building_group_bg_mining_employee_mult = -0.05
 		building_group_bg_service_employee_mult = -0.15
@@ -1155,16 +1167,53 @@ law_mutualist_oligarchy = {
 	}
 
 	modifier = {
+		country_legitimacy_govt_total_votes_add = 65
 		country_legitimacy_headofstate_add = 10
 		country_legitimacy_govt_total_clout_add = 130
 		country_legitimacy_govt_size_add = 3
 		country_legitimacy_ideological_incoherence_mult = -0.15
+		country_voting_power_base_add = 50
+		country_voting_power_wealth_threshold_add = 15
+		country_electoral_confidence_impact_mult = -0.15
 		country_officers_pol_str_mult = 0.25
 		country_aristocrats_pol_str_mult = -0.25
 		country_capitalists_pol_str_mult = 0.15
 		interest_group_ig_petty_bourgeoisie_pol_str_mult = 0.50
 		interest_group_ig_trade_unions_pol_str_mult = 0.25
 		country_authority_add = 120
+	}
+
+	on_activate = {
+		if = {
+			limit = {
+				game_date > 1836.1.1
+				country_has_voting_franchise = yes
+			}
+			initialize_electoral_confidence = yes
+		}
+		random_law = {
+			limit = {
+				type = law_type:law_mutualist_oligarchy
+			}
+			save_scope_as = relevant_voting_law
+		}
+		handle_possible_absent_caciquismo_variables = yes
+		scripted_effect_parties_emergence = yes
+		inherit_caciquismo_effect = yes
+		inherit_free_elections_effect = yes
+		if = {
+			limit = {
+				has_law = law_type:law_monarchy
+				has_variable = king_in_parliament_possible
+				NOT = {
+					has_journal_entry = je_king_in_parliament
+				}
+			}
+			custom_tooltip = {
+				text = king_in_parliament_tt
+				add_journal_entry = { type = je_king_in_parliament }
+			}
+		}
 	}
 
 	ai_enact_weight_modifier = {
@@ -1238,6 +1287,26 @@ law_syndicalist_single_party = {
 	can_enact = {
 		has_variable = bel_de_paepe_var
 		intl_law_permanently_enabled = { LAW = syndicalist_single_party }
+		OR = {
+			ig:ig_trade_unions ?= {
+				has_party = yes
+			}
+			custom_tooltip = {
+				text = sps_no_party_tt
+				country_has_voting_franchise = no
+			}
+		}
+		trigger_if = {
+			limit = {
+				c:BIC ?= ROOT
+				is_subject = yes
+				NOT = { has_law = scope:law }
+			}
+			custom_tooltip = {
+				text = BIC_not_able_to_change_distribution_of_power_tt
+				has_variable = britain_granted_dop_permission
+			}
+		}
 	}
 
 	can_impose = {
@@ -1250,6 +1319,61 @@ law_syndicalist_single_party = {
 		interest_group_ig_trade_unions_pol_str_mult = 0.75
 		country_authority_add = 75
 		political_movement_radicalism_add = -0.05
+	}
+
+	on_activate = {
+		set_only_legal_party_from_ig = ig:ig_trade_unions
+		custom_tooltip = {
+			text = sps_government_reshuffle_tt
+			every_interest_group = {
+				limit = {
+					is_in_government = yes
+					NOT = {
+						has_party = yes
+					}
+				}
+				remove_ruling_interest_group = yes
+			}
+			every_interest_group = {
+				limit = {
+					is_in_government = no
+					has_party = yes
+				}
+				add_ruling_interest_group = yes
+			}
+		}
+
+		if = {
+			limit = {
+				has_law = law_type:law_monarchy
+				has_variable = king_in_parliament_possible
+				NOT = {
+					has_journal_entry = je_king_in_parliament
+				}
+			}
+			custom_tooltip = {
+				text = king_in_parliament_tt
+				add_journal_entry = { type = je_king_in_parliament }
+			}
+		}
+		if = {
+			limit = {
+				game_date > 1836.1.1
+				country_has_voting_franchise = yes
+			}
+			initialize_electoral_confidence = yes
+		}
+	}
+
+	on_deactivate = {
+		unset_only_legal_party = yes
+		update_party_support = yes
+		if = {
+			limit = {
+				has_variable = fatherland_front_var
+			}
+			remove_variable = fatherland_front_var
+		}
 	}
 
 	ai_enact_weight_modifier = {
@@ -1345,15 +1469,9 @@ law_syndicalist_economy = {
 	}
 
 	modifier = {
-		state_shopkeepers_investment_pool_efficiency_mult = 0.30
-		state_farmers_investment_pool_efficiency_mult = 0.25
-		state_machinists_investment_pool_efficiency_mult = 0.65
-		state_engineers_investment_pool_efficiency_mult = 0.65
-		state_machinists_investment_pool_contribution_add = 0.20
-		state_engineers_investment_pool_contribution_add = 0.20
-		state_shopkeepers_investment_pool_contribution_add = 0.05
-		state_clerks_investment_pool_contribution_add = 0.20
-		state_clerks_investment_pool_efficiency_mult = 0.5
+		state_shopkeepers_investment_pool_efficiency_mult = 0.90
+		state_shopkeepers_investment_pool_contribution_add = 0.25
+		country_shopkeepers_pol_str_mult = 0.35
 		country_private_construction_allocation_mult = 0.45
 		country_government_dividends_reinvestment_add = 1.0
 		building_company_worker_dividends_add = 0.75

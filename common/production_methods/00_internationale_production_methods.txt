@@ -1,3 +1,221 @@
+﻿# --- 06_internationale_urban_center.txt ---
+REPLACE_OR_CREATE:pm_traditional_patronage = {
+	texture = "gfx/interface/icons/production_method_icons/ownership_aristocrats.dds"
+
+	disallowing_laws = {
+		law_command_economy
+		law_blanquist_economy
+		law_marxist_economy
+		law_cooperative_ownership
+		law_anarchist_economy
+		law_mutualist_economy
+		law_syndicalist_economy
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_academics_add = 1000
+			building_employment_clerks_add = 3000
+			building_employment_laborers_add = 1000
+		}
+	}
+}
+
+REPLACE_OR_CREATE:pm_bourgeoisie_patronage = {
+	texture = "gfx/interface/icons/production_method_icons/privately_owned.dds"
+
+	unlocking_technologies = {
+		realism
+	}
+
+	disallowing_laws = {
+		law_command_economy
+		law_blanquist_economy
+		law_marxist_economy
+		law_cooperative_ownership
+		law_anarchist_economy
+		law_mutualist_economy
+		law_syndicalist_economy
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_academics_add = 1500
+			building_employment_clerks_add = 2500
+			building_employment_laborers_add = 1000
+		}
+	}
+}
+
+REPLACE_OR_CREATE:pm_free_urban_clergy = {
+	texture = "gfx/interface/icons/production_method_icons/ownership_bureacrats.dds"
+
+	disallowing_laws = {
+		law_state_religion
+		law_state_atheism
+		law_blanquist_state_atheism
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_clerks_add = 100
+			building_employment_clergymen_add = 150
+		}
+	}
+}
+
+REPLACE_OR_CREATE:pm_no_urban_clergy = {
+	texture = "gfx/interface/icons/production_method_icons/state_atheism.dds"
+	unlocking_laws = {
+		law_state_atheism
+	}
+
+	disallowing_laws = {
+		law_blanquist_state_atheism
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_clerks_add = 150
+			building_employment_bureaucrats_add = 50
+		}
+	}
+}
+
+REPLACE_OR_CREATE:pm_blanquist_no_urban_clergy = {
+	texture = "gfx/interface/icons/production_method_icons/state_atheism.dds"
+	unlocking_laws = {
+		law_blanquist_state_atheism
+	}
+
+	disallowing_laws = {
+		law_state_atheism
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_clerks_add = 150
+			building_employment_bureaucrats_add = 50
+		}
+	}
+}
+
+# --- 07_internationale_government.txt ---
+REPLACE_OR_CREATE:pm_religious_bureaucrats = {
+	texture = "gfx/interface/icons/production_method_icons/ownership_clergy.dds"
+
+	disallowing_laws = {
+		law_total_separation
+		law_state_atheism
+		law_blanquist_state_atheism
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_clergymen_add = 250
+			building_employment_bureaucrats_add = 250
+		}
+	}
+}
+
+REPLACE_OR_CREATE:pm_religious_academia = {
+	texture = "gfx/interface/icons/production_method_icons/ownership_clergy.dds"
+
+	disallowing_laws = {
+		law_total_separation
+		law_state_atheism
+		law_blanquist_state_atheism
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_clergymen_add = 250
+			building_employment_academics_add = 250
+		}
+	}
+}
+
+# --- 11_internationale_private_infrastructure.txt ---
+pm_financial_district_syndacalist = {
+	texture = "gfx/interface/icons/production_method_icons/worker_cooperative.dds"
+
+	unlocking_technologies = { mutual_funds }
+
+	unlocking_laws = {
+		law_syndicalist_economy
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_shopkeepers_add = 100
+		}
+		unscaled = {
+			building_employment_shopkeepers_add = 10
+		}
+	}
+}
+
+REPLACE_OR_CREATE:pm_manor_house_bureaucrat_ownership = {
+	texture = "gfx/interface/icons/production_method_icons/ownership_bureacrats.dds"
+
+	unlocking_laws = {
+		law_state_atheism
+	}
+
+	disallowing_laws = {
+		law_blanquist_state_atheism
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_bureaucrats_add = 100
+		}
+		unscaled = {
+			building_bureaucrats_shares_add = 1
+		}
+	}
+}
+
+REPLACE_OR_CREATE:pm_manor_house_blanquist_bureaucrat_ownership = {
+	texture = "gfx/interface/icons/production_method_icons/ownership_bureacrats.dds"
+
+	unlocking_laws = {
+		law_blanquist_state_atheism
+	}
+
+	disallowing_laws = {
+		law_state_atheism
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_bureaucrats_add = 100
+		}
+		unscaled = {
+			building_bureaucrats_shares_add = 1
+		}
+	}
+}
+
+REPLACE_OR_CREATE:pm_manor_house_clergy_ownership = {
+	texture = "gfx/interface/icons/production_method_icons/ownership_clergy.dds"
+
+	disallowing_laws = {
+		law_state_atheism
+		law_blanquist_state_atheism
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_clergymen_add = 100
+		}
+		unscaled = {
+			building_clergymen_shares_add = 1
+		}
+	}
+}
+
+# --- 14_internationale_companies.txt ---
 REPLACE_OR_CREATE:pm_company_headquarter_privately_owned = {
 	texture = "gfx/interface/icons/production_method_icons/privately_owned.dds"
 	is_hidden_when_unavailable = yes
@@ -426,6 +644,11 @@ REPLACE_OR_CREATE:pm_company_headquarter_government_run = {
 		law_command_economy
 	}
 
+	disallowing_laws = {
+		law_blanquist_economy
+		law_marxist_economy
+	}
+
 	building_modifiers = {
 		level_scaled = {
 			building_employment_bureaucrats_add = 50
@@ -443,7 +666,35 @@ REPLACE_OR_CREATE:pm_company_headquarter_worker_cooperative = {
 
 	unlocking_laws = {
 		law_cooperative_ownership
+	}
+
+	disallowing_laws = {
 		law_anarchist_economy
+		law_mutualist_economy
+		law_syndicalist_economy
+	}
+
+	building_modifiers = {
+		level_scaled = {
+			building_employment_shopkeepers_add = 50
+			building_employment_clerks_add = 50
+		}
+		unscaled = {
+			building_shopkeepers_shares_add = 10
+			building_clerks_shares_add = 2
+		}
+	}
+}
+
+REPLACE_OR_CREATE:pm_company_headquarter_anarchist_run = {
+	texture = "gfx/interface/icons/production_method_icons/worker_cooperative.dds"
+
+	unlocking_laws = {
+		law_anarchist_economy
+	}
+
+	disallowing_laws = {
+		law_cooperative_ownership
 		law_mutualist_economy
 		law_syndicalist_economy
 	}
@@ -462,7 +713,7 @@ REPLACE_OR_CREATE:pm_company_headquarter_worker_cooperative = {
 
 
 REPLACE_OR_CREATE:pm_company_headquarter_mixed_government_run = {
-	texture = "gfx/interface/icons/production_method_icons/mixed_ownership.dds"
+	texture = "gfx/interface/icons/production_method_icons/government_run.dds"
 
 	unlocking_laws = {
 		law_state_capitalism
@@ -500,14 +751,36 @@ REPLACE_OR_CREATE:pm_company_headquarter_syndacalist_run = {
 			building_employment_shopkeepers_add = 100
 		}
 		unscaled = {
-			building_shopkeepers_shares_add = 10
-			building_shopkeepers_shares_add = 2
+			building_shopkeepers_shares_add = 15
+		}
+	}
+}
+
+REPLACE_OR_CREATE:pm_company_headquarter_mutualist_run = {
+	texture = "gfx/interface/icons/production_method_icons/worker_cooperative.dds"
+
+	unlocking_laws = {
+		law_mutualist_economy
+	}
+
+	disallowing_laws = {
+		law_cooperative_ownership
+		law_anarchist_economy
+		law_syndicalist_economy
+	}
+	
+	building_modifiers = {
+		level_scaled = {
+			building_employment_machinists_add = 100
+		}
+		unscaled = {
+			building_machinists_shares_add = 15
 		}
 	}
 }
 
 REPLACE_OR_CREATE:pm_company_headquarter_blanquist_run = {
-	texture = "gfx/interface/icons/production_method_icons/mixed_ownership.dds"
+	texture = "gfx/interface/icons/production_method_icons/government_run.dds"
 
 	unlocking_laws = {
 		law_blanquist_economy
@@ -531,7 +804,7 @@ REPLACE_OR_CREATE:pm_company_headquarter_blanquist_run = {
 }
 
 REPLACE_OR_CREATE:pm_company_headquarter_marxist_run = {
-	texture = "gfx/interface/icons/production_method_icons/mixed_ownership.dds"
+	texture = "gfx/interface/icons/production_method_icons/government_run.dds"
 
 	unlocking_laws = {
 		law_marxist_economy

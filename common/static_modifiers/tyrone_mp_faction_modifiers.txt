@@ -1,5 +1,0 @@
-mp_faction_extra_agitator_slots = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
-	country_agitator_slots_add = 5
-}
-

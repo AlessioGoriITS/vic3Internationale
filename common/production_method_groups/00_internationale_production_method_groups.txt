@@ -1,0 +1,63 @@
+﻿# --- 11_internationale_private_infrastructure.txt ---
+REPLACE_OR_CREATE:pmg_ownership_building_financial_district = {
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_ownership.dds"
+	ai_selection = most_productive
+
+	production_methods = {
+		pm_financial_district_privately_owned
+		pm_financial_district_publicly_traded
+		pm_financial_district_principle_divine_economics_2
+		pm_financial_district_syndacalist
+	}
+}
+
+# --- 14_internationale_companies.txt ---
+REPLACE_OR_CREATE:pmg_ownership_building_company_headquarter = {
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_ownership.dds"
+	ai_selection = most_productive
+
+	production_methods = {
+		pm_company_headquarter_privately_owned
+		pm_company_headquarter_privately_owned_aristocrats
+		pm_company_headquarter_privately_owned_aristocrats_commercial_agriculture
+		pm_company_headquarter_privately_owned_shopkeepers
+		pm_company_headquarter_privately_owned_academics
+		pm_company_headquarter_privately_owned_bureaucrats
+		pm_company_headquarter_principle_divine_economics_2
+		pm_company_headquarter_principle_divine_economics_2_aristocrats
+		pm_company_headquarter_principle_divine_economics_2_aristocrats_commercial_agriculture
+		pm_company_headquarter_principle_divine_economics_2_shopkeepers
+		pm_company_headquarter_principle_divine_economics_2_academics
+		pm_company_headquarter_principle_divine_economics_2_bureaucrats
+		pm_company_headquarter_government_run
+		pm_company_headquarter_mixed_government_run
+		pm_company_headquarter_worker_cooperative
+		pm_company_headquarter_anarchist_run
+		pm_company_headquarter_syndacalist_run
+		pm_company_headquarter_mutualist_run
+		pm_company_headquarter_blanquist_run
+		pm_company_headquarter_marxist_run
+	}
+}
+
+
+REPLACE_OR_CREATE:pmg_urban_clergy = {
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_ownership.dds"
+	production_methods = {
+		pm_state_urban_clergy
+		pm_free_urban_clergy
+		pm_no_urban_clergy
+		pm_blanquist_no_urban_clergy
+	}
+}
+
+REPLACE_OR_CREATE:pmg_additional_ownership_building_manor_house = {
+	texture = "gfx/interface/icons/generic_icons/mixed_icon_ownership.dds"
+	ai_selection = most_productive
+
+	production_methods = {
+		pm_manor_house_clergy_ownership
+		pm_manor_house_bureaucrat_ownership
+		pm_manor_house_blanquist_bureaucrat_ownership
+	}
+}

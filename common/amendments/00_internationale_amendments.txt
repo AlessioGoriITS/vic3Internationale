@@ -1,0 +1,121 @@
+amendment_mutualist_public_credit = {
+	parent = law_mutualist_economy
+
+	allowed_laws = {
+		law_mutualist_economy
+	}
+
+	modifier = {
+		country_authority_mult = 0.10
+		country_government_dividends_reinvestment_add = -0.20
+		country_government_dividends_efficiency_add = 0.40
+	}
+
+	possible = {
+		has_variable = proudhon_var
+		has_law = law_type:law_mutualist_economy
+	}
+
+	would_sponsor = {
+		OR = {
+			is_interest_group_type = ig_trade_unions
+			leader ?= {
+				has_ideology = ideology:ideology_mutualist
+			}
+		}
+	}
+
+	ai_will_revoke = {
+		always = no
+	}
+
+	can_repeal = {
+		legitimacy >= legitimacy_to_repeal_amendment
+	}
+
+	amendment_activism_multiplier = 0.5
+}
+
+amendment_mutualist_free_association = {
+	parent = law_mutualist_economy
+
+	allowed_laws = {
+		law_mutualist_economy
+	}
+
+	modifier = {
+		country_authority_mult = -0.10
+		country_force_privatization_bool = yes
+		country_private_construction_allocation_mult = 0.50
+		state_machinists_investment_pool_contribution_add = 0.05
+	}
+
+	possible = {
+		has_variable = proudhon_var
+		has_law = law_type:law_mutualist_economy
+	}
+
+	would_sponsor = {
+		OR = {
+			is_interest_group_type = ig_petty_bourgeoisie
+			leader ?= {
+				has_ideology = ideology:ideology_mutualist
+			}
+		}
+	}
+
+	ai_will_revoke = {
+		always = no
+	}
+
+	can_repeal = {
+		legitimacy >= legitimacy_to_repeal_amendment
+	}
+
+	amendment_activism_multiplier = 0.5
+}
+
+amendment_mutualist_workshop_discipline = {
+	parent = law_mutualist_economy
+
+	allowed_laws = {
+		law_mutualist_economy
+	}
+
+	modifier = {
+		country_authority_mult = -0.10
+		state_working_adult_ratio_add = 0.05
+		state_birth_rate_mult = -0.02
+		building_group_bg_mining_employee_mult = -0.10
+		building_group_bg_oil_extraction_employee_mult = -0.10
+		building_group_bg_logging_employee_mult = -0.10
+		building_group_bg_rubber_employee_mult = -0.10
+		building_group_bg_fishing_employee_mult = -0.10
+		building_group_bg_whaling_employee_mult = -0.10
+	}
+
+	possible = {
+		has_variable = proudhon_var
+		has_law = law_type:law_mutualist_economy
+	}
+
+	would_sponsor = {
+		OR = {
+			is_interest_group_type = ig_trade_unions
+			is_interest_group_type = ig_intelligentsia
+			leader ?= {
+				has_ideology = ideology:ideology_mutualist
+			}
+		}
+	}
+
+	ai_will_revoke = {
+		always = no
+	}
+
+	can_repeal = {
+		legitimacy >= legitimacy_to_repeal_amendment
+	}
+
+	amendment_activism_multiplier = 0.5
+}
