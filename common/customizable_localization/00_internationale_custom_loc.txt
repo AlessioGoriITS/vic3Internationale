@@ -1,0 +1,69 @@
+syndicalist_right_to_associate_checkbox = {
+	type = country
+	text = {
+		trigger = {
+			NOT = { has_law_or_variant = law_type:law_right_to_associate }
+		}
+		localization_key = checkbox_unticked
+	}
+	text = {
+		trigger = {
+			has_law_or_variant = law_type:law_right_to_associate
+		}
+		localization_key = checkbox_ticked
+	}
+}
+
+syndicalist_labor_rights_checkbox = {
+	type = country
+	text = {
+		trigger = {
+			has_law_or_variant = law_type:law_no_workers_rights
+		}
+		localization_key = checkbox_unticked
+	}
+	text = {
+		trigger = {
+			NOT = { has_law_or_variant = law_type:law_no_workers_rights }
+		}
+		localization_key = checkbox_ticked
+	}
+}
+
+syndicalist_progressive_taxation_checkbox = {
+	type = country
+	text = {
+		trigger = {
+			NOR = {
+				has_law_or_variant = law_type:law_proportional_taxation
+				has_law_or_variant = law_type:law_graduated_taxation
+			}
+		}
+		localization_key = checkbox_unticked
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_law_or_variant = law_type:law_proportional_taxation
+				has_law_or_variant = law_type:law_graduated_taxation
+			}
+		}
+		localization_key = checkbox_ticked
+	}
+}
+
+syndicalist_social_welfare_checkbox = {
+	type = country
+	text = {
+		trigger = {
+			has_law_or_variant = law_type:law_no_social_security
+		}
+		localization_key = checkbox_unticked
+	}
+	text = {
+		trigger = {
+			NOT = { has_law_or_variant = law_type:law_no_social_security }
+		}
+		localization_key = checkbox_ticked
+	}
+}

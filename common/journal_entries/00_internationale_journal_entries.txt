@@ -74,29 +74,34 @@ REPLACE_OR_CREATE:je_communism_1 = {
 		else = {
 			if = {
 				limit = {
-					any_interest_group = {
-						law_stance = {
-							law = law_type:law_council_republic
-							value > neutral
-						}
-					}
+					NOT = { has_variable = syndicalist_general_strike_done }
 				}
-				random_interest_group = {
+				if = {
 					limit = {
-						law_stance = {
-							law = law_type:law_council_republic
-							value > neutral
+						any_interest_group = {
+							law_stance = {
+								law = law_type:law_council_republic
+								value > neutral
+							}
 						}
 					}
-					set_variable = communist_ig_var
+					random_interest_group = {
+						limit = {
+							law_stance = {
+								law = law_type:law_council_republic
+								value > neutral
+							}
+						}
+						set_variable = communist_ig_var
+					}
 				}
-			}
-			else = {
-				ig:ig_trade_unions ?= {
-					set_variable = communist_ig_var
+				else = {
+					ig:ig_trade_unions ?= {
+						set_variable = communist_ig_var
+					}
 				}
+				trigger_event = { id = intl_communism.2 popup = yes }
 			}
-			trigger_event = { id = intl_communism.2 popup = yes }
 		}
 		custom_tooltip = communism_je_1_fail_tt
 	}
@@ -513,8 +518,6 @@ je_mutualist_cooperative_mandate = {
 		}
 		has_law_or_variant = law_type:law_cooperative_ownership
 		has_law = law_type:law_right_to_associate
-		has_law = law_type:law_cooperative_ownership
-		has_law_or_variant = law_type:law_public_health_insurance
 		has_law_or_variant = law_type:law_public_health_insurance
 		OR = {
 			has_law_or_variant = law_type:law_regulatory_bodies
@@ -548,48 +551,236 @@ je_mutualist_cooperative_mandate = {
 je_syndicalist_amendments = {
 	icon = "gfx/interface/icons/law_icons/syndacalism/syndicalism_council_republic.dds"
 
-	group = je_group_internationalism
+	group = je_group_internal_affairs
 
 	should_be_pinned_by_default_uninvolved_or_context = yes
 
-	is_shown_when_inactive = {
-	}
+	scripted_progress_bar = syndicalist_general_strike_progress_bar
 
 	possible = {
 	}
 
+	immediate = {
+		set_variable = { name = syndicalist_strike_waves value = 0 }
+		trigger_event = { id = intl_communism.7 popup = yes }
+	}
+
 	status_desc = {
 		first_valid = {
+			triggered_desc = {
+				trigger = { var:syndicalist_strike_waves >= 3 }
+				desc = je_syndicalist_amendments_status_wave_3
+			}
+			triggered_desc = {
+				trigger = { var:syndicalist_strike_waves >= 2 }
+				desc = je_syndicalist_amendments_status_wave_2
+			}
+			triggered_desc = {
+				trigger = { var:syndicalist_strike_waves >= 1 }
+				desc = je_syndicalist_amendments_status_wave_1
+			}
+			triggered_desc = {
+				trigger = {
+					scope:journal_entry = {
+						"scripted_bar_progress(syndicalist_general_strike_progress_bar)" >= 80
+					}
+				}
+				desc = je_syndicalist_amendments_status_near_general
+			}
+			triggered_desc = {
+				trigger = {
+					scope:journal_entry = {
+						"scripted_bar_progress(syndicalist_general_strike_progress_bar)" >= 55
+					}
+				}
+				desc = je_syndicalist_amendments_status_intensifying
+			}
+			triggered_desc = {
+				trigger = {
+					scope:journal_entry = {
+						"scripted_bar_progress(syndicalist_general_strike_progress_bar)" >= 25
+					}
+				}
+				desc = je_syndicalist_amendments_status_spreading
+			}
 			triggered_desc = {
 				desc = je_syndicalist_amendments_status_desc
 			}
 		}
 	}
 
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					scope:journal_entry = {
+						"scripted_bar_progress(syndicalist_general_strike_progress_bar)" >= 25
+					}
+					var:syndicalist_strike_waves < 1
+				}
+				trigger_event = { id = intl_communism.8 popup = yes }
+			}
+			if = {
+				limit = {
+					scope:journal_entry = {
+						"scripted_bar_progress(syndicalist_general_strike_progress_bar)" >= 55
+					}
+					var:syndicalist_strike_waves < 2
+				}
+				trigger_event = { id = intl_communism.10 popup = yes }
+			}
+			if = {
+				limit = {
+					scope:journal_entry = {
+						"scripted_bar_progress(syndicalist_general_strike_progress_bar)" >= 80
+					}
+					var:syndicalist_strike_waves < 3
+				}
+				trigger_event = { id = intl_communism.12 popup = yes }
+			}
+		}
+	}
+
 	complete = {
 		custom_tooltip = {
-			text = syndicalist_communist_republic_tt
-			has_law_or_variant = law_type:law_council_republic
+			text = syndicalist_repeated_strikes_tt
+			var:syndicalist_strike_waves >= 3
 		}
 		custom_tooltip = {
-			text = syndicalist_economic_base_tt
-			OR = {
-				has_law = law_type:law_interventionism
-				has_law = law_type:law_cooperative_ownership
+			text = syndicalist_strike_momentum_tt
+			scope:journal_entry = {
+				"scripted_bar_progress(syndicalist_general_strike_progress_bar)" >= 100
+			}
+		}
+		custom_tooltip = {
+			text = syndicalist_trade_unions_not_marginal_tt
+			ig:ig_trade_unions ?= {
+				is_marginal = no
+			}
+		}
+	}
+
+	fail = {
+		OR = {
+			has_law_or_variant = law_type:law_council_republic
+			custom_tooltip = {
+				text = syndicalist_government_concessions_tt
+				has_law_or_variant = law_type:law_right_to_associate
+				NOT = { has_law_or_variant = law_type:law_no_workers_rights }
+				NOT = { has_law_or_variant = law_type:law_no_social_security }
+				OR = {
+					has_law_or_variant = law_type:law_proportional_taxation
+					has_law_or_variant = law_type:law_graduated_taxation
+				}
 			}
 		}
 	}
 
 	on_complete = {
-		custom_tooltip = {
-			text = syndicalist_amendments_recorded_tt
-			set_variable = syndicalist_amendments_recorded
+		set_variable = syndicalist_general_strike_done
+		trigger_event = { id = intl_communism.9 popup = yes }
+	}
+
+	event_outcome_completed_desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = syndicalist_general_strike_completed_effects_tt
+			}
 		}
-		add_modifier = {
-			name = modifier_syndicalist_factory_council_overseers
+	}
+
+	on_fail = {
+		set_variable = syndicalist_general_strike_done
+		if = {
+			limit = {
+				NOT = { has_law_or_variant = law_type:law_council_republic }
+			}
+			trigger_event = { id = intl_communism.11 popup = yes }
 		}
-		add_loyalists = {
-			value = 0.05
+	}
+
+	weight = 1000
+}
+
+je_consolidate_the_syndacate = {
+	icon = "gfx/interface/icons/law_icons/syndacalism/syndacalist_economy.dds"
+
+	group = je_group_internal_affairs
+
+	should_be_pinned_by_default_uninvolved_or_context = yes
+
+	scripted_button = je_syndacate_labour_fronts
+	scripted_button = je_syndacate_rural_parties
+	scripted_button = je_syndacate_intellectuals
+	scripted_button = je_syndacate_purge_bourgeoisie
+
+	status_desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_law = law_type:law_syndicalist_economy
+				}
+				desc = je_consolidate_the_syndacate_status_complete
+			}
+			triggered_desc = {
+				desc = je_consolidate_the_syndacate_status_desc
+			}
+		}
+	}
+
+	immediate = {
+		create_character = {
+			is_agitator = yes
+			interest_group = ig:ig_petty_bourgeoisie
+			ideology = ideology_syndicalist
+			traits = {
+				persistent
+				meticulous
+			}
+		}
+		create_character = {
+			is_agitator = yes
+			interest_group = ig:ig_trade_unions
+			ideology = ideology_syndicalist
+			traits = {
+				persistent
+				direct
+			}
+		}
+	}
+
+	complete = {
+		has_law = law_type:law_syndicalist_economy
+	}
+
+	fail = {
+		NOT = { has_law = law_type:law_syndicalist_economy }
+		NOT = { is_enacting_law = law_type:law_syndicalist_economy }
+	}
+
+	on_complete = {
+		set_variable = syndicalist_syndacate_consolidated
+		trigger_event = { id = intl_communism.13 popup = yes }
+	}
+
+	event_outcome_completed_desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = je_consolidate_the_syndacate_completed_effects_tt
+			}
+		}
+	}
+
+	on_fail = {
+		set_variable = syndicalist_syndacate_failed
+		trigger_event = { id = intl_communism.14 popup = yes }
+	}
+
+	event_outcome_failed_desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = je_consolidate_the_syndacate_failed_effects_tt
+			}
 		}
 	}
 

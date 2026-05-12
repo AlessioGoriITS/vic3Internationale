@@ -1,0 +1,68 @@
+syndicalist_general_strike_progress_bar = {
+	name = "syndicalist_general_strike_progress_bar"
+	desc = "syndicalist_general_strike_progress_bar_desc"
+
+	default = yes
+
+	start_value = 0
+	min_value = 0
+	max_value = 100
+
+	monthly_progress = {
+		if = {
+			limit = {
+				ig:ig_trade_unions ?= {
+					is_marginal = no
+				}
+			}
+			add = {
+				desc = "syndicalist_progress_trade_unions_not_marginal"
+				value = 4
+			}
+		}
+		if = {
+			limit = {
+				ig:ig_trade_unions ?= {
+					is_in_government = yes
+				}
+			}
+			add = {
+				desc = "syndicalist_progress_trade_unions_government"
+				value = 2
+			}
+		}
+		else = {
+			add = {
+				desc = "syndicalist_progress_trade_unions_opposition"
+				value = 1
+			}
+		}
+		if = {
+			limit = {
+				legitimacy < 50
+			}
+			add = {
+				desc = "syndicalist_progress_weak_government"
+				value = 2
+			}
+		}
+		if = {
+			limit = {
+				has_law_or_variant = law_type:law_right_to_associate
+			}
+			add = {
+				desc = "syndicalist_progress_right_to_associate"
+				value = 2
+			}
+		}
+		if = {
+			limit = {
+				has_law_or_variant = law_type:law_worker_protections
+			}
+			add = {
+				desc = "syndicalist_progress_worker_protections"
+				value = 1
+			}
+		}
+	}
+}

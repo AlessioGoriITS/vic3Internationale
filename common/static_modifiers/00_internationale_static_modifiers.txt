@@ -1,9 +1,61 @@
 ﻿# --- syndicalist_modifiers.txt ---
-modifier_syndicalist_factory_council_overseers = {
+modifier_syndicalist_strike_committees = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_positive.dds
+	state_construction_mult = -0.10
+	state_turmoil_effects_mult = 1
+	political_movement_radicalism_add = -0.50
+	country_law_enactment_time_mult = -0.40
+}
+
+modifier_syndicalist_railway_compromise = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
-	state_shopkeepers_investment_pool_efficiency_mult = 0.15
-	state_shopkeepers_investment_pool_contribution_add = 0.03
-	country_shopkeepers_pol_str_mult = 0.10
+	state_infrastructure_mult = 0.05
+	country_law_enactment_time_mult = -0.10
+}
+
+modifier_syndicalist_federated_shop_committees = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	state_construction_mult = 0.10
+	country_law_enactment_success_add = 0.10
+}
+
+modifier_syndicalist_revolutionary_reforms = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	country_law_enactment_time_mult = -0.50
+	country_law_enactment_success_add = 0.15
+}
+
+modifier_syndicalist_rural_front_support = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	country_law_enactment_stall_add = -0.10
+}
+
+modifier_syndicalist_bourgeoisie_purged = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_negative.dds
+	interest_group_pol_str_mult = -1.50
+	interest_group_approval_add = -20
+}
+
+modifier_syndicalist_council_opposition_purged = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_negative.dds
+	interest_group_pol_str_mult = -1.50
+	interest_group_approval_add = -20
+}
+
+modifier_syndicalist_revolutionary_mandate = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_documents_positive.dds
+	country_legitimacy_base_add = 20
+	country_legitimacy_ideological_incoherence_mult = -0.20
+}
+
+modifier_syndicalist_council_opposition_conciliated = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	interest_group_approval_add = 10
+}
+
+modifier_syndicalist_broken_strike = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_negative.dds
+	political_movement_radicalism_add = -0.10
 }
 
 # --- tyrone_mp_faction_modifiers.txt ---

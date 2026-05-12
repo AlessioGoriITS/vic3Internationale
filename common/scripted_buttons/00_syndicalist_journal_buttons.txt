@@ -1,0 +1,170 @@
+je_syndacate_labour_fronts = {
+	name = je_syndacate_labour_fronts
+	desc = je_syndacate_labour_fronts_desc
+
+	visible = {
+		has_journal_entry = je_consolidate_the_syndacate
+		NOT = { has_variable = syndacate_labour_fronts_supported }
+	}
+
+	possible = {
+		any_interest_group = {
+			is_interest_group_type = ig_trade_unions
+			leader = {
+				has_ideology = ideology:ideology_syndicalist
+			}
+		}
+	}
+
+	selected = {
+		has_variable = syndacate_labour_fronts_supported
+	}
+
+	effect = {
+		add_loyalists = {
+			strata = lower
+			value = 0.20
+		}
+		add_radicals = {
+			strata = upper
+			value = 0.25
+		}
+		set_variable = syndacate_labour_fronts_supported
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+je_syndacate_rural_parties = {
+	name = je_syndacate_rural_parties
+	desc = je_syndacate_rural_parties_desc
+
+	visible = {
+		has_journal_entry = je_consolidate_the_syndacate
+		NOT = { has_variable = syndacate_rural_parties_supported }
+	}
+
+	possible = {
+		any_interest_group = {
+			is_interest_group_type = ig_rural_folk
+			ig_counts_as_marginal = no
+			ig_approval >= 1
+		}
+	}
+
+	selected = {
+		has_variable = syndacate_rural_parties_supported
+	}
+
+	effect = {
+		ig:ig_rural_folk ?= {
+			leader = {
+				set_ideology = ideology:ideology_syndicalist
+			}
+		}
+		add_enactment_modifier = {
+			name = modifier_syndicalist_rural_front_support
+		}
+		set_variable = syndacate_rural_parties_supported
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+je_syndacate_intellectuals = {
+	name = je_syndacate_intellectuals
+	desc = je_syndacate_intellectuals_desc
+
+	visible = {
+		has_journal_entry = je_consolidate_the_syndacate
+		NOT = { has_variable = syndacate_intellectuals_supported }
+	}
+
+	possible = {
+		enactment_phase > 1
+		any_interest_group = {
+			is_interest_group_type = ig_intelligentsia
+			leader = {
+				NOT = {
+					law_stance = {
+						law = law_type:law_monarchy
+						value > neutral
+					}
+				}
+			}
+		}
+		empty_agitator_slots >= 1
+	}
+
+	selected = {
+		has_variable = syndacate_intellectuals_supported
+	}
+
+	effect = {
+		custom_tooltip = {
+			text = syndacate_intellectuals_agitator_appears_tt
+			create_character = {
+				is_agitator = yes
+				interest_group = ig:ig_intelligentsia
+				ideology = ideology_syndicalist
+				traits = {
+					persistent
+					direct
+				}
+			}
+		}
+		add_enactment_phase = 1
+		set_variable = syndacate_intellectuals_supported
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}
+
+je_syndacate_purge_bourgeoisie = {
+	name = je_syndacate_purge_bourgeoisie
+	desc = je_syndacate_purge_bourgeoisie_desc
+
+	visible = {
+		has_journal_entry = je_consolidate_the_syndacate
+		NOT = { has_variable = syndacate_bourgeoisie_purged }
+	}
+
+	possible = {
+		any_interest_group = {
+			is_interest_group_type = ig_petty_bourgeoisie
+			ig_approval < 0
+		}
+	}
+
+	selected = {
+		has_variable = syndacate_bourgeoisie_purged
+	}
+
+	effect = {
+		ig:ig_industrialists ?= {
+			add_modifier = {
+				name = modifier_syndicalist_bourgeoisie_purged
+				years = 5
+				is_decaying = yes
+			}
+		}
+		ig:ig_petty_bourgeoisie ?= {
+			add_modifier = {
+				name = modifier_syndicalist_bourgeoisie_purged
+				years = 5
+				is_decaying = yes
+			}
+		}
+		set_variable = syndacate_bourgeoisie_purged
+	}
+
+	ai_chance = {
+		value = 1
+	}
+}

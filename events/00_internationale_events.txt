@@ -128,13 +128,6 @@ intl_communism.2 = {
 			name = path_to_communism
 			days = normal_modifier_time
 		}
-		if = {
-			limit = {
-				NOT = { has_journal_entry = je_syndicalist_amendments }
-				NOT = { has_variable = syndicalist_amendments_recorded }
-			}
-			add_journal_entry = { type = je_syndicalist_amendments }
-		}
 		add_journal_entry = { type = je_communist_welfare }
 		add_journal_entry = { type = je_5_year_plan }
 	}
@@ -460,6 +453,435 @@ intl_communism.6 = {
 		default_option = yes
 		highlighted_option = yes
 		add_enactment_phase = 1
+	}
+}
+
+intl_communism.7 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.7.t
+	desc = intl_communism.7.d
+	flavor = intl_communism.7.f
+
+	duration = 1
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	option = {
+		name = intl_communism.7.a
+		default_option = yes
+		add_modifier = {
+			name = modifier_syndicalist_strike_committees
+			years = 2
+			is_decaying = yes
+		}
+	}
+
+}
+
+intl_communism.8 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.8.t
+	desc = intl_communism.8.d
+	flavor = intl_communism.8.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+	trigger = {
+		has_journal_entry = je_syndicalist_amendments
+	}
+
+	option = {
+		name = intl_communism.8.a
+		default_option = yes
+		set_variable = { name = syndicalist_strike_waves value = 1 }
+		custom_tooltip = syndicalist_strike_wave_progress_tt
+		je:je_syndicalist_amendments = {
+			add_progress = { value = 10 name = syndicalist_general_strike_progress_bar }
+		}
+		capital = {
+			add_modifier = {
+				name = modifier_nationwide_strikes
+				years = 1
+				is_decaying = yes
+			}
+		}
+		add_radicals = {
+			strata = lower
+			value = 0.10
+		}
+	}
+
+	option = {
+		name = intl_communism.8.b
+		trigger = {
+			OR = {
+				has_law_or_variant = law_type:law_national_guard
+				has_law_or_variant = law_type:law_secret_police
+			}
+		}
+		set_variable = { name = syndicalist_strike_waves value = 1 }
+		custom_tooltip = syndicalist_strike_wave_repression_tt
+		je:je_syndicalist_amendments = {
+			add_progress = { value = -10 name = syndicalist_general_strike_progress_bar }
+		}
+		capital = {
+			add_modifier = {
+				name = modifier_nationwide_strikes
+				years = 1
+				is_decaying = yes
+			}
+		}
+	}
+}
+
+intl_communism.9 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.9.t
+	desc = intl_communism.9.d
+	flavor = intl_communism.9.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+	trigger = {
+		has_variable = syndicalist_general_strike_done
+	}
+
+	option = {
+		name = intl_communism.9.a
+		default_option = yes
+		set_variable = bel_de_paepe_var
+		set_variable = communism_1_done
+		set_global_variable = { name = intl_law_syndicalist_economy value = 2 }
+		activate_law = law_type:law_syndicalist_council_republic
+		add_modifier = {
+			name = modifier_syndicalist_revolutionary_reforms
+			years = 5
+		}
+		cancel_enactment = yes
+		start_enactment = law_type:law_syndicalist_economy
+		add_journal_entry = { type = je_consolidate_the_syndacate }
+		add_radicals = {
+			strata = lower
+			value = 0.15
+		}
+	}
+}
+
+intl_communism.10 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.10.t
+	desc = intl_communism.10.d
+	flavor = intl_communism.10.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		has_journal_entry = je_syndicalist_amendments
+	}
+
+	option = {
+		name = intl_communism.10.a
+		default_option = yes
+		set_variable = { name = syndicalist_strike_waves value = 2 }
+		custom_tooltip = syndicalist_strike_wave_progress_tt
+		je:je_syndicalist_amendments = {
+			add_progress = { value = 10 name = syndicalist_general_strike_progress_bar }
+		}
+		custom_tooltip = {
+			text = syndicalist_all_states_receive_strikes_tt
+			hidden_effect = {
+				every_scope_state = {
+					add_modifier = {
+						name = modifier_nationwide_strikes
+						months = 6
+						multiplier = 0.5
+						is_decaying = yes
+					}
+				}
+			}
+		}
+		add_radicals = {
+			strata = lower
+			value = 0.10
+		}
+	}
+
+	option = {
+		name = intl_communism.10.b
+		trigger = {
+			OR = {
+				has_law_or_variant = law_type:law_national_guard
+				has_law_or_variant = law_type:law_secret_police
+			}
+		}
+		set_variable = { name = syndicalist_strike_waves value = 2 }
+		custom_tooltip = syndicalist_strike_wave_repression_tt
+		je:je_syndicalist_amendments = {
+			add_progress = { value = -10 name = syndicalist_general_strike_progress_bar }
+		}
+		custom_tooltip = {
+			text = syndicalist_all_states_receive_strikes_tt
+			hidden_effect = {
+				every_scope_state = {
+					add_modifier = {
+						name = modifier_nationwide_strikes
+						months = 6
+						multiplier = 0.5
+						is_decaying = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+intl_communism.11 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.11.t
+	desc = intl_communism.11.d
+	flavor = intl_communism.11.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		has_variable = syndicalist_general_strike_done
+		NOT = { has_law_or_variant = law_type:law_council_republic }
+	}
+
+	option = {
+		name = intl_communism.11.a
+		default_option = yes
+		add_modifier = {
+			name = modifier_syndicalist_broken_strike
+			years = 5
+		}
+		add_loyalists = {
+			strata = lower
+			value = 0.05
+		}
+	}
+}
+
+intl_communism.12 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.12.t
+	desc = intl_communism.12.d
+	flavor = intl_communism.12.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+	trigger = {
+		has_journal_entry = je_syndicalist_amendments
+	}
+
+	option = {
+		name = intl_communism.12.a
+		default_option = yes
+		set_variable = { name = syndicalist_strike_waves value = 3 }
+		custom_tooltip = syndicalist_strike_wave_progress_tt
+		je:je_syndicalist_amendments = {
+			add_progress = { value = 10 name = syndicalist_general_strike_progress_bar }
+		}
+		custom_tooltip = {
+			text = syndicalist_all_states_receive_strikes_tt
+			hidden_effect = {
+				every_scope_state = {
+					add_modifier = {
+						name = modifier_nationwide_strikes
+						years = 1
+						is_decaying = yes
+					}
+				}
+			}
+		}
+		add_radicals = {
+			strata = lower
+			value = 0.10
+		}
+	}
+
+	option = {
+		name = intl_communism.12.b
+		trigger = {
+			OR = {
+				has_law_or_variant = law_type:law_national_guard
+				has_law_or_variant = law_type:law_secret_police
+			}
+		}
+		set_variable = { name = syndicalist_strike_waves value = 3 }
+		custom_tooltip = syndicalist_strike_wave_repression_tt
+		je:je_syndicalist_amendments = {
+			add_progress = { value = -10 name = syndicalist_general_strike_progress_bar }
+		}
+		custom_tooltip = {
+			text = syndicalist_all_states_receive_strikes_tt
+			hidden_effect = {
+				every_scope_state = {
+					add_modifier = {
+						name = modifier_nationwide_strikes
+						years = 1
+						is_decaying = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+intl_communism.13 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.13.t
+	desc = intl_communism.13.d
+	flavor = intl_communism.13.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_industry.dds"
+
+	trigger = {
+	}
+
+	option = {
+		name = intl_communism.13.a
+		default_option = yes
+		add_loyalists = {
+			value = 0.10
+		}
+		every_interest_group = {
+			limit = {
+				law_stance = {
+					law = law_type:law_council_republic
+					value < neutral
+				}
+			}
+			add_modifier = {
+				name = modifier_syndicalist_council_opposition_purged
+				years = 10
+				is_decaying = yes
+			}
+		}
+	}
+
+	option = {
+		name = intl_communism.13.b
+		add_radicals = {
+			strata = lower
+			value = 0.10
+		}
+		add_modifier = {
+			name = modifier_syndicalist_revolutionary_mandate
+			years = 5
+		}
+		every_interest_group = {
+			limit = {
+				law_stance = {
+					law = law_type:law_council_republic
+					value < neutral
+				}
+			}
+			add_modifier = {
+				name = modifier_syndicalist_council_opposition_conciliated
+				years = 5
+			}
+		}
+	}
+}
+
+intl_communism.14 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.14.t
+	desc = intl_communism.14.d
+	flavor = intl_communism.14.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	option = {
+		name = intl_communism.14.a
+		default_option = yes
+		activate_law = law_type:law_parliamentary_republic
+		activate_law = law_type:law_census_voting
 	}
 }
 
