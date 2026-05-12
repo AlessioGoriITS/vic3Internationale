@@ -317,6 +317,18 @@
  intl_debug.2.rem_marxist: "#bold -10#! Marxist"
  intl_debug.2.close: "Done"
 
+ je_anarchy:0 "The Free Commune"
+ je_anarchy_reason:0 "The old republic has opened a door it cannot close. If hierarchy is to be dissolved rather than merely repainted, the councils must become communes, the ministries must become recallable administration, and production must pass into the hands of free association.\n\n#bold The Communal Programme:#!\n• Establish [GetLawType('law_anarchist_anarchy').GetName]\n• Establish [GetLawType('law_anarchist_economy').GetName]\n• Maintain an average [concept_sol] of at least #v 15#!\n\nThe revolution does not need a palace. It needs bread, assemblies, and the habit of refusing masters."
+ je_anarchy_status_desc:0 "Communes are taking root."
+ je_anarchy_status_state_persists:0 "The state still persists."
+ je_anarchy_status_economy_unmade:0 "Production awaits the communes."
+ je_anarchy_status_mutual_aid_strained:0 "Mutual aid is strained."
+ je_anarchy_status_communes_stable:0 "The communes are stable."
+ je_anarchy_stateless_order_tt:0 "[GetLawType('law_anarchist_anarchy').GetName] is enacted"
+ je_anarchy_cooperative_economy_tt:0 "[GetLawType('law_anarchist_economy').GetName] is enacted"
+ je_anarchy_sol_tt:0 "Average [concept_sol] is at least #v 15#!"
+ je_anarchy_completed_effects_tt:0 "#bold The Conquest of Bread:#!\n• The anarchist completion event will fire.\n• The communal order will be recognized as stable."
+
  law_anarchist_council_republic:0 "Free Council Federation"
 law_anarchist_council_republic_desc:0 "Authority rests in freely associated local councils, bound together through voluntary cooperation rather than imposed hierarchy."
 
