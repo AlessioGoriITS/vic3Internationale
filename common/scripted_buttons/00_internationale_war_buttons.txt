@@ -1,0 +1,63 @@
+je_internationale_join_revolutionary_side = {
+	name = je_internationale_join_revolutionary_side
+	desc = je_internationale_join_revolutionary_side_desc
+
+	visible = {
+		has_journal_entry = je_the_internationale
+		intl_has_current_internationale_line = yes
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = je_internationale_join_revolutionary_side_possible_tt
+			any_diplomatic_play = {
+				intl_diplomatic_play_has_great_proletarian_war_shape = yes
+				NOT = {
+					any_scope_play_involved = {
+						this = root
+					}
+				}
+			}
+		}
+	}
+
+	effect = {
+		intl_join_great_proletarian_war_revolutionary_side = yes
+	}
+
+	ai_chance = {
+		value = 0
+	}
+}
+
+je_internationale_join_reactionary_side = {
+	name = je_internationale_join_reactionary_side
+	desc = je_internationale_join_reactionary_side_desc
+
+	visible = {
+		has_journal_entry = je_the_internationale
+		NOT = { intl_has_current_internationale_line = yes }
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = je_internationale_join_reactionary_side_possible_tt
+			any_diplomatic_play = {
+				intl_diplomatic_play_has_great_proletarian_war_shape = yes
+				NOT = {
+					any_scope_play_involved = {
+						this = root
+					}
+				}
+			}
+		}
+	}
+
+	effect = {
+		intl_join_great_proletarian_war_reactionary_side = yes
+	}
+
+	ai_chance = {
+		value = 0
+	}
+}

@@ -1,0 +1,129 @@
+@panel_width_minus_30 = 510
+@alignment_columns_width = 494
+@alignment_column_width = 243
+@alignment_column_height = 230
+@alignment_flag_slot = 62
+
+flowcontainer = {
+	name = "internationale_status_widget"
+	direction = vertical
+	parentanchor = hcenter
+	spacing = 8
+	minimumsize = { @panel_width_minus_30 -1 }
+
+	background = {
+		alpha = 0.45
+		using = entry_bg_fancy_dark
+	}
+
+	default_header_clean_faded = {
+		parentanchor = hcenter
+		size = { @alignment_columns_width 34 }
+		margin = { 0 8 8 0 }
+		blockoverride "text" {
+			text = "internationale_alignment_widget_header"
+		}
+	}
+
+	flowcontainer = {
+		direction = horizontal
+		parentanchor = hcenter
+		spacing = 8
+		margin = { 0 0 8 10 }
+		size = { @alignment_columns_width @alignment_column_height }
+
+		flowcontainer = {
+			direction = vertical
+			minimumsize = { @alignment_column_width @alignment_column_height }
+			maximumsize = { @alignment_column_width @alignment_column_height }
+			spacing = 6
+
+			background = {
+				alpha = 0.40
+				using = dark_area
+			}
+			background = {
+				using = entry_bg_fancy
+			}
+
+			default_header_clean_faded = {
+				parentanchor = hcenter
+				size = { 231 28 }
+				margin = { 0 5 5 0 }
+				blockoverride "text" {
+					text = "internationale_alignment_widget_followers"
+				}
+				blockoverride "text_size" {
+					using = fontsize_small
+				}
+			}
+
+			dynamicgridbox = {
+				size = { 227 182 }
+				parentanchor = hcenter
+				spacing = 6
+				flipdirection = yes
+				datamodel = "[GetGlobalList('intl_internationale_followers_list')]"
+				datamodel_wrap = 3
+				item = {
+					flowcontainer = {
+						size = { @alignment_flag_slot 40 }
+						visible = "[Scope.GetCountry.IsValid]"
+						tooltip = "[Scope.GetCountry.GetName]"
+						small_flag = {
+							parentanchor = center
+							datacontext = "[Scope.GetCountry]"
+						}
+					}
+				}
+			}
+		}
+
+		flowcontainer = {
+			direction = vertical
+			minimumsize = { @alignment_column_width @alignment_column_height }
+			maximumsize = { @alignment_column_width @alignment_column_height }
+			spacing = 6
+
+			background = {
+				alpha = 0.40
+				using = dark_area
+			}
+			background = {
+				using = entry_bg_fancy
+			}
+
+			default_header_clean_faded = {
+				parentanchor = hcenter
+				size = { 231 28 }
+				margin = { 0 5 5 0 }
+				blockoverride "text" {
+					text = "internationale_alignment_widget_resisters"
+				}
+				blockoverride "text_size" {
+					using = fontsize_small
+				}
+			}
+
+			dynamicgridbox = {
+				size = { 227 182 }
+				parentanchor = hcenter
+				spacing = 6
+				flipdirection = yes
+				datamodel = "[GetGlobalList('intl_internationale_resisters_list')]"
+				datamodel_wrap = 3
+				item = {
+					flowcontainer = {
+						size = { @alignment_flag_slot 40 }
+						visible = "[Scope.GetCountry.IsValid]"
+						tooltip = "[Scope.GetCountry.GetName]"
+						small_flag = {
+							parentanchor = center
+							datacontext = "[Scope.GetCountry]"
+						}
+					}
+				}
+			}
+		}
+	}
+}

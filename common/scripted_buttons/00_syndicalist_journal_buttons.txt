@@ -148,6 +148,10 @@ je_syndacate_purge_bourgeoisie = {
 
 	effect = {
 		ig:ig_industrialists ?= {
+			if = {
+				limit = { has_party = yes }
+				remove_ig_from_party = yes
+			}
 			add_modifier = {
 				name = modifier_syndicalist_bourgeoisie_purged
 				years = 5
@@ -155,6 +159,10 @@ je_syndacate_purge_bourgeoisie = {
 			}
 		}
 		ig:ig_petty_bourgeoisie ?= {
+			if = {
+				limit = { has_party = yes }
+				remove_ig_from_party = yes
+			}
 			add_modifier = {
 				name = modifier_syndicalist_bourgeoisie_purged
 				years = 5

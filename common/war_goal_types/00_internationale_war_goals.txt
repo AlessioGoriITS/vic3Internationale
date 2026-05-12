@@ -1,0 +1,56 @@
+spread_the_revolution = {
+	icon = "gfx/interface/icons/war_goals/regime_change.dds"
+
+	kind = custom
+
+	settings = {
+		require_target_be_part_of_war
+		validate_conflicts_war_goals_all
+	}
+
+	execution_priority = 20
+	contestion_type = control_target_country_capital
+	target_type = country
+
+	possible = {
+		custom_tooltip = {
+			text = intl_is_internationale_leader_tt
+			intl_is_internationale_leader = yes
+		}
+		scope:target_country = {
+			intl_can_receive_spread_the_revolution = yes
+		}
+	}
+
+	valid = {
+		custom_tooltip = {
+			text = intl_is_internationale_leader_tt
+			intl_is_internationale_leader = yes
+		}
+		scope:target_country = {
+			intl_can_receive_spread_the_revolution = yes
+		}
+	}
+
+	maneuvers = {
+		value = 0
+		add = {
+			desc = "MANEUVERS_BASE_VALUE"
+			value = 15
+		}
+	}
+
+	infamy = {
+		value = 0
+	}
+
+	on_enforced = {
+		scope:target_country = {
+			intl_impose_internationale_line = yes
+		}
+	}
+
+	ai = {
+		is_significant_demand = yes
+	}
+}

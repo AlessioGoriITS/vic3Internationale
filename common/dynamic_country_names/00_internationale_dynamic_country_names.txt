@@ -1,0 +1,279 @@
+INJECT:AUS = {
+	dynamic_country_name = {
+		name = dyn_c_intl_internationale_raterepublik
+		adjective = AUS_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_marxist_council_republic }
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_intl_genossenschaftlicher_donaubund
+		adjective = AUS_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_mutualist_economy }
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_intl_donau_arbeiterbund
+		adjective = AUS_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_syndicalist_economy }
+		}
+	}
+}
+
+INJECT:KUK = {
+	dynamic_country_name = {
+		name = dyn_c_intl_internationale_raterepublik
+		adjective = KUK_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_marxist_council_republic }
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_intl_genossenschaftlicher_donaubund
+		adjective = KUK_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_mutualist_economy }
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_intl_donau_arbeiterbund
+		adjective = KUK_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_syndicalist_economy }
+		}
+	}
+}
+
+INJECT:FRA = {
+	dynamic_country_name = {
+		name = dyn_c_intl_federation_des_communes
+		adjective = FRA_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_anarchist_anarchy }
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_intl_comite_de_salut_public
+		adjective = FRA_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_blanquist_presidential_republic }
+		}
+	}
+}
+
+INJECT:ITA = {
+	dynamic_country_name = {
+		name = dyn_c_intl_federazione_dei_comuni_liberi
+		adjective = ITA_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_anarchist_anarchy }
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_intl_repubblica_dei_sindacati_italiani
+		adjective = ITA_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_syndicalist_economy }
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_intl_direttorio_rivoluzionario_italiano
+		adjective = ITA_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_blanquist_presidential_republic }
+		}
+	}
+}
+
+INJECT:GER = {
+	dynamic_country_name = {
+		name = dyn_c_intl_deutsche_raterepublik
+		adjective = GER_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_marxist_council_republic }
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_intl_deutscher_arbeiterbund
+		adjective = GER_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_syndicalist_economy }
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_intl_berliner_revolutionsdirektorium
+		adjective = GER_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_blanquist_presidential_republic }
+		}
+	}
+}
+
+INJECT:SPA = {
+	dynamic_country_name = {
+		name = dyn_c_intl_federacion_cantonal_iberica
+		adjective = SPA_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_anarchist_anarchy }
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_intl_republica_sindical_iberica
+		adjective = SPA_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_syndicalist_economy }
+		}
+	}
+}
+
+INJECT:GBR = {
+	dynamic_country_name = {
+		name = dyn_c_intl_trades_union_commonwealth
+		adjective = GBR_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_syndicalist_economy }
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_intl_british_council_commonwealth
+		adjective = GBR_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_marxist_council_republic }
+		}
+	}
+}
+
+INJECT:USA = {
+	dynamic_country_name = {
+		name = dyn_c_intl_industrial_union_of_america
+		adjective = USA_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_syndicalist_economy }
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_intl_free_territories_of_america
+		adjective = USA_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_anarchist_anarchy }
+		}
+	}
+}
+
+INJECT:CHI = {
+	dynamic_country_name = {
+		name = dyn_c_intl_zhonghua_workers_republic
+		adjective = CHI_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_marxist_council_republic }
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_intl_chinese_mutual_aid_leagues
+		adjective = CHI_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_mutualist_economy }
+		}
+	}
+}
+
+INJECT:TUR = {
+	dynamic_country_name = {
+		name = dyn_c_intl_red_sublime_porte
+		adjective = TUR_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_blanquist_presidential_republic }
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_intl_anatolian_workers_congress
+		adjective = TUR_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_syndicalist_economy }
+		}
+	}
+	dynamic_country_name = {
+		name = dyn_c_intl_anatolian_council_republic
+		adjective = TUR_ADJ
+		is_main_tag_only = yes
+		priority = 200
+		trigger = {
+			exists = scope:actor
+			scope:actor ?= { has_law = law_type:law_marxist_council_republic }
+		}
+	}
+}

@@ -110,6 +110,256 @@ intl_set_marxist_movement_line = {
 	}
 }
 
+try_claim_internationale = {
+	if = {
+		limit = {
+			NOT = { has_global_variable = intl_internationale_claimed }
+		}
+		set_global_variable = intl_internationale_claimed
+		set_global_variable = {
+			name = intl_internationale_leader_country
+			value = root
+		}
+		every_country = {
+			limit = {
+				this = global_var:intl_internationale_leader_country
+			}
+			set_variable = intl_internationale_leader
+		}
+		set_global_variable = intl_internationale_$IDEOLOGY$
+		if = {
+			limit = { has_global_variable = intl_internationale_anarchist }
+			intl_unlock_anarchist_laws = yes
+		}
+		if = {
+			limit = { has_global_variable = intl_internationale_mutualist }
+			intl_unlock_mutualist_laws = yes
+		}
+		if = {
+			limit = { has_global_variable = intl_internationale_syndicalist }
+			intl_unlock_syndicalist_laws = yes
+		}
+		if = {
+			limit = { has_global_variable = intl_internationale_blanquist }
+			intl_unlock_blanquist_laws = yes
+		}
+		if = {
+			limit = { has_global_variable = intl_internationale_marxist }
+			intl_unlock_marxist_laws = yes
+		}
+		every_country = {
+			limit = {
+				NOT = { is_country_type = decentralized }
+			}
+			trigger_event = { id = intl_communism.23 popup = yes }
+		}
+	}
+}
+
+intl_apply_revolutionary_movement_settlement = {
+	every_political_movement = {
+		limit = {
+			NOT = {
+				is_political_movement_type = movement_internationale
+			}
+		}
+		add_modifier = {
+			name = modifier_internationale_rival_movement_suppressed
+			years = 10
+			is_decaying = yes
+		}
+	}
+	random_political_movement = {
+		limit = {
+			is_political_movement_type = movement_internationale
+		}
+		add_modifier = {
+			name = modifier_internationale_vanguard_movement
+			years = 10
+			is_decaying = yes
+		}
+	}
+}
+
+intl_update_internationale_alignment_lists = {
+	clear_global_variable_list = intl_internationale_followers_list
+	clear_global_variable_list = intl_internationale_resisters_list
+	every_country = {
+		limit = {
+			country_rank >= rank_value:major_power
+			NOT = { is_country_type = decentralized }
+		}
+		if = {
+			limit = { intl_has_current_internationale_line = yes }
+			add_to_global_variable_list = { name = intl_internationale_followers_list target = this }
+		}
+		else = {
+			add_to_global_variable_list = { name = intl_internationale_resisters_list target = this }
+		}
+	}
+}
+
+intl_try_start_great_proletarian_war = {
+	if = {
+		limit = {
+			NOT = { has_global_variable = intl_great_proletarian_war_active }
+			intl_great_proletarian_war_can_escalate = yes
+		}
+		set_global_variable = intl_great_proletarian_war_active
+		random_country = {
+			limit = {
+				intl_is_great_proletarian_war_candidate = yes
+			}
+			set_global_variable = { name = intl_great_proletarian_war_revolutionary_anchor value = this }
+			random_country = {
+				limit = {
+					country_rank = rank_value:great_power
+					NOT = { intl_has_current_internationale_line = yes }
+					has_war_with = global_var:intl_great_proletarian_war_revolutionary_anchor
+				}
+				set_global_variable = { name = intl_great_proletarian_war_reactionary_anchor value = this }
+			}
+		}
+		every_country = {
+			limit = {
+				country_rank >= rank_value:major_power
+				NOT = { is_country_type = decentralized }
+			}
+			trigger_event = { id = intl_communism.27 popup = yes }
+		}
+	}
+}
+
+intl_join_great_proletarian_war_revolutionary_side = {
+	random_diplomatic_play = {
+		limit = {
+			intl_diplomatic_play_has_great_proletarian_war_shape = yes
+			NOT = {
+				any_scope_play_involved = {
+					this = root
+				}
+			}
+		}
+		initiator = { save_scope_as = intl_proletarian_war_initiator }
+		target = { save_scope_as = intl_proletarian_war_target }
+		if = {
+			limit = {
+				any_scope_initiator_ally = {
+					count >= 2
+					country_rank = rank_value:great_power
+					has_law_or_variant = law_type:law_council_republic
+				}
+			}
+			add_initiator_backers = { root }
+			add_war_goal = {
+				holder = scope:intl_proletarian_war_target
+				type = regime_change
+				target_country = root
+			}
+		}
+		else_if = {
+			limit = {
+				any_scope_target_ally = {
+					count >= 2
+					country_rank = rank_value:great_power
+					has_law_or_variant = law_type:law_council_republic
+				}
+			}
+			add_target_backers = { root }
+			add_war_goal = {
+				holder = scope:intl_proletarian_war_initiator
+				type = regime_change
+				target_country = root
+			}
+		}
+	}
+}
+
+intl_join_great_proletarian_war_reactionary_side = {
+	random_diplomatic_play = {
+		limit = {
+			intl_diplomatic_play_has_great_proletarian_war_shape = yes
+			NOT = {
+				any_scope_play_involved = {
+					this = root
+				}
+			}
+		}
+		initiator = { save_scope_as = intl_proletarian_war_initiator }
+		target = { save_scope_as = intl_proletarian_war_target }
+		if = {
+			limit = {
+				any_scope_initiator_ally = {
+					count >= 2
+					country_rank = rank_value:great_power
+					has_law_or_variant = law_type:law_council_republic
+				}
+			}
+			add_target_backers = { root }
+			add_war_goal = {
+				holder = scope:intl_proletarian_war_initiator
+				type = spread_the_revolution
+				target_country = root
+			}
+		}
+		else_if = {
+			limit = {
+				any_scope_target_ally = {
+					count >= 2
+					country_rank = rank_value:great_power
+					has_law_or_variant = law_type:law_council_republic
+				}
+			}
+			add_initiator_backers = { root }
+			add_war_goal = {
+				holder = scope:intl_proletarian_war_target
+				type = spread_the_revolution
+				target_country = root
+			}
+		}
+	}
+}
+
+intl_impose_internationale_line = {
+	if = {
+		limit = { has_global_variable = intl_internationale_anarchist }
+		activate_law = law_type:law_anarchist_council_republic
+		activate_law = law_type:law_anarchist_anarchy
+		activate_law = law_type:law_anarchist_economy
+		intl_set_anarchist_movement_line = yes
+	}
+	else_if = {
+		limit = { has_global_variable = intl_internationale_mutualist }
+		activate_law = law_type:law_mutualist_council_republic
+		activate_law = law_type:law_mutualist_oligarchy
+		activate_law = law_type:law_mutualist_economy
+		intl_set_mutualist_movement_line = yes
+	}
+	else_if = {
+		limit = { has_global_variable = intl_internationale_syndicalist }
+		activate_law = law_type:law_syndicalist_council_republic
+		activate_law = law_type:law_syndicalist_single_party
+		activate_law = law_type:law_syndicalist_economy
+		intl_set_syndicalist_movement_line = yes
+	}
+	else_if = {
+		limit = { has_global_variable = intl_internationale_blanquist }
+		activate_law = law_type:law_blanquist_presidential_republic
+		activate_law = law_type:law_blanquist_technocracy
+		activate_law = law_type:law_blanquist_economy
+		intl_set_blanquist_movement_line = yes
+	}
+	else_if = {
+		limit = { has_global_variable = intl_internationale_marxist }
+		activate_law = law_type:law_marxist_council_republic
+		activate_law = law_type:law_marxist_one_party_state
+		activate_law = law_type:law_marxist_economy
+		intl_set_marxist_movement_line = yes
+	}
+	intl_apply_revolutionary_movement_settlement = yes
+	trigger_event = { id = intl_communism.24 popup = yes }
+}
+
 # --- intl_conference_effects.txt ---
 # Internationale Conference â€” Law State Effects
 # $LAW$ = law key without the "law_" prefix

@@ -64,5 +64,23 @@ syndicalist_general_strike_progress_bar = {
 				value = 1
 			}
 		}
+		if = {
+			limit = {
+				OR = {
+					is_enacting_law = law_type:law_right_to_associate
+					is_enacting_law = law_type:law_regulatory_bodies
+					is_enacting_law = law_type:law_worker_protections
+					is_enacting_law = law_type:law_poor_laws
+					is_enacting_law = law_type:law_wage_subsidies
+					is_enacting_law = law_type:law_old_age_pension
+					is_enacting_law = law_type:law_proportional_taxation
+					is_enacting_law = law_type:law_graduated_taxation
+				}
+			}
+			add = {
+				desc = "syndicalist_progress_worker_reforms_enacting"
+				value = -10
+			}
+		}
 	}
 }

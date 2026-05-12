@@ -1,0 +1,25 @@
+dp_spread_the_revolution = {
+	war_goal = spread_the_revolution
+
+	texture = "gfx/interface/icons/war_goals/regime_change.dds"
+
+	possible = {
+		custom_tooltip = {
+			text = intl_is_internationale_leader_tt
+			intl_is_internationale_leader = yes
+		}
+		NOT = { is_country_type = decentralized }
+		aggressive_diplomatic_plays_permitted = yes
+		NOT = { is_subject_of = scope:target_country }
+		scope:target_country = {
+			intl_can_receive_spread_the_revolution = yes
+			NOT = { is_subject_of = root }
+		}
+	}
+
+	ai_acceptance_max = 50
+
+	on_weekly_pulse = {}
+	on_war_begins = {}
+	on_war_end = {}
+}

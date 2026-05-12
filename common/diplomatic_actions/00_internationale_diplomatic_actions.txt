@@ -1,0 +1,66 @@
+intl_impose_revolutionary_line_subject = {
+	groups = {
+		overlord
+	}
+	requires_approval = no
+	should_notify_third_parties = yes
+	show_effect_in_tooltip = yes
+
+	texture = "gfx/interface/icons/diplomatic_action_icons/force_regime_change.dds"
+	confirmation_sound = "event:/SFX/UI/MapInteraction/SubjectInteractions/diplomatic_action_subjects_09_support_regime_benign"
+
+	selectable = {
+		intl_is_internationale_leader = yes
+	}
+
+	potential = {
+		scope:target_country = {
+			is_subject_of = root
+		}
+	}
+
+	possible = {
+		custom_tooltip = {
+			text = intl_not_same_revolutionary_line_tt
+			scope:target_country = {
+				intl_can_receive_spread_the_revolution = yes
+			}
+		}
+		custom_tooltip = {
+			text = intl_subject_realignment_cooldown_tt
+			scope:target_country = {
+				NOT = { has_variable = intl_subject_realignment_cooldown }
+			}
+		}
+		scope:target_country = {
+			NOT = { is_diplomatic_play_enemy_of = root }
+			has_revolution = no
+		}
+	}
+
+	accept_effect = {
+		scope:target_country = {
+			intl_impose_internationale_line = yes
+			set_variable = { name = intl_subject_realignment_cooldown years = 5 }
+			add_modifier = {
+				name = modifier_internationale_subject_realignment
+				years = 5
+				is_decaying = yes
+			}
+			add_liberty_desire = 20
+		}
+		change_relations = {
+			country = scope:target_country
+			value = -20
+		}
+	}
+
+	ai = {
+		evaluation_chance = {
+			value = 0.05
+		}
+		will_propose = {
+			always = no
+		}
+	}
+}

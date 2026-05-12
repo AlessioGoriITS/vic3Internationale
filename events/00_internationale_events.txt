@@ -34,7 +34,6 @@ intl_communism.2 = {
 
 	option = {
 		name = communism.2.anarchist
-		intl_clear_communism_law_visibility_vars = yes
 		set_variable = bakunin_var
 		intl_unlock_anarchist_laws = yes
 		intl_set_anarchist_movement_line = yes
@@ -70,7 +69,6 @@ intl_communism.2 = {
 
 	option = {
 		name = communism.2.mutualist
-		intl_clear_communism_law_visibility_vars = yes
 		set_variable = proudhon_var
 		intl_unlock_mutualist_laws = yes
 		intl_set_mutualist_movement_line = yes
@@ -104,7 +102,6 @@ intl_communism.2 = {
 
 	option = {
 		name = communism.2.syndicalist
-		intl_clear_communism_law_visibility_vars = yes
 		set_variable = bel_de_paepe_var
 		intl_unlock_syndicalist_laws = yes
 		intl_set_syndicalist_movement_line = yes
@@ -131,7 +128,6 @@ intl_communism.2 = {
 
 	option = {
 		name = communism.2.blanquist
-		intl_clear_communism_law_visibility_vars = yes
 		set_variable = blanqui_var
 		intl_unlock_blanquist_laws = yes
 		intl_set_blanquist_movement_line = yes
@@ -165,7 +161,6 @@ intl_communism.2 = {
 	option = {
 		name = communism.2.marxist
 		default_option = yes
-		intl_clear_communism_law_visibility_vars = yes
 		set_variable = karl_marx_var
 		intl_unlock_marxist_laws = yes
 		intl_set_marxist_movement_line = yes
@@ -186,6 +181,13 @@ intl_communism.2 = {
 		add_modifier = {
 			name = path_to_communism
 			days = normal_modifier_time
+		}
+		if = {
+			limit = {
+				NOT = { has_journal_entry = je_marxist_proletarian_state }
+				NOT = { has_variable = marxist_proletarian_state_done }
+			}
+			add_journal_entry = { type = je_marxist_proletarian_state }
 		}
 		add_journal_entry = { type = je_communist_welfare }
 	}
@@ -493,6 +495,7 @@ intl_communism.8 = {
 	flavor = intl_communism.8.f
 
 	duration = 3
+	cooldown = { years = 10 }
 
 	event_image = {
 		video = "votp_agitator_speaking"
@@ -602,6 +605,7 @@ intl_communism.10 = {
 	flavor = intl_communism.10.f
 
 	duration = 3
+	cooldown = { years = 10 }
 
 	event_image = {
 		video = "votp_agitator_speaking"
@@ -717,6 +721,7 @@ intl_communism.12 = {
 	flavor = intl_communism.12.f
 
 	duration = 3
+	cooldown = { years = 10 }
 
 	event_image = {
 		video = "votp_agitator_speaking"
@@ -853,6 +858,14 @@ intl_communism.13 = {
 				name = modifier_syndicalist_council_opposition_conciliated
 				years = 5
 			}
+			remove_ig_from_party = yes
+		}
+		if = {
+			limit = {
+				country_has_voting_franchise = yes
+				in_election_campaign = no
+			}
+			call_election = yes
 		}
 	}
 }
@@ -883,6 +896,486 @@ intl_communism.14 = {
 		default_option = yes
 		activate_law = law_type:law_parliamentary_republic
 		activate_law = law_type:law_census_voting
+	}
+}
+
+intl_communism.15 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.15.t
+	desc = intl_communism.15.d
+	flavor = intl_communism.15.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	option = {
+		name = intl_communism.15.a
+		default_option = yes
+		ig:ig_trade_unions ?= {
+			add_modifier = {
+				name = modifier_marxist_factory_cells
+				years = 3
+				is_decaying = yes
+			}
+		}
+	}
+}
+
+intl_communism.16 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.16.t
+	desc = intl_communism.16.d
+	flavor = intl_communism.16.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	option = {
+		name = intl_communism.16.a
+		default_option = yes
+		add_modifier = {
+			name = modifier_marxist_transition_program
+			years = 5
+		}
+		if = {
+			limit = {
+				NOT = { has_law = law_type:law_marxist_economy }
+				NOT = { is_enacting_law = law_type:law_marxist_economy }
+				enacting_any_law = no
+			}
+			start_enactment = law_type:law_marxist_economy
+		}
+	}
+}
+
+intl_communism.17 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.17.t
+	desc = intl_communism.17.d
+	flavor = intl_communism.17.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	option = {
+		name = intl_communism.17.a
+		default_option = yes
+		ig:ig_trade_unions ?= {
+			add_modifier = {
+				name = modifier_marxist_line_defeated
+				years = 5
+				is_decaying = yes
+			}
+		}
+	}
+}
+
+intl_communism.18 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.18.t
+	desc = intl_communism.18.d
+	flavor = intl_communism.18.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		has_journal_entry = je_marxist_proletarian_state
+	}
+
+	option = {
+		name = intl_communism.18.a
+		default_option = yes
+		add_modifier = {
+			name = modifier_marxist_transition_program
+			years = 2
+		}
+	}
+
+	option = {
+		name = intl_communism.18.b
+		ig:ig_trade_unions ?= {
+			add_modifier = {
+				name = modifier_marxist_factory_cells
+				years = 2
+				is_decaying = yes
+			}
+		}
+		add_radicals = {
+			strata = upper
+			value = 0.02
+		}
+	}
+}
+
+intl_communism.19 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.19.t
+	desc = intl_communism.19.d
+	flavor = intl_communism.19.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		has_journal_entry = je_marxist_proletarian_state
+	}
+
+	option = {
+		name = intl_communism.19.a
+		default_option = yes
+		ig:ig_trade_unions ?= {
+			add_modifier = {
+				name = modifier_marxist_factory_cells
+				years = 2
+				is_decaying = yes
+			}
+		}
+	}
+
+	option = {
+		name = intl_communism.19.b
+		add_modifier = {
+			name = modifier_marxist_transition_program
+			years = 1
+		}
+	}
+}
+
+intl_communism.20 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.20.t
+	desc = intl_communism.20.d
+	flavor = intl_communism.20.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+	}
+
+	option = {
+		name = intl_communism.20.a
+		default_option = yes
+		add_modifier = {
+			name = modifier_marxist_state_cadre
+			years = 10
+		}
+		add_loyalists = {
+			strata = lower
+			value = 0.05
+		}
+	}
+}
+
+intl_communism.21 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.21.t
+	desc = intl_communism.21.d
+	flavor = intl_communism.21.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		has_journal_entry = je_marxist_workers_party
+	}
+
+	option = {
+		name = intl_communism.21.a
+		default_option = yes
+		ig:ig_trade_unions ?= {
+			add_modifier = {
+				name = modifier_marxist_factory_cells
+				years = 3
+				is_decaying = yes
+			}
+		}
+	}
+}
+
+intl_communism.22 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.22.t
+	desc = intl_communism.22.d
+	flavor = intl_communism.22.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	trigger = {
+		has_journal_entry = je_marxist_workers_party
+		ig:ig_trade_unions ?= {
+			is_in_government = yes
+		}
+	}
+
+	option = {
+		name = intl_communism.22.a
+		default_option = yes
+		change_variable = { name = marxist_consolidation_months add = 2 }
+		clamp_variable = { name = marxist_consolidation_months min = 0 max = 24 }
+	}
+
+	option = {
+		name = intl_communism.22.b
+		add_modifier = {
+			name = modifier_marxist_transition_program
+			years = 1
+		}
+	}
+}
+
+intl_communism.23 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.23.t
+	desc = intl_communism.23.d
+	flavor = intl_communism.23.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	trigger = {
+		has_global_variable = intl_internationale_claimed
+	}
+
+	option = {
+		name = intl_communism.23.a
+		default_option = yes
+	}
+}
+
+intl_communism.24 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.24.t
+	desc = intl_communism.24.d
+	flavor = intl_communism.24.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	trigger = {
+		intl_has_current_internationale_line = yes
+	}
+
+	option = {
+		name = intl_communism.24.a
+		default_option = yes
+	}
+}
+
+intl_communism.25 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.25.t
+	desc = intl_communism.25.d
+	flavor = intl_communism.25.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	option = {
+		name = intl_communism.25.a
+		default_option = yes
+		if = {
+			limit = {
+				intl_is_internationale_leader = yes
+			}
+			add_modifier = {
+				name = modifier_world_congress_labor_leader
+			}
+		}
+		else = {
+			add_loyalists = {
+				strata = lower
+				value = 0.10
+			}
+		}
+	}
+}
+
+intl_communism.26 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.26.t
+	desc = intl_communism.26.d
+	flavor = intl_communism.26.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	option = {
+		name = intl_communism.26.a
+		default_option = yes
+		activate_law = law_type:law_anarchist_council_republic
+		activate_law = law_type:law_anarchist_anarchy
+	}
+
+	option = {
+		name = intl_communism.26.b
+		activate_law = law_type:law_mutualist_council_republic
+		activate_law = law_type:law_mutualist_oligarchy
+	}
+
+	option = {
+		name = intl_communism.26.c
+		activate_law = law_type:law_syndicalist_council_republic
+		activate_law = law_type:law_syndicalist_single_party
+	}
+
+	option = {
+		name = intl_communism.26.e
+		activate_law = law_type:law_blanquist_presidential_republic
+		activate_law = law_type:law_blanquist_technocracy
+	}
+
+	option = {
+		name = intl_communism.26.g
+		activate_law = law_type:law_marxist_council_republic
+		activate_law = law_type:law_marxist_one_party_state
+	}
+}
+
+intl_communism.27 = {
+	type = country_event
+	placement = root
+
+	title = intl_communism.27.t
+	desc = intl_communism.27.d
+	flavor = intl_communism.27.f
+
+	duration = 3
+
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_skull.dds"
+
+	trigger = {
+		has_global_variable = intl_great_proletarian_war_active
+	}
+
+	option = {
+		name = intl_communism.27.a
+		default_option = yes
 	}
 }
 

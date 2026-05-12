@@ -60,4 +60,92 @@ intl_country_supports_proposed = {
 	var:intl_vote_stance = 2
 }
 
+intl_is_internationale_leader = {
+	has_global_variable = intl_internationale_leader_country
+	this = global_var:intl_internationale_leader_country
+}
+
+intl_has_current_internationale_line = {
+	OR = {
+		AND = {
+			has_global_variable = intl_internationale_anarchist
+			has_law = law_type:law_anarchist_council_republic
+		}
+		AND = {
+			has_global_variable = intl_internationale_mutualist
+			has_law = law_type:law_mutualist_council_republic
+		}
+		AND = {
+			has_global_variable = intl_internationale_syndicalist
+			has_law = law_type:law_syndicalist_council_republic
+		}
+		AND = {
+			has_global_variable = intl_internationale_blanquist
+			has_law = law_type:law_blanquist_presidential_republic
+		}
+		AND = {
+			has_global_variable = intl_internationale_marxist
+			has_law = law_type:law_marxist_council_republic
+		}
+	}
+}
+
+intl_can_receive_spread_the_revolution = {
+	NOT = { is_country_type = decentralized }
+	NOT = { intl_has_current_internationale_line = yes }
+}
+
+intl_is_great_proletarian_war_candidate = {
+	country_rank = rank_value:great_power
+	intl_has_current_internationale_line = yes
+	is_at_war = yes
+	any_scope_war = {
+		any_war_participant = {
+			count >= 2
+			country_rank = rank_value:great_power
+			intl_has_current_internationale_line = yes
+		}
+		any_war_participant = {
+			count >= 2
+			country_rank = rank_value:great_power
+			NOT = { intl_has_current_internationale_line = yes }
+		}
+	}
+}
+
+intl_great_proletarian_war_can_escalate = {
+	any_country = {
+		intl_is_great_proletarian_war_candidate = yes
+	}
+}
+
+intl_diplomatic_play_has_great_proletarian_war_shape = {
+	OR = {
+		AND = {
+			any_scope_initiator_ally = {
+				count >= 2
+				country_rank = rank_value:great_power
+				has_law_or_variant = law_type:law_council_republic
+			}
+			any_scope_target_ally = {
+				count >= 2
+				country_rank = rank_value:great_power
+				NOT = { has_law_or_variant = law_type:law_council_republic }
+			}
+		}
+		AND = {
+			any_scope_target_ally = {
+				count >= 2
+				country_rank = rank_value:great_power
+				has_law_or_variant = law_type:law_council_republic
+			}
+			any_scope_initiator_ally = {
+				count >= 2
+				country_rank = rank_value:great_power
+				NOT = { has_law_or_variant = law_type:law_council_republic }
+			}
+		}
+	}
+}
+
 

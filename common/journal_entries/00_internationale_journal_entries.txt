@@ -220,6 +220,7 @@ REPLACE_OR_CREATE:je_anarchy = {
 	}
 
 	on_complete = {
+		try_claim_internationale = { IDEOLOGY = anarchist }
 		trigger_event = {
 			id = communism.4
 			popup = yes
@@ -316,6 +317,152 @@ je_internationale = {
 	weight = 1000
 }
 
+je_the_internationale = {
+	icon = "gfx/interface/icons/event_icons/internationale_flag.png"
+
+	group = je_group_global_international_situations
+
+	widget = {
+		gui = "gui/internationale_status_widget.gui"
+		name = "internationale_status_widget"
+		container = "custom_widget_container_1"
+	}
+
+
+	should_be_pinned_by_default_uninvolved_or_context = yes
+
+	is_shown_when_inactive = {
+		has_global_variable = intl_internationale_claimed
+	}
+
+	should_be_involved = {
+		has_global_variable = intl_internationale_claimed
+		country_rank >= rank_value:major_power
+	}
+
+	immediate_all_involved = {
+		intl_update_internationale_alignment_lists = yes
+		if = {
+			limit = {
+				has_global_variable = intl_internationale_leader_country
+				this = global_var:intl_internationale_leader_country
+			}
+			set_variable = intl_internationale_leader
+		}
+		if = {
+			limit = {
+				NOT = { has_technology_researched = socialism }
+			}
+			add_technology_researched = socialism
+		}
+	}
+
+	status_desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = { has_global_variable = intl_great_proletarian_war_active }
+				desc = je_the_internationale_status_great_war
+			}
+			triggered_desc = {
+				trigger = { has_global_variable = intl_internationale_anarchist }
+				desc = je_the_internationale_status_anarchist
+			}
+			triggered_desc = {
+				trigger = { has_global_variable = intl_internationale_mutualist }
+				desc = je_the_internationale_status_mutualist
+			}
+			triggered_desc = {
+				trigger = { has_global_variable = intl_internationale_syndicalist }
+				desc = je_the_internationale_status_syndicalist
+			}
+			triggered_desc = {
+				trigger = { has_global_variable = intl_internationale_blanquist }
+				desc = je_the_internationale_status_blanquist
+			}
+			triggered_desc = {
+				trigger = { has_global_variable = intl_internationale_marxist }
+				desc = je_the_internationale_status_marxist
+			}
+			triggered_desc = {
+				trigger = {
+					any_country = {
+						country_rank = rank_value:great_power
+						NOT = { intl_has_current_internationale_line = yes }
+					}
+				}
+				desc = je_the_internationale_status_encircled
+			}
+			triggered_desc = {
+				desc = je_the_internationale_status_final
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			intl_update_internationale_alignment_lists = yes
+			if = {
+				limit = {
+					has_variable = intl_internationale_leader
+				}
+				intl_try_start_great_proletarian_war = yes
+			}
+		}
+	}
+
+	complete = {
+		custom_tooltip = {
+			text = je_the_internationale_all_gps_tt
+			NOT = {
+				any_country = {
+					country_rank = rank_value:great_power
+					NOT = { intl_has_current_internationale_line = yes }
+				}
+			}
+		}
+	}
+
+	on_complete = {
+		trigger_event = { id = intl_communism.25 popup = yes }
+	}
+
+	weight = 1000
+}
+
+je_internationale_debug = {
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	group = je_group_internal_affairs
+
+	scripted_button = je_internationale_debug_choose_line
+	scripted_button = je_internationale_debug_socialism
+	scripted_button = je_internationale_debug_marxist_consolidation
+	scripted_button = je_internationale_debug_enactment_phase
+	scripted_button = je_internationale_debug_loyalists
+
+	should_be_pinned_by_default_uninvolved_or_context = yes
+
+	is_shown_when_inactive = {
+	}
+
+	possible = {
+	}
+
+	status_desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = je_internationale_debug_status_desc
+			}
+		}
+	}
+
+	complete = {
+		always = no
+	}
+
+	weight = 1000
+}
+
 
 je_blanquism = {
 	icon = "gfx/interface/icons/law_icons/blanquist/blanquist_presidential_republic.dds"
@@ -334,9 +481,6 @@ je_blanquism = {
 	scripted_button = je_blanquism_execute_coup
 
 	should_be_pinned_by_default_uninvolved_or_context = yes
-
-	is_shown_when_inactive = {
-	}
 
 	immediate = {
 		create_character = {
@@ -399,15 +543,6 @@ je_blanquist_consolidation = {
 
 	should_be_pinned_by_default_uninvolved_or_context = yes
 
-	is_shown_when_inactive = {
-		has_variable = blanquist_coup_executed
-	}
-
-	possible = {
-		has_variable = blanquist_coup_executed
-		has_law = law_type:law_blanquist_presidential_republic
-	}
-
 	immediate = {
 		set_variable = { name = blanquist_consolidation_timer value = 0 }
 	}
@@ -456,6 +591,7 @@ je_blanquist_consolidation = {
 
 	on_complete = {
 		set_variable = blanquist_consolidation_done
+		try_claim_internationale = { IDEOLOGY = blanquist }
 		add_loyalists = {
 			value = 0.25
 		}
@@ -506,12 +642,6 @@ je_mutualist_worker_councils = {
 	scripted_button = je_mutualist_install_petite_bourgeoisie_leader
 
 	should_be_pinned_by_default_uninvolved_or_context = yes
-
-	is_shown_when_inactive = {
-	}
-
-	possible = {
-	}
 
 	status_desc = {
 		first_valid = {
@@ -564,12 +694,6 @@ je_mutualist_cooperative_mandate = {
 
 	should_be_pinned_by_default_uninvolved_or_context = yes
 
-	is_shown_when_inactive = {
-	}
-
-	possible = {
-	}
-
 	immediate = {
 		set_variable = { name = mutualist_cooperative_ownership_months value = 0 }
 	}
@@ -616,6 +740,7 @@ je_mutualist_cooperative_mandate = {
 
 	on_complete = {
 		set_variable = mutualist_cooperative_mandate_done
+		try_claim_internationale = { IDEOLOGY = mutualist }
 		trigger_event = { id = intl_communism.4 popup = yes }
 	}
 
@@ -641,9 +766,6 @@ je_syndicalist_amendments = {
 	should_be_pinned_by_default_uninvolved_or_context = yes
 
 	scripted_progress_bar = syndicalist_general_strike_progress_bar
-
-	possible = {
-	}
 
 	immediate = {
 		set_variable = { name = syndicalist_strike_waves value = 0 }
@@ -845,6 +967,7 @@ je_consolidate_the_syndacate = {
 
 	on_complete = {
 		set_variable = syndicalist_syndacate_consolidated
+		try_claim_internationale = { IDEOLOGY = syndicalist }
 		trigger_event = { id = intl_communism.13 popup = yes }
 	}
 
@@ -868,6 +991,253 @@ je_consolidate_the_syndacate = {
 			}
 		}
 	}
+
+	weight = 1000
+}
+
+# --- marxist_journal_entries.txt ---
+je_marxist_proletarian_state = {
+	icon = "gfx/interface/icons/law_icons/marxist/marxist_council_republic.png"
+
+	group = je_group_internal_affairs
+
+	should_be_pinned_by_default_uninvolved_or_context = yes
+
+	immediate = {
+		ig:ig_trade_unions ?= {
+			save_scope_as = marxist_trade_unions
+		}
+		trigger_event = { id = intl_communism.15 popup = yes }
+	}
+
+	status_desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					OR = {
+						has_law = law_type:law_council_republic
+						has_law = law_type:law_marxist_council_republic
+					}
+				}
+				desc = je_marxist_proletarian_state_status_councils
+			}
+			triggered_desc = {
+				trigger = {
+					is_enacting_law = law_type:law_council_republic
+				}
+				desc = je_marxist_proletarian_state_status_enacting_base
+			}
+			triggered_desc = {
+				trigger = {
+					is_enacting_law = law_type:law_marxist_council_republic
+				}
+				desc = je_marxist_proletarian_state_status_enacting_marxist
+			}
+			triggered_desc = {
+				desc = je_marxist_proletarian_state_status_desc
+			}
+		}
+	}
+
+	on_yearly_pulse = {
+		random_events = {
+			chance_to_happen = 35
+			40 = 0
+			30 = intl_communism.18
+			30 = intl_communism.19
+		}
+	}
+
+	complete = {
+		custom_tooltip = {
+			text = marxist_workers_state_tt
+			OR = {
+				has_law = law_type:law_council_republic
+				has_law = law_type:law_marxist_council_republic
+			}
+		}
+		custom_tooltip = {
+			text = marxist_trade_unions_not_marginal_tt
+			ig:ig_trade_unions ?= {
+				is_marginal = no
+			}
+		}
+		custom_tooltip = {
+			text = marxist_legitimate_transition_tt
+			legitimacy >= 40
+		}
+		has_revolution = no
+		has_any_secessionists_broken_out = no
+	}
+
+	fail = {
+		OR = {
+			has_law = law_type:law_anarchist_council_republic
+			has_law = law_type:law_mutualist_council_republic
+			has_law = law_type:law_syndicalist_council_republic
+		}
+	}
+
+	on_complete = {
+		set_variable = marxist_proletarian_state_done
+		trigger_event = { id = intl_communism.16 popup = yes }
+		if = {
+			limit = {
+				NOT = { has_journal_entry = je_marxist_workers_party }
+				NOT = { has_variable = marxist_workers_party_consolidated }
+			}
+			add_journal_entry = { type = je_marxist_workers_party }
+		}
+	}
+
+	event_outcome_completed_desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = je_marxist_proletarian_state_completed_effects_tt
+			}
+		}
+	}
+
+	on_fail = {
+		set_variable = marxist_proletarian_state_failed
+		trigger_event = { id = intl_communism.17 popup = yes }
+	}
+
+	event_outcome_failed_desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = je_marxist_proletarian_state_failed_effects_tt
+			}
+		}
+	}
+
+	weight = 1000
+}
+
+je_marxist_workers_party = {
+	icon = "gfx/interface/icons/law_icons/marxist/marxist_one_party_state.dds"
+
+	group = je_group_internal_affairs
+
+	should_be_pinned_by_default_uninvolved_or_context = yes
+
+	immediate = {
+		set_variable = { name = marxist_consolidation_months value = 0 }
+	}
+
+	status_desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					ig:ig_trade_unions ?= {
+						is_in_government = yes
+					}
+				}
+				desc = je_marxist_workers_party_status_consolidating
+			}
+			triggered_desc = {
+				desc = je_marxist_workers_party_status_desc
+			}
+		}
+	}
+
+	on_monthly_pulse = {
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						has_law = law_type:law_council_republic
+						has_law = law_type:law_marxist_council_republic
+					}
+					ig:ig_trade_unions ?= {
+						is_marginal = no
+						is_in_government = yes
+					}
+					legitimacy >= 40
+				}
+				change_variable = { name = marxist_consolidation_months add = 1 }
+			}
+			else_if = {
+				limit = {
+					var:marxist_consolidation_months > 0
+				}
+				change_variable = { name = marxist_consolidation_months add = -1 }
+			}
+		}
+		random_events = {
+			chance_to_happen = 12
+			60 = 0
+			20 = intl_communism.21
+			20 = intl_communism.22
+		}
+	}
+
+	complete = {
+		custom_tooltip = {
+			text = marxist_consolidation_months_tt
+			var:marxist_consolidation_months >= 24
+		}
+		custom_tooltip = {
+			text = marxist_workers_state_tt
+			OR = {
+				has_law = law_type:law_council_republic
+				has_law = law_type:law_marxist_council_republic
+			}
+		}
+		ig:ig_trade_unions ?= {
+			is_marginal = no
+			is_in_government = yes
+		}
+		legitimacy >= 40
+	}
+
+	fail = {
+		OR = {
+			has_law = law_type:law_anarchist_council_republic
+			has_law = law_type:law_mutualist_council_republic
+			has_law = law_type:law_syndicalist_council_republic
+		}
+	}
+
+	on_complete = {
+		set_variable = marxist_workers_party_consolidated
+		try_claim_internationale = { IDEOLOGY = marxist }
+		add_modifier = {
+			name = modifier_marxist_trade_union_hegemony
+		}
+		trigger_event = { id = intl_communism.20 popup = yes }
+	}
+
+	event_outcome_completed_desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = je_marxist_workers_party_completed_effects_tt
+			}
+		}
+	}
+
+	on_fail = {
+		set_variable = marxist_workers_party_failed
+		trigger_event = { id = intl_communism.17 popup = yes }
+	}
+
+	event_outcome_failed_desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = je_marxist_proletarian_state_failed_effects_tt
+			}
+		}
+	}
+
+	current_value = {
+		value = root.var:marxist_consolidation_months
+	}
+
+	goal_add_value = {
+		value = 24
+	}
+
+	progressbar = yes
 
 	weight = 1000
 }
@@ -964,21 +1334,6 @@ je_mp_faction_world = {
 				desc = je_mp_faction_world_desc
 			}
 		}
-	}
-
-	is_shown_when_inactive = {
-		has_global_variable = mp_faction_phase_2
-		NOT = {
-			this = global_var:mp_faction_leader_country
-		}
-	}
-
-	possible = {
-		hidden_trigger = {
-			has_global_variable = mp_faction_phase_2
-		}
-		
-		country_rank >= rank_value:major_power
 	}
 
 	complete = {

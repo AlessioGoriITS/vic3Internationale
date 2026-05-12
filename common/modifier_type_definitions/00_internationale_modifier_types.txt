@@ -1,0 +1,8 @@
+country_no_iphone_production = {
+	boolean = yes
+	color = bad
+	script_only = yes
+	game_data = {
+		ai_value = 0
+	}
+}

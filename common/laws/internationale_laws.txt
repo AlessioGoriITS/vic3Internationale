@@ -289,6 +289,7 @@ law_blanquist_economy = {
 	}
 
 	modifier = {
+		country_no_iphone_production = yes
 		state_shopkeepers_investment_pool_efficiency_mult = 0.50
 		state_shopkeepers_investment_pool_contribution_add = 0.10
 		country_shopkeepers_pol_str_mult = 0.30
@@ -491,6 +492,7 @@ law_anarchist_economy = {
 	}
 
 	modifier = {
+		country_no_iphone_production = yes
 		state_shopkeepers_investment_pool_efficiency_mult = 0.25
 		state_farmers_investment_pool_efficiency_mult = 0.50
 		state_machinists_investment_pool_efficiency_mult = 0.50
@@ -762,6 +764,7 @@ law_marxist_economy = {
 	}
 
 	modifier = {
+		country_no_iphone_production = yes
 		country_disable_investment_pool_bool = yes
 		state_bureaucrats_investment_pool_efficiency_mult = 0.60
 		state_bureaucrats_investment_pool_contribution_add = 0.20
@@ -775,7 +778,7 @@ law_marxist_economy = {
 		country_private_construction_allocation_mult = 0.3
 		country_free_charters_add = 6
 		country_max_companies_add = 3
-		country_company_throughput_bonus_add = -0.20
+		country_company_throughput_bonus_add = -0.15
 		country_company_construction_efficiency_bonus_add = 0.10
 		country_disable_non_company_privatization_bool = yes
 		building_group_bg_manufacturing_throughput_add = 0.05
@@ -1050,6 +1053,7 @@ law_mutualist_economy = {
 	}
 
 	modifier = {
+		country_no_iphone_production = yes
 		state_machinists_investment_pool_efficiency_mult = 0.90
 		state_machinists_investment_pool_contribution_add = 0.35
 		country_machinists_pol_str_mult = 0.25
@@ -1060,20 +1064,20 @@ law_mutualist_economy = {
 		country_max_companies_add = 1
 		country_loan_interest_rate_mult = -0.20
 		country_force_privatization_bool = yes
-		building_group_bg_manufacturing_allowed_collectivization_add = 0.25
-		building_group_bg_agriculture_allowed_collectivization_add = 0.25
-		building_group_bg_ranching_allowed_collectivization_add = 0.25
-		building_group_bg_subsistence_agriculture_allowed_collectivization_add = 0.25
-		building_group_bg_subsistence_ranching_allowed_collectivization_add = 0.25
-		building_group_bg_plantations_allowed_collectivization_add = 0.25
-		building_group_bg_mining_allowed_collectivization_add = 0.25
-		building_group_bg_heavy_industry_allowed_collectivization_add = 0.25
-		building_group_bg_military_industry_allowed_collectivization_add = 0.25
-		building_group_bg_light_industry_allowed_collectivization_add = 0.25
-		building_group_bg_extraction_allowed_collectivization_add = 0.25
-		building_group_bg_power_allowed_collectivization_add = 0.25
-		building_group_bg_private_infrastructure_allowed_collectivization_add = 0.25
-		building_group_bg_arts_allowed_collectivization_add = 0.25
+		building_group_bg_manufacturing_allowed_collectivization_add = 1
+		building_group_bg_agriculture_allowed_collectivization_add = 1
+		building_group_bg_ranching_allowed_collectivization_add = 1
+		building_group_bg_subsistence_agriculture_allowed_collectivization_add = 0.20
+		building_group_bg_subsistence_ranching_allowed_collectivization_add = 0.20
+		building_group_bg_plantations_allowed_collectivization_add = 0.20
+		building_group_bg_mining_allowed_collectivization_add = 0.20
+		building_group_bg_heavy_industry_allowed_collectivization_add = 1
+		building_group_bg_military_industry_allowed_collectivization_add = 0.20
+		building_group_bg_light_industry_allowed_collectivization_add = 1
+		building_group_bg_extraction_allowed_collectivization_add = 0.20
+		building_group_bg_power_allowed_collectivization_add = 0.20
+		building_group_bg_private_infrastructure_allowed_collectivization_add = 0.20
+		building_group_bg_arts_allowed_collectivization_add = 1
 		building_group_bg_manufacturing_employee_mult = -0.10
 		building_group_bg_mining_employee_mult = -0.05
 		building_group_bg_service_employee_mult = -0.15
@@ -1472,6 +1476,7 @@ law_syndicalist_economy = {
 	}
 
 	modifier = {
+		country_no_iphone_production = yes
 		state_shopkeepers_investment_pool_efficiency_mult = 0.90
 		state_shopkeepers_investment_pool_contribution_add = 0.25
 		country_shopkeepers_pol_str_mult = 0.35
@@ -1490,7 +1495,6 @@ law_syndicalist_economy = {
 		building_group_bg_manufacturing_employee_mult = -0.10
 		building_group_bg_mining_employee_mult = -0.05
 		building_group_bg_service_employee_mult = -0.15
-		country_force_privatization_bool = yes
 		building_group_bg_manufacturing_throughput_add = 0.05
 	}
 
